@@ -188,10 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btnGeneralInstructions')?.addEventListener('click', () => openModal('instructionsModal'));
   document.getElementById('btnPublicNotice')?.addEventListener('click', () => openModal('noticeModal'));
   document.getElementById('btnForgotPass')?.addEventListener('click', (e) => { e.preventDefault(); openModal('forgotModal'); });
-  
-  [document.getElementById('btnRegisterNav'), document.getElementById('btnRegisterBody')].forEach(btn => {
-    btn?.addEventListener('click', (e) => { e.preventDefault(); openModal('registerModal'); });
-  });
 
   document.getElementById('navLoginBtn')?.addEventListener('click', () => inputEnrolment?.focus());
 

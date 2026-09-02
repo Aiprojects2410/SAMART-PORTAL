@@ -77,7 +77,6 @@
         🛡️ Admin Portal
       </a>
       <button type="button" class="nav-btn-login" id="navLoginBtn">Login</button>
-      <button type="button" class="nav-btn-reg" id="btnRegisterNav">New User Registration</button>
     </div>
   </nav>
 
@@ -178,16 +177,8 @@
           <!-- Login Button -->
           <button type="submit" class="btn-primary-login" id="btnSubmitLogin">Login</button>
 
-          <!-- OR Divider -->
-          <div class="separator-or">OR</div>
-
-          <!-- Register Now Button -->
-          <button type="button" class="btn-register-secondary" id="btnRegisterBody">
-            New User ? &nbsp; Register Now -&gt;
-          </button>
-
           <!-- Forgot Password Link -->
-          <div class="bottom-links-row">
+          <div class="bottom-links-row" style="margin-top: 18px;">
             <span class="forgot-txt">Forgot Password?</span>
             <a href="#" class="forgot-link" id="btnForgotPass">Request Password Reset -&gt;</a>
           </div>
@@ -218,7 +209,7 @@
         <p><strong>Instructions for Student Portal Access:</strong></p>
         <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.6;">
           <li>Your <strong>Enrolment Number</strong> is unique and allotted at the time of university admission.</li>
-          <li>For first-time registration, click on <strong>New User Registration</strong> above.</li>
+          <li>Student accounts are officially registered and activated through the University Administration / Admin Portal.</li>
           <li>Ensure your registered mobile number and email ID are active for OTP verification.</li>
           <li>If you face difficulty logging in, please use <em>Request Password Reset</em>.</li>
         </ul>
@@ -265,30 +256,6 @@
       </div>
       <div class="modal-bottom">
         <button type="button" class="btn-primary-login" style="width: auto; padding: 8px 18px;" onclick="alert('Password reset instructions dispatched!')">Submit</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal: Registration -->
-  <div class="modal-overlay" id="registerModal">
-    <div class="modal-card">
-      <div class="modal-top">
-        <h3 class="modal-heading">New User Registration</h3>
-        <button type="button" class="modal-close" data-close="registerModal">&times;</button>
-      </div>
-      <div class="modal-content">
-        <p>Enter your student details to register your portal account:</p>
-        <div style="margin-top: 12px;">
-          <label class="field-label">Programme / Course</label>
-          <input type="text" class="text-input" placeholder="e.g. B.Sc, B.A, B.Com, M.Sc">
-        </div>
-        <div style="margin-top: 12px;">
-          <label class="field-label">Enrolment Number</label>
-          <input type="text" class="text-input" placeholder="Enter Enrolment Number">
-        </div>
-      </div>
-      <div class="modal-bottom">
-        <button type="button" class="btn-primary-login" style="width: auto; padding: 8px 18px;" onclick="alert('OTP has been sent to your registered mobile/email.')">Verify & Proceed</button>
       </div>
     </div>
   </div>
