@@ -963,15 +963,32 @@ body {
     order: 1;
   }
 
-  /* Breadcrumb Bar Wrap on Mobile */
+  /* Breadcrumb Bar Clean Left Alignment on Mobile */
   .portal-breadcrumb-bar {
-    padding: 10px 14px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+    padding: 8px 14px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    text-align: left !important;
+  }
+  .crumb-trail-wrap {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+    text-align: left !important;
+  }
+  .crumb-trail {
+    font-size: 0.82rem !important;
+    text-align: left !important;
   }
   .portal-session-pill {
-    align-self: flex-start;
+    font-size: 0.72rem !important;
+    margin: 0 !important;
   }
 
   /* Admin Console Grid on Tablets/Mobiles */
@@ -1068,17 +1085,49 @@ body {
     border-radius: 4px;
   }
 
-  /* Profile Details Grid on Small Screens */
-  .profile-details-grid {
-    grid-template-columns: 1fr !important;
+  /* Profile Details on Mobile Screens */
+  .profile-banner-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 16px !important;
+    gap: 14px !important;
+    text-align: left !important;
   }
-  .profile-top-banner {
-    flex-direction: column;
-    text-align: center;
-    gap: 12px;
+  .profile-hero-left {
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+    width: 100% !important;
+    text-align: left !important;
   }
-  .profile-avatar-box {
-    margin: 0 auto;
+  .profile-large-photo {
+    width: 90px !important;
+    height: 115px !important;
+    flex-shrink: 0 !important;
+  }
+  .profile-hero-info {
+    text-align: left !important;
+  }
+  .profile-hero-info h2 {
+    font-size: 1.2rem !important;
+    text-align: left !important;
+  }
+  .profile-meta-tags {
+    justify-content: flex-start !important;
+  }
+  .profile-actions-right {
+    width: 100% !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  .profile-actions-right .btn-action-primary,
+  .profile-actions-right .btn-action-outline {
+    flex: 1 1 calc(50% - 8px) !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 8px 10px !important;
+    font-size: 0.8rem !important;
   }
 
   /* Buttons & Actions */
