@@ -219,17 +219,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  window.openInstructionsPopup = () => openModal('instructionsModal');
+  window.closeInstructionsPopup = () => closeModal('instructionsModal');
+
+  // Dynamic link setter for easy link replacement
+  window.setInstructionLink = (newUrl) => {
+    const linkEl = document.getElementById('instructionDynamicLink');
+    if (linkEl) {
+      linkEl.href = newUrl;
+      linkEl.textContent = newUrl;
+    }
+  };
+
   document.getElementById('btnGeneralInstructions')?.addEventListener('click', () => openModal('instructionsModal'));
   document.getElementById('btnPublicNotice')?.addEventListener('click', () => openModal('noticeModal'));
   document.getElementById('btnForgotPass')?.addEventListener('click', (e) => { e.preventDefault(); openModal('forgotModal'); });
 
-  document.getElementById('navLoginBtn')?.addEventListener('click', () => inputEnrolment?.focus());
+  // Open Instructions Popup when student clicks Login button or interacts with form
+  document.getElementById('navLoginBtn')?.addEventListener('click', () => {
+    openModal('instructionsModal');
+  });
+
+  // Automatically pop up on student login page visit if first time in session
+  if (!sessionStorage.getItem('samarth_instructions_dismissed')) {
+    setTimeout(() => {
+      openModal('instructionsModal');
+    }, 450);
+  }
 
   document.querySelectorAll('.modal-overlay').forEach(overlay => {
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) {
         overlay.classList.remove('is-active');
         document.body.style.overflow = 'auto';
+        sessionStorage.setItem('samarth_instructions_dismissed', 'true');
       }
     });
   });
@@ -238,6 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       const modalId = btn.getAttribute('data-close');
       closeModal(modalId);
+      sessionStorage.setItem('samarth_instructions_dismissed', 'true');
     });
   });
 });

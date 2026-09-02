@@ -742,33 +742,32 @@ body {
 .samarth-brand-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
-  padding: 4px 10px 4px 6px;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
+  gap: 8px;
+  background: transparent;
   text-decoration: none;
   flex-shrink: 0;
 }
 
-.samarth-brand-badge .brand-icon-box {
-  width: 26px;
-  height: 26px;
-  background: #ffffff;
-  color: #4f46e5;
-  border-radius: 4px;
+.samarth-brand-badge .brand-icon-box, .brand-icon-box {
+  width: 28px;
+  height: 28px;
+  background: #5c67f2 !important;
+  color: #ffffff !important;
+  border-radius: 6px;
   font-weight: 900;
-  font-size: 1rem;
+  font-size: 1.15rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 6px rgba(92, 103, 242, 0.4);
+  user-select: none;
 }
 
-.samarth-brand-badge .brand-text-egov {
+.samarth-brand-badge .brand-text-egov, .brand-title {
   color: #ffffff;
   font-weight: 800;
-  font-size: 0.92rem;
-  letter-spacing: 0.5px;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
 }
 
 /* Breadcrumb Menu Button (Hidden on PC, Visible on Mobile & Tablet <= 1024px) */
