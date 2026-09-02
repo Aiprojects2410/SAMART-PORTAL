@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programme Details - Bachelor of Commerce (B.COM.) | Kumaun University</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/university-logo.svg">
+  <style>
+    .portal-nav-header {
+      background-color: #1e2538;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 10;
+    }
+    .portal-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+    .portal-univ-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .portal-univ-logo {
+      width: 40px;
+      height: 40px;
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 3px;
+    }
+    .portal-univ-text h1 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .portal-univ-text span {
+      font-size: 0.74rem;
+      color: #94a3b8;
+    }
+    .portal-user-corner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .user-tag-details {
+      text-align: right;
+    }
+    .user-tag-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #ffffff;
+    }
+    .user-tag-enrol {
+      font-size: 0.78rem;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    .user-photo-thumb {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #38bdf8;
+      object-fit: cover;
+    }
+    .btn-logout-portal {
+      background-color: #ef4444;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      padding: 7px 15px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .portal-breadcrumb-bar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .portal-body-grid {
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 22px 30px 60px;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .portal-sidebar {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sidebar-section-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 8px 12px 4px;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #334155;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .sidebar-link:hover {
+      background-color: #f1f5f9;
+      color: #1e293b;
+    }
+    .sidebar-link.active {
+      background-color: #eef2ff;
+      color: #4f46e5;
+      font-weight: 700;
+    }
+    .sidebar-icon {
+      font-size: 1.05rem;
+    }
+
+    .programme-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .prog-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-top: 14px;
+    }
+    .prog-table th, .prog-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      text-align: left;
+    }
+    .prog-table th {
+      background-color: #f8fafc;
+      color: #475569;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-gov-header">
+    <div class="gov-top-inner">
+      <div class="gov-dept-row">
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">भारत सरकार</span>
+          <span class="gov-title-en">Government of India</span>
+        </div>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">उत्तराखंड सरकार पोर्टल</span>
+          <span class="gov-title-en">Uttarakhand Government Portal</span>
+        </div>
+        <div class="gov-dept-col no-border">
+          <span class="gov-title-hi">कुमाऊँ विश्वविद्यालय नैनीताल</span>
+          <span class="gov-title-en">Kumaun University, Nainital</span>
+        </div>
+      </div>
+      <div class="accessibility-font-box">
+        <button type="button" class="font-scaler-btn" id="fontDecrease">A-</button>
+        <button type="button" class="font-scaler-btn active" id="fontNormal">A</button>
+        <button type="button" class="font-scaler-btn" id="fontIncrease">A+</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="portal-nav-header">
+    <div class="portal-nav-brand">
+      <div class="brand-icon-box">S</div>
+      <div class="portal-univ-badge">
+        <img src="assets/university-logo.svg" alt="KU Emblem" class="portal-univ-logo">
+        <div class="portal-univ-text">
+          <h1>Kumaun University, Nainital</h1>
+          <span>Samarth Student Portal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portal-user-corner">
+      <img src="assets/student_photo.png" alt="MOHD MOHSIN KHAN" class="user-photo-thumb">
+      <div class="user-tag-details">
+        <div class="user-tag-name">MOHD MOHSIN KHAN</div>
+        <div class="user-tag-enrol">KU20247319</div>
+      </div>
+      <a href="index.html" class="btn-logout-portal">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div class="portal-breadcrumb-bar">
+    <div class="crumb-trail">
+      Portal Home / Student / <strong>Programme Details</strong>
+    </div>
+    <div style="font-size:0.8rem; color:#16a34a; font-weight:700;">
+      Degree Completed (2022–2024)
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <main class="portal-body-grid">
+    <aside class="portal-sidebar">
+      <div class="sidebar-section-title">Core Navigation</div>
+      <a href="profile.html" class="sidebar-link">
+        <span class="sidebar-icon">👤</span> Student Profile
+      </a>
+      <a href="gradecard.html" class="sidebar-link">
+        <span class="sidebar-icon">📑</span> Grade Card / Results
+      </a>
+      <a href="dashboard.html" class="sidebar-link">
+        <span class="sidebar-icon">📊</span> Academic Summary
+      </a>
+      <a href="programme.html" class="sidebar-link active">
+        <span class="sidebar-icon">🎓</span> Programme Details
+      </a>
+
+      <div class="sidebar-section-title" style="margin-top: 10px;">Examinations & Degree</div>
+      <a href="gradecard.html" class="sidebar-link">
+        <span class="sidebar-icon">🏆</span> Statements of Marks
+      </a>
+      <a href="provisional.html" class="sidebar-link">
+        <span class="sidebar-icon">📜</span> Provisional Degree
+      </a>
+      <a href="migration.html" class="sidebar-link">
+        <span class="sidebar-icon">📄</span> Migration Certificate
+      </a>
+
+      <div class="sidebar-section-title" style="margin-top: 10px;">Finance & Services</div>
+      <a href="fees.html" class="sidebar-link">
+        <span class="sidebar-icon">💳</span> Fee Receipts (Cleared)
+      </a>
+      <a href="idcard.html" class="sidebar-link">
+        <span class="sidebar-icon">🪪</span> Digital Student ID Card
+      </a>
+      <a href="helpdesk.html" class="sidebar-link">
+        <span class="sidebar-icon">🎧</span> Helpdesk & Grievance
+      </a>
+    </aside>
+
+    <section style="display:flex; flex-direction:column; gap:20px;">
+      
+      <div class="programme-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #f1f5f9; padding-bottom:12px; margin-bottom:16px;">
+          <h2 style="font-size:1.2rem; font-weight:800; color:#1e293b;">🎓 Bachelor of Commerce (B.COM.) Curriculum Structure</h2>
+          <button class="btn-public-notice-pill" onclick="alert('Downloading Official B.Com Curriculum PDF...')">Download Syllabus PDF</button>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-bottom:20px;">
+          <div style="background:#f8fafc; padding:12px; border-radius:6px; border:1px solid #e2e8f0;">
+            <div style="font-size:0.75rem; color:#64748b; font-weight:700;">DEGREE TYPE</div>
+            <div style="font-size:0.95rem; font-weight:800; color:#1e293b;">Undergraduate (3 Years)</div>
+          </div>
+          <div style="background:#f8fafc; padding:12px; border-radius:6px; border:1px solid #e2e8f0;">
+            <div style="font-size:0.75rem; color:#64748b; font-weight:700;">FACULTY</div>
+            <div style="font-size:0.95rem; font-weight:800; color:#1e293b;">Faculty of Commerce & Management</div>
+          </div>
+          <div style="background:#f8fafc; padding:12px; border-radius:6px; border:1px solid #e2e8f0;">
+            <div style="font-size:0.75rem; color:#64748b; font-weight:700;">TOTAL CREDITS</div>
+            <div style="font-size:0.95rem; font-weight:800; color:#15803d;">120 Credits (Earned 120/120)</div>
+          </div>
+        </div>
+
+        <h3 style="font-size:1rem; font-weight:700; color:#1e293b;">Year-Wise Course Group Structure</h3>
+        <table class="prog-table">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Group I (Management)</th>
+              <th>Group II (Accounting)</th>
+              <th>Group III (B.E. & B.L.)</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Year 1 (2022)</strong></td>
+              <td>General & Office Management<br>Business Environment</td>
+              <td>Financial Accounting<br>Elements of Statistics</td>
+              <td>Business Economics<br>Business Regulatory Frame-Work</td>
+              <td><span style="color:#16a34a; font-weight:700;">Completed (222/300)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Year 2 (2023)</strong></td>
+              <td>Basic Business Finance<br>Personnel Management</td>
+              <td>Advanced Accounting<br>Cost Accounting</td>
+              <td>Money Banking & Foreign Exchange<br>Company Law & Secretarial Practice</td>
+              <td><span style="color:#16a34a; font-weight:700;">Completed (230/300)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Year 3 (2024)</strong></td>
+              <td>Marketing Management<br>Management Accounting</td>
+              <td>Income Tax, Law & Accounts<br>Auditing</td>
+              <td>Public Finance<br>Fundamentals of Insurance</td>
+              <td><span style="color:#16a34a; font-weight:700;">Completed (232/300 - First Div)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="portal-footer">
+    <div class="footer-left-brand">
+      <div class="brand-icon-box">S</div>
+      <span class="footer-brand-title">eGov</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #64748b;">
+      © 2026 Kumaun University, Nainital. Powered by Samarth eGov Suite.
+    </div>
+  </footer>
+
+</body>
+</html>

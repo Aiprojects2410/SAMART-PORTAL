@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Student ID Card - MOHD MOHSIN KHAN | Kumaun University</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/university-logo.svg">
+  <style>
+    .portal-nav-header {
+      background-color: #1e2538;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 10;
+    }
+    .portal-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+    .portal-univ-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .portal-univ-logo {
+      width: 40px;
+      height: 40px;
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 3px;
+    }
+    .portal-univ-text h1 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .portal-univ-text span {
+      font-size: 0.74rem;
+      color: #94a3b8;
+    }
+    .portal-user-corner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .user-tag-details {
+      text-align: right;
+    }
+    .user-tag-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #ffffff;
+    }
+    .user-tag-enrol {
+      font-size: 0.78rem;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    .user-photo-thumb {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #38bdf8;
+      object-fit: cover;
+    }
+    .btn-logout-portal {
+      background-color: #ef4444;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      padding: 7px 15px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .portal-breadcrumb-bar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .portal-body-grid {
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 22px 30px 60px;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .portal-sidebar {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sidebar-section-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 8px 12px 4px;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #334155;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .sidebar-link:hover {
+      background-color: #f1f5f9;
+      color: #1e293b;
+    }
+    .sidebar-link.active {
+      background-color: #eef2ff;
+      color: #4f46e5;
+      font-weight: 700;
+    }
+    .sidebar-icon {
+      font-size: 1.05rem;
+    }
+
+    /* DIGITAL ID CARD (PVC Style) */
+    .id-card-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    .id-card-container {
+      width: 460px;
+      height: 290px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      border: 1px solid #cbd5e1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    /* Top ID Card Header */
+    .id-top-bar {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e2538 100%);
+      color: #ffffff;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 3px solid #f59e0b;
+    }
+    .id-univ-logo {
+      width: 44px;
+      height: 44px;
+      background: #ffffff;
+      border-radius: 50%;
+      padding: 2px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .id-univ-headers {
+      flex: 1;
+      text-align: center;
+    }
+    .id-univ-headers h2 {
+      font-size: 0.96rem;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 0.4px;
+      line-height: 1.15;
+    }
+    .id-univ-headers h3 {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #93c5fd;
+      line-height: 1.15;
+    }
+    .id-card-title-pill {
+      font-size: 0.68rem;
+      background: #f59e0b;
+      color: #000000;
+      font-weight: 800;
+      padding: 1px 8px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-top: 2px;
+    }
+
+    /* ID Card Body */
+    .id-body-flex {
+      padding: 12px 14px;
+      display: flex;
+      gap: 14px;
+      flex: 1;
+      position: relative;
+    }
+    .id-body-bg-watermark {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      width: 140px;
+      height: 140px;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+    .id-photo-column {
+      width: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .id-student-photo {
+      width: 95px;
+      height: 115px;
+      object-fit: cover;
+      border: 2px solid #1e3a8a;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .id-barcode {
+      font-family: monospace;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #1e293b;
+    }
+
+    .id-info-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .id-student-name {
+      font-size: 1.02rem;
+      font-weight: 900;
+      color: #1e3a8a;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 3px;
+      margin-bottom: 4px;
+    }
+    .id-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.74rem;
+      line-height: 1.35;
+    }
+    .id-data-table td {
+      padding: 1.5px 0;
+    }
+    .id-data-table td.lbl {
+      color: #475569;
+      font-weight: 700;
+      width: 38%;
+    }
+    .id-data-table td.val {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    /* ID Footer Bar */
+    .id-bottom-bar {
+      background-color: #f1f5f9;
+      border-top: 1px solid #cbd5e1;
+      padding: 5px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.68rem;
+    }
+    .id-college-name {
+      color: #334155;
+      font-weight: 700;
+    }
+    .id-signature-box {
+      text-align: center;
+      color: #15803d;
+      font-weight: 800;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .id-card-container, .id-card-container * {
+        visibility: visible;
+      }
+      .id-card-container {
+        position: absolute;
+        left: 50px;
+        top: 50px;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-gov-header">
+    <div class="gov-top-inner">
+      <div class="gov-dept-row">
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">भारत सरकार</span>
+          <span class="gov-title-en">Government of India</span>
+        </div>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">उत्तराखंड सरकार पोर्टल</span>
+          <span class="gov-title-en">Uttarakhand Government Portal</span>
+        </div>
+        <div class="gov-dept-col no-border">
+          <span class="gov-title-hi">कुमाऊँ विश्वविद्यालय नैनीताल</span>
+          <span class="gov-title-en">Kumaun University, Nainital</span>
+        </div>
+      </div>
+      <div class="accessibility-font-box">
+        <button type="button" class="font-scaler-btn" id="fontDecrease">A-</button>
+        <button type="button" class="font-scaler-btn active" id="fontNormal">A</button>
+        <button type="button" class="font-scaler-btn" id="fontIncrease">A+</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="portal-nav-header">
+    <div class="portal-nav-brand">
+      <div class="brand-icon-box">S</div>
+      <div class="portal-univ-badge">
+        <img src="assets/university-logo.svg" alt="KU Emblem" class="portal-univ-logo">
+        <div class="portal-univ-text">
+          <h1>Kumaun University, Nainital</h1>
+          <span>Samarth Student Portal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portal-user-corner">
+      <img src="assets/student_photo.png" alt="MOHD MOHSIN KHAN" class="user-photo-thumb">
+      <div class="user-tag-details">
+        <div class="user-tag-name">MOHD MOHSIN KHAN</div>
+        <div class="user-tag-enrol">KU20247319</div>
+      </div>
+      <a href="index.html" class="btn-logout-portal">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div class="portal-breadcrumb-bar">
+    <div class="crumb-trail">
+      Portal Home / Student / <strong>Digital Student ID Card</strong>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <button type="button" class="btn-primary-login" style="width:auto; padding:6px 18px;" onclick="window.print()">
+        🖨️ Download / Print ID Card
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <main class="portal-body-grid">
+    <aside class="portal-sidebar">
+      <div class="sidebar-section-title">Core Navigation</div>
+      <a href="profile.html" class="sidebar-link">
+        <span class="sidebar-icon">👤</span> Student Profile
+      </a>
+      <a href="gradecard.html" class="sidebar-link">
+        <span class="sidebar-icon">📑</span> Grade Card / Results
+      </a>
+      <a href="dashboard.html" class="sidebar-link">
+        <span class="sidebar-icon">📊</span> Academic Summary
+      </a>
+      <a href="programme.html" class="sidebar-link">
+        <span class="sidebar-icon">🎓</span> Programme Details
+      </a>
+
+      <div class="sidebar-section-title" style="margin-top: 10px;">Examinations & Degree</div>
+      <a href="gradecard.html" class="sidebar-link">
+        <span class="sidebar-icon">🏆</span> Statements of Marks
+      </a>
+      <a href="provisional.html" class="sidebar-link">
+        <span class="sidebar-icon">📜</span> Provisional Degree
+      </a>
+      <a href="migration.html" class="sidebar-link">
+        <span class="sidebar-icon">📄</span> Migration Certificate
+      </a>
+
+      <div class="sidebar-section-title" style="margin-top: 10px;">Finance & Services</div>
+      <a href="fees.html" class="sidebar-link">
+        <span class="sidebar-icon">💳</span> Fee Receipts (Cleared)
+      </a>
+      <a href="idcard.html" class="sidebar-link active">
+        <span class="sidebar-icon">🪪</span> Digital Student ID Card
+      </a>
+      <a href="helpdesk.html" class="sidebar-link">
+        <span class="sidebar-icon">🎧</span> Helpdesk & Grievance
+      </a>
+    </aside>
+
+    <section class="id-card-stage">
+      
+      <!-- Digital ID Card PVC Container -->
+      <div class="id-card-container">
+        
+        <!-- Header -->
+        <div class="id-top-bar">
+          <img src="assets/university-logo.svg" alt="KU Crest" class="id-univ-logo">
+          <div class="id-univ-headers">
+            <h2>KUMAUN UNIVERSITY, NAINITAL</h2>
+            <h3>कुमाऊँ विश्वविद्यालय, नैनीताल (उत्तराखंड)</h3>
+            <span class="id-card-title-pill">STUDENT IDENTITY CARD</span>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="id-body-flex">
+          <img src="assets/university-logo.svg" alt="Watermark" class="id-body-bg-watermark">
+          
+          <div class="id-photo-column">
+            <img src="assets/student_photo.png" alt="MOHD MOHSIN KHAN" class="id-student-photo">
+            <div class="id-barcode">|| |||| ||| ||||</div>
+          </div>
+
+          <div class="id-info-column">
+            <div class="id-student-name">MOHD MOHSIN KHAN</div>
+            
+            <table class="id-data-table">
+              <tr>
+                <td class="lbl">Father's Name:</td>
+                <td class="val">BABBAN KHAN</td>
+              </tr>
+              <tr>
+                <td class="lbl">Enrolment No:</td>
+                <td class="val" style="color:#1d4ed8;">KU20247319</td>
+              </tr>
+              <tr>
+                <td class="lbl">Roll Number:</td>
+                <td class="val">2233524680</td>
+              </tr>
+              <tr>
+                <td class="lbl">Course:</td>
+                <td class="val">Bachelor of Commerce (B.COM.)</td>
+              </tr>
+              <tr>
+                <td class="lbl">Date of Birth:</td>
+                <td class="val">22/02/2001 &nbsp;|&nbsp; <strong>Blood:</strong> B+</td>
+              </tr>
+              <tr>
+                <td class="lbl">Session / Batch:</td>
+                <td class="val">2022 – 2024 (Passout)</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="id-bottom-bar">
+          <span class="id-college-name">SBS Govt. P.G. College, Rudrapur</span>
+          <span class="id-signature-box">✍️ Registrar / Principal</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display:flex; gap:16px;">
+        <button class="btn-action-primary" style="padding:10px 24px; font-size:0.95rem;" onclick="window.print()">
+          🖨️ Print / Save as PDF
+        </button>
+        <a href="profile.html" class="btn-action-outline" style="text-decoration:none; padding:10px 24px; font-size:0.95rem;">
+          ← Back to Student Profile
+        </a>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="portal-footer">
+    <div class="footer-left-brand">
+      <div class="brand-icon-box">S</div>
+      <span class="footer-brand-title">eGov</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #64748b;">
+      © 2026 Kumaun University, Nainital. Powered by Samarth eGov Suite.
+    </div>
+  </footer>
+
+</body>
+</html>
