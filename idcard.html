@@ -148,177 +148,306 @@
       font-size: 1.05rem;
     }
 
-    /* DIGITAL ID CARD (PVC Style) */
-    .id-card-stage {
+    /* ID Card Showcase Stage */
+    .idcard-showcase-stage {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 24px;
+      gap: 26px;
     }
-    .id-card-container {
-      width: 460px;
-      height: 290px;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      border: 1px solid #cbd5e1;
+
+    .idcard-controls-toolbar {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .idcard-flip-wrapper {
+      perspective: 1000px;
+      width: 530px;
+      height: 330px;
+    }
+
+    .idcard-flipper {
+      width: 100%;
+      height: 100%;
       position: relative;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .idcard-flipper.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .idcard-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 14px;
+      box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(15, 23, 42, 0.08);
+      background: #ffffff;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: 'Segoe UI', -apple-system, Roboto, sans-serif;
     }
 
-    /* Top ID Card Header */
-    .id-top-bar {
-      background: linear-gradient(135deg, #1e3a8a 0%, #1e2538 100%);
-      color: #ffffff;
-      padding: 10px 14px;
+    .idcard-face.back {
+      transform: rotateY(180deg);
+      background: #f8fafc;
+    }
+
+    /* FRONT SIDE STYLES */
+    .idcard-header-main {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #1d4ed8 100%);
+      padding: 10px 16px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      color: #ffffff;
+      position: relative;
       border-bottom: 3px solid #f59e0b;
     }
-    .id-univ-logo {
-      width: 44px;
-      height: 44px;
+    .idcard-header-logo {
+      width: 50px;
+      height: 50px;
       background: #ffffff;
       border-radius: 50%;
-      padding: 2px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      padding: 3px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+      flex-shrink: 0;
     }
-    .id-univ-headers {
+    .idcard-header-titles {
       flex: 1;
       text-align: center;
     }
-    .id-univ-headers h2 {
-      font-size: 0.96rem;
+    .idcard-header-titles h2 {
+      font-size: 1.05rem;
       font-weight: 900;
       color: #ffffff;
-      letter-spacing: 0.4px;
-      line-height: 1.15;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+      margin: 0;
     }
-    .id-univ-headers h3 {
+    .idcard-header-titles h3 {
       font-size: 0.72rem;
       font-weight: 600;
-      color: #93c5fd;
-      line-height: 1.15;
+      color: #cbd5e1;
+      margin: 2px 0 0 0;
     }
-    .id-card-title-pill {
-      font-size: 0.68rem;
-      background: #f59e0b;
-      color: #000000;
-      font-weight: 800;
-      padding: 1px 8px;
-      border-radius: 10px;
+    .idcard-badge-pill {
       display: inline-block;
-      margin-top: 2px;
+      background: #f59e0b;
+      color: #0f172a;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      padding: 2px 10px;
+      border-radius: 12px;
+      margin-top: 3px;
     }
 
-    /* ID Card Body */
-    .id-body-flex {
-      padding: 12px 14px;
-      display: flex;
-      gap: 14px;
+    /* Card Middle Content */
+    .idcard-middle-content {
       flex: 1;
+      display: flex;
+      padding: 12px 16px;
+      gap: 16px;
       position: relative;
+      background: radial-gradient(circle at 80% 50%, rgba(241,245,249,0.8), #ffffff 70%);
     }
-    .id-body-bg-watermark {
+
+    .idcard-watermark-overlay {
       position: absolute;
-      right: 10px;
-      bottom: 10px;
-      width: 140px;
-      height: 140px;
-      opacity: 0.06;
+      right: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 170px;
+      height: 170px;
+      opacity: 0.05;
       pointer-events: none;
     }
-    .id-photo-column {
-      width: 100px;
+
+    .idcard-photo-pane {
+      width: 110px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
+      flex-shrink: 0;
     }
-    .id-student-photo {
-      width: 95px;
-      height: 115px;
+    .idcard-student-img {
+      width: 105px;
+      height: 125px;
       object-fit: cover;
-      border: 2px solid #1e3a8a;
-      border-radius: 4px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      border-radius: 8px;
+      border: 2.5px solid #1e3a8a;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
-    .id-barcode {
-      font-family: monospace;
-      font-size: 0.65rem;
+    .idcard-validity-tag {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+      font-size: 0.66rem;
       font-weight: 800;
-      letter-spacing: 1.5px;
-      color: #1e293b;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-align: center;
+      width: 100%;
     }
 
-    .id-info-column {
+    .idcard-info-pane {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-    }
-    .id-student-name {
-      font-size: 1.02rem;
-      font-weight: 900;
-      color: #1e3a8a;
-      border-bottom: 1.5px solid #e2e8f0;
-      padding-bottom: 3px;
-      margin-bottom: 4px;
-    }
-    .id-data-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.74rem;
-      line-height: 1.35;
-    }
-    .id-data-table td {
-      padding: 1.5px 0;
-    }
-    .id-data-table td.lbl {
-      color: #475569;
-      font-weight: 700;
-      width: 38%;
-    }
-    .id-data-table td.val {
-      color: #0f172a;
-      font-weight: 700;
+      z-index: 1;
     }
 
-    /* ID Footer Bar */
-    .id-bottom-bar {
-      background-color: #f1f5f9;
-      border-top: 1px solid #cbd5e1;
-      padding: 5px 14px;
+    .idcard-student-title {
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-bottom: 4px;
+    }
+    .idcard-student-name {
+      font-size: 1.12rem;
+      font-weight: 900;
+      color: #1e3a8a;
+      letter-spacing: -0.2px;
+    }
+    .idcard-programme-name {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #d97706;
+    }
+
+    .idcard-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: 4px;
+      column-gap: 8px;
+      font-size: 0.76rem;
+    }
+    .idcard-field-row {
+      display: flex;
+      flex-direction: column;
+    }
+    .idcard-field-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .idcard-field-value {
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .idcard-highlight-enrol {
+      color: #2563eb;
+    }
+
+    /* Card Bottom Strip */
+    .idcard-bottom-strip {
+      background: #f1f5f9;
+      border-top: 1px solid #e2e8f0;
+      padding: 6px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.68rem;
+      font-size: 0.72rem;
     }
-    .id-college-name {
-      color: #334155;
+    .idcard-college-text {
       font-weight: 700;
+      color: #334155;
+      max-width: 320px;
+      line-height: 1.2;
     }
-    .id-signature-box {
-      text-align: center;
-      color: #15803d;
-      font-weight: 800;
+    .idcard-signature-wrap {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .idcard-sign-font {
+      font-family: 'Brush Script MT', cursive, sans-serif;
+      font-size: 1.1rem;
+      color: #1e3a8a;
+      line-height: 1;
+    }
+    .idcard-sign-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #64748b;
+    }
+
+    /* BACK SIDE STYLES */
+    .idcard-back-header {
+      background: #1e293b;
+      color: #ffffff;
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-bottom: 2px solid #f59e0b;
+    }
+    .idcard-back-body {
+      padding: 14px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 0.76rem;
+      color: #334155;
+    }
+    .idcard-back-terms {
+      font-size: 0.7rem;
+      color: #64748b;
+      line-height: 1.4;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+    .idcard-back-grid {
+      display: grid;
+      grid-template-columns: 1fr 120px;
+      gap: 12px;
+      align-items: center;
+    }
+    .idcard-qr-box {
+      width: 90px;
+      height: 90px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .idcard-barcode-bar {
+      margin-top: 6px;
+      font-family: monospace;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      font-weight: 900;
     }
 
     @media print {
       body * {
         visibility: hidden;
       }
-      .id-card-container, .id-card-container * {
+      .idcard-flip-wrapper, .idcard-flip-wrapper * {
         visibility: visible;
       }
-      .id-card-container {
+      .idcard-flip-wrapper {
         position: absolute;
-        left: 50px;
-        top: 50px;
+        left: 40px;
+        top: 40px;
         box-shadow: none;
       }
     }
@@ -379,15 +508,15 @@
     <div class="crumb-trail">
       Portal Home / Student / <strong>Digital Student ID Card</strong>
     </div>
-    <div style="display:flex; gap:10px;">
-      <button type="button" class="btn-primary-login" style="width:auto; padding:6px 18px;" onclick="window.print()">
-        🖨️ Download / Print ID Card
-      </button>
+    <div style="font-size: 0.82rem; color: #16a34a; font-weight: 700;">
+      ✓ Official Digital Student Credential (Verified)
     </div>
   </div>
 
-  <!-- Main Grid -->
+  <!-- Main Grid Layout -->
   <main class="portal-body-grid">
+    
+    <!-- Sidebar Navigation -->
     <aside class="portal-sidebar">
       <div class="sidebar-section-title">Core Navigation</div>
       <a href="profile.html" class="sidebar-link">
@@ -426,77 +555,161 @@
       </a>
     </aside>
 
-    <section class="id-card-stage">
+    <!-- Showcase Container -->
+    <section class="idcard-showcase-stage">
       
-      <!-- Digital ID Card PVC Container -->
-      <div class="id-card-container">
-        
-        <!-- Header -->
-        <div class="id-top-bar">
-          <img src="assets/university-logo.svg" alt="KU Crest" class="id-univ-logo">
-          <div class="id-univ-headers">
-            <h2>KUMAUN UNIVERSITY, NAINITAL</h2>
-            <h3>कुमाऊँ विश्वविद्यालय, नैनीताल (उत्तराखंड)</h3>
-            <span class="id-card-title-pill">STUDENT IDENTITY CARD</span>
-          </div>
-        </div>
-
-        <!-- Body -->
-        <div class="id-body-flex">
-          <img src="assets/university-logo.svg" alt="Watermark" class="id-body-bg-watermark">
-          
-          <div class="id-photo-column">
-            <img src="assets/student_photo.png" alt="MOHD MOHSIN KHAN" class="id-student-photo">
-            <div class="id-barcode">|| |||| ||| ||||</div>
-          </div>
-
-          <div class="id-info-column">
-            <div class="id-student-name">MOHD MOHSIN KHAN</div>
-            
-            <table class="id-data-table">
-              <tr>
-                <td class="lbl">Father's Name:</td>
-                <td class="val">BABBAN KHAN</td>
-              </tr>
-              <tr>
-                <td class="lbl">Enrolment No:</td>
-                <td class="val" style="color:#1d4ed8;">KU20247319</td>
-              </tr>
-              <tr>
-                <td class="lbl">Roll Number:</td>
-                <td class="val">2233524680</td>
-              </tr>
-              <tr>
-                <td class="lbl">Course:</td>
-                <td class="val">Bachelor of Commerce (B.COM.)</td>
-              </tr>
-              <tr>
-                <td class="lbl">Date of Birth:</td>
-                <td class="val">22/02/2001 &nbsp;|&nbsp; <strong>Blood:</strong> B+</td>
-              </tr>
-              <tr>
-                <td class="lbl">Session / Batch:</td>
-                <td class="val">2022 – 2024 (Passout)</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="id-bottom-bar">
-          <span class="id-college-name">SBS Govt. P.G. College, Rudrapur</span>
-          <span class="id-signature-box">✍️ Registrar / Principal</span>
-        </div>
+      <!-- Toolbar Controls -->
+      <div class="idcard-controls-toolbar">
+        <button type="button" class="btn-action-primary" style="background:#2563eb; padding:9px 20px;" onclick="window.print()">
+          🖨️ Download / Print ID Card (PDF)
+        </button>
+        <button type="button" class="btn-action-outline" id="btnFlipCard" style="padding:9px 18px; font-weight:700;">
+          🔄 Flip Card (Back Side)
+        </button>
+        <a href="profile.html" class="btn-action-outline" style="text-decoration:none; padding:9px 18px;">
+          ← Back to Profile
+        </a>
       </div>
 
-      <!-- Action Buttons -->
-      <div style="display:flex; gap:16px;">
-        <button class="btn-action-primary" style="padding:10px 24px; font-size:0.95rem;" onclick="window.print()">
-          🖨️ Print / Save as PDF
-        </button>
-        <a href="profile.html" class="btn-action-outline" style="text-decoration:none; padding:10px 24px; font-size:0.95rem;">
-          ← Back to Student Profile
-        </a>
+      <!-- 3D Flippable Smart ID Card -->
+      <div class="idcard-flip-wrapper">
+        <div class="idcard-flipper" id="cardFlipper">
+          
+          <!-- FRONT FACE -->
+          <div class="idcard-face front">
+            
+            <!-- Header -->
+            <div class="idcard-header-main">
+              <img src="assets/university-logo.svg" alt="KU Seal" class="idcard-header-logo">
+              <div class="idcard-header-titles">
+                <h2>KUMAUN UNIVERSITY, NAINITAL</h2>
+                <h3>कुमाऊँ विश्वविद्यालय, नैनीताल (उत्तराखंड)</h3>
+                <span class="idcard-badge-pill">STUDENT IDENTITY CARD</span>
+              </div>
+            </div>
+
+            <!-- Middle Body -->
+            <div class="idcard-middle-content">
+              <img src="assets/university-logo.svg" alt="Watermark" class="idcard-watermark-overlay">
+
+              <!-- Left Column: Photo & Tag -->
+              <div class="idcard-photo-pane">
+                <img src="assets/student_photo.png" alt="MOHD MOHSIN KHAN" class="idcard-student-img">
+                <div class="idcard-validity-tag">VALID: 2022–2024</div>
+              </div>
+
+              <!-- Right Column: Student Info Grid -->
+              <div class="idcard-info-pane">
+                <div class="idcard-student-title">
+                  <div class="idcard-student-name">MOHD MOHSIN KHAN</div>
+                  <div class="idcard-programme-name">Bachelor of Commerce (B.COM.)</div>
+                </div>
+
+                <div class="idcard-details-grid">
+                  <div class="idcard-field-row">
+                    <span class="idcard-field-label">Enrolment No</span>
+                    <span class="idcard-field-value idcard-highlight-enrol">KU20247319</span>
+                  </div>
+                  <div class="idcard-field-row">
+                    <span class="idcard-field-label">Roll Number</span>
+                    <span class="idcard-field-value">2233524680</span>
+                  </div>
+                  <div class="idcard-field-row">
+                    <span class="idcard-field-label">Father's Name</span>
+                    <span class="idcard-field-value">BABBAN KHAN</span>
+                  </div>
+                  <div class="idcard-field-row">
+                    <span class="idcard-field-label">Date of Birth</span>
+                    <span class="idcard-field-value">22/02/2001</span>
+                  </div>
+                  <div class="idcard-field-row">
+                    <span class="idcard-field-label">Blood Group</span>
+                    <span class="idcard-field-value" style="color:#ef4444;">B+</span>
+                  </div>
+                  <div class="idcard-field-row">
+                    <span class="idcard-field-label">Academic Status</span>
+                    <span class="idcard-field-value" style="color:#16a34a;">Completed (1st Div)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer Strip -->
+            <div class="idcard-bottom-strip">
+              <div class="idcard-college-text">
+                <strong>Campus:</strong> Sardar Bhagat Singh Govt. P.G. College, Rudrapur
+              </div>
+              <div class="idcard-signature-wrap">
+                <span class="idcard-sign-font">Registrar</span>
+                <span class="idcard-sign-label">Issuing Authority</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- BACK FACE -->
+          <div class="idcard-face back">
+            
+            <div class="idcard-back-header">
+              <span>KUMAUN UNIVERSITY EMERGENCY & VERIFICATION</span>
+              <span>SAMARTH eGov</span>
+            </div>
+
+            <div class="idcard-back-body">
+              <div class="idcard-back-terms">
+                1. This Identity Card is the property of Kumaun University, Nainital.<br>
+                2. Cardholder must present this card on demand within university/college premises and during examinations.<br>
+                3. If found, please return to: Office of the Registrar, Kumaun University, Nainital, Uttarakhand - 263001.
+              </div>
+
+              <div class="idcard-back-grid">
+                <div>
+                  <div style="font-size:0.7rem; color:#64748b; font-weight:700; text-transform:uppercase;">Registered Address</div>
+                  <div style="font-weight:700; color:#0f172a; margin-top:2px;">
+                    Rudrapur, U.S. Nagar, Uttarakhand - 263153
+                  </div>
+
+                  <div style="margin-top:6px; font-size:0.7rem; color:#64748b; font-weight:700; text-transform:uppercase;">Contact Details</div>
+                  <div style="font-weight:700; color:#0f172a;">
+                    📞 +91 96909 41117 &nbsp;|&nbsp; ✉️ Mohsinkhann495@gmail.com
+                  </div>
+
+                  <div class="idcard-barcode-bar">
+                    |||| || |||| |||| ||| ||||| ||||
+                  </div>
+                </div>
+
+                <!-- Authentic QR Code Box -->
+                <div style="text-align:center;">
+                  <div class="idcard-qr-box">
+                    <svg viewBox="0 0 100 100" width="80" height="80">
+                      <!-- SVG QR Code -->
+                      <rect width="100" height="100" fill="#ffffff" />
+                      <path d="M10 10 h25 v25 h-25 z M15 15 h15 v15 h-15 z M19 19 h7 v7 h-7 z" fill="#0f172a" />
+                      <path d="M65 10 h25 v25 h-25 z M70 15 h15 v15 h-15 z M74 19 h7 v7 h-7 z" fill="#0f172a" />
+                      <path d="M10 65 h25 v25 h-25 z M15 70 h15 v15 h-15 z M19 74 h7 v7 h-7 z" fill="#0f172a" />
+                      <rect x="42" y="15" width="16" height="6" fill="#0f172a" />
+                      <rect x="42" y="28" width="8" height="18" fill="#0f172a" />
+                      <rect x="56" y="32" width="12" height="8" fill="#0f172a" />
+                      <rect x="15" y="45" width="18" height="8" fill="#0f172a" />
+                      <rect x="42" y="55" width="20" height="8" fill="#0f172a" />
+                      <rect x="70" y="50" width="15" height="15" fill="#0f172a" />
+                      <rect x="42" y="70" width="10" height="15" fill="#0f172a" />
+                      <rect x="60" y="75" width="25" height="10" fill="#0f172a" />
+                    </svg>
+                  </div>
+                  <span style="font-size:0.62rem; color:#64748b; font-weight:700;">Scan to Verify</span>
+                </div>
+              </div>
+
+              <div style="font-size:0.68rem; color:#94a3b8; text-align:center; border-top:1px solid #e2e8f0; padding-top:4px;">
+                Digitally Issued via Samarth eGov Portal • Verified Record
+              </div>
+            </div>
+
+          </div>
+
+        </div>
       </div>
 
     </section>
@@ -512,5 +725,20 @@
     </div>
   </footer>
 
+  <script>
+    const flipper = document.getElementById('cardFlipper');
+    const btnFlip = document.getElementById('btnFlipCard');
+
+    if (btnFlip && flipper) {
+      btnFlip.addEventListener('click', () => {
+        flipper.classList.toggle('flipped');
+        if (flipper.classList.contains('flipped')) {
+          btnFlip.textContent = '🔄 Flip Card (Front Side)';
+        } else {
+          btnFlip.textContent = '🔄 Flip Card (Back Side)';
+        }
+      });
+    }
+  </script>
 </body>
 </html>
