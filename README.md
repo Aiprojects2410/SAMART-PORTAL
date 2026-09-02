@@ -1,38 +1,68 @@
-# Samarth eGov - Kumaun University Student Portal (Login UI)
+# 🎓 Samarth eGov - Kumaun University Student & Admin Portal
 
-A pixel-perfect, responsive replica of the official **Samarth eGov / Kumaun University Nainital Student Portal** login interface.
+Official-inspired **Kumaun University Student Portal & Centralized Admin Console** built with vanilla HTML5, CSS3, JavaScript, LocalStorage, and **Supabase Cloud Database Integration**.
 
-![Portal Preview](assets/banners/banner1.svg)
+---
 
-## 📌 Features
+## 🔗 Live URLs & Repository
+- **🚀 Main Student Login**: `index.html` (or `http://localhost:8000`)
+- **🛡️ Direct Admin Portal URL**: `admin.html` (or `http://localhost:8000/admin.html`)
+- **GitHub Repository**: [https://github.com/Aiprojects2410/SAMART-PORTAL](https://github.com/Aiprojects2410/SAMART-PORTAL)
 
-- **Government Portal Header**: Bilingual department links (Hindi/English) for Government of India, Uttarakhand Govt Portal, Ministry of Education, Dept of Higher Education, and Kumaun University Nainital.
-- **Accessibility Controls**: Dynamic Font Resizer (`A-`, `A`, `A+`) to scale base typography.
-- **Top Dark Navbar**: Standard Samarth eGov branding with quick Login and "New User Registration" actions.
-- **Promotional / Career Banners**: National internship schemes and career enhancement graphics.
-- **Student Login Module**:
-  - University Crest & Header
-  - "General Instructions for Login" modal
-  - Student Portal identifier (`● ● ● Student Portal`)
-  - Form validation with exact error indicators (`Enrolment Number cannot be blank.`)
-  - Click-to-refresh dynamic 7-digit Captcha generator
-  - "New User ? Register Now ->" flow
-  - "Forgot Password? Request Password Reset ->" modal
-- **Bottom Bar**: Samarth eGov branding with "View Public Notice" modal.
+---
 
-## 🚀 How to Run Locally
+## ⚡ Supabase Cloud Database Integration
 
-Simply open `index.html` in any modern web browser or serve via:
-```bash
-# Using Python
-python -m http.server 8000
+### 1. Pre-configured Credentials:
+- **Project URL**: `https://hxsdjyhkmoltzrdamruw.supabase.co`
+- **Publishable / Anon Key**: `sb_publishable_uvkMzbLZPBrG6Qk1i25bfg_9YOQEAWY`
+- **Config File**: [`js/supabase-config.js`](js/supabase-config.js)
 
-# Using Node.js (npx)
-npx serve .
-```
+### 2. Database Schema Setup (1-Minute Setup):
+1. Open your Supabase Dashboard: [https://supabase.com/dashboard](https://supabase.com/dashboard)
+2. Go to **SQL Editor** -> Click **New Query**.
+3. Copy all code from [`supabase-schema.sql`](supabase-schema.sql) and paste it into the editor.
+4. Click **Run**.
+5. All 3 tables (`students`, `grade_cards`, `grievance_tickets`) with Row Level Security (RLS) policies and seed data will be created!
 
-## 🛠️ Tech Stack
-- HTML5 (Semantic markup)
-- CSS3 (Custom CSS properties, Flexbox, CSS Grid, Responsive design)
-- JavaScript (DOM manipulation, Captcha generation, Validation, Modals)
-- SVG vector graphics for logos and banners
+---
+
+## 🚀 Netlify Deployment Guide
+
+### Option A: Automatic Deploy via GitHub (Recommended)
+1. Log in to [Netlify](https://app.netlify.com).
+2. Click **Add new site** -> **Import an existing project** -> **GitHub**.
+3. Select your repository: `Aiprojects2410/SAMART-PORTAL`.
+4. Deploy Settings:
+   - **Branch to deploy**: `main`
+   - **Build command**: *(Leave blank)*
+   - **Publish directory**: `.`
+5. Click **Deploy Site**. Your site will be live instantly!
+
+### Option B: Netlify Environment Variables (Optional)
+If you want to manage Supabase keys as environment variables:
+1. In Netlify Dashboard, go to: **Site configuration** -> **Environment variables**.
+2. Click **Add a variable**:
+   - `SUPABASE_URL`: `https://hxsdjyhkmoltzrdamruw.supabase.co`
+   - `SUPABASE_ANON_KEY`: `sb_publishable_uvkMzbLZPBrG6Qk1i25bfg_9YOQEAWY`
+3. Click **Save**.
+
+---
+
+## 🔑 Login Credentials
+
+| Role | Username / Enrolment | Password | Access URL |
+| :--- | :--- | :--- | :--- |
+| **Student** (Mohd Mohsin Khan) | `KU20247319` | `Mohsin@8080` | `index.html` |
+| **Admin** | `admin` | `Admin@123` | `admin.html` (Direct Link Only) |
+
+---
+
+## ✨ Key Features
+- **Auto-Generative Student Login IDs & Roll Numbers** in Admin Console.
+- **Manual Student Password Creation & Suggestions**.
+- **100% Mobile & Cross-Device Responsive Layout** (Zero cutoffs on Phones, Tablets, Windows PCs).
+- **Authentic Chunky Blue Captcha Generator** (Dynamic random tilted digits on each refresh).
+- **Original PDF Grade Cards Embedded & Downloadable** (B.Com 2022–2024 First Division).
+- **Real-time Student Helpdesk & Admin Resolution Hub**.
+- **3D Flippable Digital Student ID Card** with QR verification.
