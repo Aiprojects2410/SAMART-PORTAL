@@ -465,27 +465,38 @@
       <!-- 2. STUDENTS TAB -->
       <div id="studentsTab" class="admin-tab-pane" style="display:none;">
         <div class="admin-section-block">
-          <div class="block-header-flex">
-            <h2>🎓 Student Management Database</h2>
-            <button class="btn-admin-primary" id="btnOpenAddStudentModal">+ Add New Student</button>
+          <div class="block-header-flex" style="flex-wrap: wrap; gap: 12px;">
+            <div>
+              <h2>👥 University Student Database</h2>
+              <p style="font-size:0.8rem; color:#64748b; margin-top:2px;">Manage student enrolments, manual passwords, credentials, and profile records</p>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+              <input type="text" id="searchStudentInput" class="admin-input" placeholder="🔍 Search by Name, Enrolment, Roll..." style="max-width: 260px; padding:6px 12px; font-size:0.85rem;">
+              <button class="btn-admin-primary" id="btnOpenAddStudentModal">
+                ➕ Add New Student
+              </button>
+            </div>
           </div>
-          
-          <table class="admin-data-table">
-            <thead>
-              <tr>
-                <th>Enrolment No</th>
-                <th>Full Name</th>
-                <th>Roll No</th>
-                <th>Programme</th>
-                <th>College / Campus</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="studentTableBody">
-              <!-- Dynamically rendered -->
-            </tbody>
-          </table>
+
+          <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+            <table class="admin-data-table">
+              <thead>
+                <tr>
+                  <th>Enrolment (Login ID)</th>
+                  <th>Student Name</th>
+                  <th>Roll Number</th>
+                  <th>Programme / Degree</th>
+                  <th>College / Campus</th>
+                  <th>Password</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="studentTableBody">
+                <!-- Dynamically rendered -->
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -553,45 +564,111 @@
 
   <!-- Modal: Add / Edit Student -->
   <div class="admin-modal-backdrop" id="studentModal">
-    <div class="admin-modal-box">
+    <div class="admin-modal-box" style="max-width: 680px;">
       <div class="modal-head">
         <h3 id="studentModalTitle">Add New Student</h3>
         <button type="button" class="modal-close" id="btnCloseStudentModal">&times;</button>
       </div>
       <form id="studentForm" class="modal-body-form">
+        
+        <!-- Enrolment ID and Password Row -->
         <div class="form-grid-2col">
           <div class="admin-input-group">
-            <label class="admin-label">Enrolment Number *</label>
-            <input type="text" id="stuEnrolment" class="admin-input" placeholder="e.g. KU20247319" required>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label class="admin-label">Enrolment No (Login ID) *</label>
+              <button type="button" id="btnAutoGenerateEnrol" class="btn-admin-primary" style="padding:2px 8px; font-size:0.72rem; background:#0284c7;">
+                🔄 Auto-Generate
+              </button>
+            </div>
+            <input type="text" id="stuEnrolment" class="admin-input" placeholder="e.g. KU20248492" required>
+            <span style="font-size:0.72rem; color:#64748b;">Auto-generated or custom university enrolment ID</span>
           </div>
+
           <div class="admin-input-group">
-            <label class="admin-label">Password *</label>
-            <input type="text" id="stuPassword" class="admin-input" placeholder="e.g. Student@123" required>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label class="admin-label">Manual Password *</label>
+              <button type="button" id="btnSuggestPassword" class="btn-admin-primary" style="padding:2px 8px; font-size:0.72rem; background:#475569;">
+                🎲 Suggest
+              </button>
+            </div>
+            <input type="text" id="stuPassword" class="admin-input" placeholder="Enter manual password (e.g. Student@2024)" required>
+            <span style="font-size:0.72rem; color:#64748b;">Set student login password manually</span>
           </div>
         </div>
 
+        <!-- Student Name & Roll Number -->
         <div class="form-grid-2col">
           <div class="admin-input-group">
             <label class="admin-label">Full Name *</label>
-            <input type="text" id="stuName" class="admin-input" placeholder="Student Full Name" required>
+            <input type="text" id="stuName" class="admin-input" placeholder="Student Full Name (e.g. MOHD MOHSIN KHAN)" required>
           </div>
+          <div class="admin-input-group">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label class="admin-label">University Roll Number</label>
+              <button type="button" id="btnAutoGenerateRoll" class="btn-admin-primary" style="padding:2px 8px; font-size:0.72rem; background:#0284c7;">
+                🔄 Auto-Generate
+              </button>
+            </div>
+            <input type="text" id="stuRollNo" class="admin-input" placeholder="e.g. 2233524690">
+          </div>
+        </div>
+
+        <!-- Parents' Names -->
+        <div class="form-grid-2col">
           <div class="admin-input-group">
             <label class="admin-label">Father's Name *</label>
             <input type="text" id="stuFather" class="admin-input" placeholder="Father's Name" required>
           </div>
+          <div class="admin-input-group">
+            <label class="admin-label">Mother's Name</label>
+            <input type="text" id="stuMother" class="admin-input" placeholder="Mother's Name">
+          </div>
         </div>
 
+        <!-- DOB & Gender -->
         <div class="form-grid-2col">
-          <div class="admin-input-group">
-            <label class="admin-label">University Roll Number</label>
-            <input type="text" id="stuRollNo" class="admin-input" placeholder="e.g. 2233524680">
-          </div>
           <div class="admin-input-group">
             <label class="admin-label">Date of Birth</label>
             <input type="date" id="stuDob" class="admin-input">
           </div>
+          <div class="admin-input-group">
+            <label class="admin-label">Gender</label>
+            <select id="stuGender" class="admin-select">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
         </div>
 
+        <!-- Blood Group & Category -->
+        <div class="form-grid-2col">
+          <div class="admin-input-group">
+            <label class="admin-label">Blood Group</label>
+            <select id="stuBloodGroup" class="admin-select">
+              <option value="B+">B+</option>
+              <option value="A+">A+</option>
+              <option value="O+">O+</option>
+              <option value="AB+">AB+</option>
+              <option value="B-">B-</option>
+              <option value="A-">A-</option>
+              <option value="O-">O-</option>
+              <option value="AB-">AB-</option>
+            </select>
+          </div>
+          <div class="admin-input-group">
+            <label class="admin-label">Social Category</label>
+            <select id="stuCategory" class="admin-select">
+              <option value="General">General / UR</option>
+              <option value="OBC">OBC (Other Backward Class)</option>
+              <option value="SC">SC (Scheduled Caste)</option>
+              <option value="ST">ST (Scheduled Tribe)</option>
+              <option value="EWS">EWS</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Contact info -->
         <div class="form-grid-2col">
           <div class="admin-input-group">
             <label class="admin-label">Email Address *</label>
@@ -603,13 +680,14 @@
           </div>
         </div>
 
+        <!-- Programme & Batch -->
         <div class="form-grid-2col">
           <div class="admin-input-group">
             <label class="admin-label">Programme / Degree</label>
             <input type="text" id="stuProgramme" class="admin-input" placeholder="Bachelor of Commerce (B.COM.)">
           </div>
           <div class="admin-input-group">
-            <label class="admin-label">Academic Batch</label>
+            <label class="admin-label">Academic Batch / Session</label>
             <input type="text" id="stuBatch" class="admin-input" placeholder="2022 – 2024">
           </div>
         </div>
@@ -625,14 +703,32 @@
             <option value="Graduated / Passout (First Division)">Graduated / Passout (First Division)</option>
             <option value="Active / Regular">Active / Regular</option>
             <option value="Completed">Completed</option>
+            <option value="Appeared / Result Awaited">Appeared / Result Awaited</option>
           </select>
         </div>
 
-        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:10px;">
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:14px; padding-top:10px; border-top:1px solid #f1f5f9;">
           <button type="button" class="btn-admin-danger" id="btnCancelStudentModal" style="padding:8px 18px;">Cancel</button>
-          <button type="submit" class="btn-admin-primary">Save Student</button>
+          <button type="submit" class="btn-admin-primary" style="padding:8px 24px;">💾 Save Student Record</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- Modal: View Student Full Profile Details -->
+  <div class="admin-modal-backdrop" id="viewStudentModal">
+    <div class="admin-modal-box" style="max-width: 600px;">
+      <div class="modal-head">
+        <h3>📋 Student Verified Profile Card</h3>
+        <button type="button" class="modal-close" id="btnCloseViewModal">&times;</button>
+      </div>
+      <div class="modal-body-form" id="viewStudentContent">
+        <!-- Rendered dynamically -->
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 20px; border-top:1px solid #e2e8f0; background:#f8fafc;">
+        <span style="font-size:0.8rem; color:#64748b;">Samarth eGov Central Student Registry</span>
+        <button type="button" class="btn-admin-primary" id="btnCloseViewModalBtn">Close</button>
+      </div>
     </div>
   </div>
 

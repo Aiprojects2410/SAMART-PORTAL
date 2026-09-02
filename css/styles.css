@@ -735,33 +735,188 @@ body {
 }
 
 /* ==========================================================================
-   7. Responsive Adaptability
+   7. Comprehensive Responsive Adaptability (Phones, Tablets & PCs)
    ========================================================================== */
-@media (max-width: 990px) {
+
+/* Universal Responsive Table Wrapper */
+.table-responsive-wrapper, .admin-table-wrap, .grade-table-card, .admin-data-table {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 1024px) {
+  .portal-body-grid {
+    grid-template-columns: 220px 1fr;
+    gap: 16px;
+    padding: 16px 20px;
+  }
+}
+
+@media (max-width: 900px) {
   .portal-main-wrapper {
     grid-template-columns: 1fr;
     max-width: 580px;
+    padding: 20px 16px;
   }
   .banners-left-column {
     order: 2;
+    margin-top: 20px;
   }
   .login-right-column {
     order: 1;
+  }
+
+  /* Student Portal Body Grid - Stacked Layout for Mobile */
+  .portal-body-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 12px 14px 40px;
+  }
+
+  /* Horizontal Scrollable Mobile Sidebar Nav */
+  .portal-sidebar {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    scrollbar-width: thin;
+  }
+  .portal-sidebar .sidebar-section-title {
+    display: none;
+  }
+  .portal-sidebar .sidebar-link {
+    white-space: nowrap;
+    padding: 8px 14px;
+    font-size: 0.82rem;
+    border-radius: 20px;
+    background: #f1f5f9;
+    flex-shrink: 0;
+  }
+  .portal-sidebar .sidebar-link.active {
+    background: #2563eb;
+    color: #ffffff;
+  }
+
+  /* Top Navbar on Mobile */
+  .portal-nav-header {
+    padding: 10px 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .portal-user-corner {
+    gap: 10px;
+  }
+  .user-tag-details {
+    display: none;
+  }
+
+  /* Admin Console Grid on Tablets/Mobiles */
+  .admin-layout-container {
+    grid-template-columns: 1fr;
+  }
+  .admin-sidebar-nav {
+    position: static;
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 6px;
+    padding: 10px 14px;
+    scrollbar-width: thin;
+  }
+  .admin-nav-item {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+  }
+  .admin-metrics-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
   }
 }
 
 @media (max-width: 640px) {
   .top-gov-header, .main-navbar, .portal-footer {
-    padding-left: 14px;
-    padding-right: 14px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
   .gov-dept-row {
     display: none;
   }
+  .gov-top-inner {
+    justify-content: space-between;
+  }
   .portal-main-wrapper {
-    padding: 16px 14px 40px;
+    padding: 14px 10px 30px;
   }
   .student-login-card {
-    padding: 18px 16px;
+    padding: 16px 14px;
+  }
+  .portal-univ-heading {
+    font-size: 1.4rem;
+  }
+  .portal-sub-heading {
+    font-size: 1.1rem;
+  }
+
+  /* Admin Metrics on Mobile Phones */
+  .admin-metrics-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Digital Student ID Card Fluid Scaling */
+  .idcard-flip-wrapper {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 250px;
+  }
+  .idcard-container {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 12px;
+  }
+  .idcard-body-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .idcard-photo-pane {
+    margin-bottom: 10px;
+  }
+  .idcard-details-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .idcard-field-row {
+    justify-content: space-between;
+  }
+
+  /* Profile Details Grid on Small Screens */
+  .profile-details-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .profile-top-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  .profile-avatar-box {
+    margin: 0 auto;
+  }
+
+  /* Buttons & Actions */
+  .btn-view-grade, .btn-admin-primary, .btn-primary-login {
+    touch-action: manipulation;
   }
 }
+

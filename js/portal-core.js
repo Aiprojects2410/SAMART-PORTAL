@@ -46,11 +46,37 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.PortalDB) {
     const student = PortalDB.getCurrentUser();
     if (student) {
+      // Navbar details
       document.querySelectorAll('.user-tag-name').forEach(el => el.textContent = student.name || 'MOHD MOHSIN KHAN');
       document.querySelectorAll('.user-tag-enrol').forEach(el => el.textContent = student.enrolment || 'KU20247319');
       if (student.photo) {
         document.querySelectorAll('.user-photo-thumb').forEach(img => img.src = student.photo);
       }
+
+      // Dynamic data bindings across profile, id card, admit card
+      const bindings = {
+        'stu-bind-name': student.name,
+        'stu-bind-enrol': student.enrolment,
+        'stu-bind-roll': student.rollNo,
+        'stu-bind-father': student.fatherName,
+        'stu-bind-mother': student.motherName || 'Verified Parent Record',
+        'stu-bind-gender': student.gender || 'MALE',
+        'stu-bind-dob': student.dob || '22/02/2001',
+        'stu-bind-category': student.category || 'General',
+        'stu-bind-blood': student.bloodGroup || 'B+',
+        'stu-bind-email': student.email,
+        'stu-bind-mobile': student.mobile,
+        'stu-bind-programme': student.programme || 'Bachelor of Commerce (B.COM.)',
+        'stu-bind-college': student.college || 'Sardar Bhagat Singh Govt. P.G. College Rudrapur',
+        'stu-bind-batch': student.batch || '2022 – 2024',
+        'stu-bind-status': student.status || 'Graduated / Passout (First Division)'
+      };
+
+      Object.entries(bindings).forEach(([className, val]) => {
+        if (val) {
+          document.querySelectorAll('.' + className).forEach(el => el.textContent = val);
+        }
+      });
     }
   }
 
