@@ -310,10 +310,13 @@
     </div>
   </header>
 
-  <!-- Main Navigation Bar -->
+  <!-- 2. Main Portal Navigation Bar -->
   <nav class="portal-nav-header">
     <div class="portal-nav-brand">
-      <div class="brand-icon-box">S</div>
+      <div class="samarth-brand-badge">
+        <div class="brand-icon-box">S</div>
+        <span class="brand-text-egov">eGov</span>
+      </div>
       <div class="portal-univ-badge">
         <img src="assets/university-logo.svg" alt="KU Emblem" class="portal-univ-logo">
         <div class="portal-univ-text">
@@ -323,20 +326,24 @@
       </div>
     </div>
 
+    <!-- Logged in User Corner -->
     <div class="portal-user-corner">
-      <img src="assets/student_photo.png" alt="MOHD MOHSIN KHAN" class="user-photo-thumb">
+      <img src="assets/student_photo.png" alt="MOHD MOHSIN KHAN Photo" class="user-photo-thumb">
       <div class="user-tag-details">
         <div class="user-tag-name">MOHD MOHSIN KHAN</div>
         <div class="user-tag-enrol">KU20247319</div>
       </div>
-      <a href="index.html" class="btn-logout-portal">Logout</a>
+      <a href="index.html" class="btn-logout-portal" title="Logout from portal">Logout</a>
     </div>
   </nav>
 
-  <!-- Breadcrumbs Bar -->
+  <!-- 3. Breadcrumbs & Session Bar -->
   <div class="portal-breadcrumb-bar">
-    <div class="crumb-trail">
-      Portal Home / Student / <strong>Grade Card & Results</strong>
+    <div class="crumb-trail-wrap">
+      <button type="button" class="btn-breadcrumb-menu" id="btnToggleSidebarDrawer">☰ Menu</button>
+      <div class="crumb-trail">
+        Portal Home / Student / <strong>Grade Card & Results</strong>
+      </div>
     </div>
     <div class="portal-session-pill">
       Status: Graduated / Passout (First Division)
@@ -398,50 +405,52 @@
       </div>
 
       <!-- Grade Card Table (Exact replica of user screenshot) -->
-      <table class="grade-table-card">
-        <thead>
-          <tr>
-            <th>StuID</th>
-            <th>Programme</th>
-            <th>Term</th>
-            <th>Term Type</th>
-            <th>Year Of Exam</th>
-            <th>Grade Card</th>
-          </tr>
-        </thead>
-        <tbody id="gradeCardTableBody">
-          <tr>
-            <td><strong>KU20247319</strong></td>
-            <td><strong>B.COM</strong></td>
-            <td>1</td>
-            <td>YEAR</td>
-            <td>2022</td>
-            <td>
-              <button type="button" class="btn-view-grade" onclick="openOriginalPdfDocument('part1')">View</button>
-            </td>
-          </tr>
-          <tr>
-            <td><strong>KU20247319</strong></td>
-            <td><strong>B.COM</strong></td>
-            <td>2</td>
-            <td>YEAR</td>
-            <td>2023</td>
-            <td>
-              <button type="button" class="btn-view-grade" onclick="openOriginalPdfDocument('part2')">View</button>
-            </td>
-          </tr>
-          <tr>
-            <td><strong>KU20247319</strong></td>
-            <td><strong>B.COM</strong></td>
-            <td>3</td>
-            <td>YEAR</td>
-            <td>2024</td>
-            <td>
-              <button type="button" class="btn-view-grade" onclick="openOriginalPdfDocument('part3')">View</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive-wrapper">
+        <table class="grade-table-card">
+          <thead>
+            <tr>
+              <th>StuID</th>
+              <th>Programme</th>
+              <th>Term</th>
+              <th>Term Type</th>
+              <th>Year Of Exam</th>
+              <th>Grade Card</th>
+            </tr>
+          </thead>
+          <tbody id="gradeCardTableBody">
+            <tr>
+              <td><strong>KU20247319</strong></td>
+              <td><strong>B.COM</strong></td>
+              <td>1</td>
+              <td>YEAR</td>
+              <td>2022</td>
+              <td>
+                <button type="button" class="btn-view-grade" onclick="openOriginalPdfDocument('part1')">View</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>KU20247319</strong></td>
+              <td><strong>B.COM</strong></td>
+              <td>2</td>
+              <td>YEAR</td>
+              <td>2023</td>
+              <td>
+                <button type="button" class="btn-view-grade" onclick="openOriginalPdfDocument('part2')">View</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>KU20247319</strong></td>
+              <td><strong>B.COM</strong></td>
+              <td>3</td>
+              <td>YEAR</td>
+              <td>2024</td>
+              <td>
+                <button type="button" class="btn-view-grade" onclick="openOriginalPdfDocument('part3')">View</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <!-- Original As-Is PDF Viewer Frame -->
       <div id="originalPdfViewerContainer" class="original-marksheet-viewer" style="display: none;">

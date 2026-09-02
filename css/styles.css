@@ -738,41 +738,128 @@ body {
    7. Comprehensive Responsive Adaptability (Phones, Tablets & PCs)
    ========================================================================== */
 
-/* Universal Responsive Table Wrapper */
-.table-responsive-wrapper, .admin-table-wrap, .grade-table-card, .admin-data-table {
+/* Samarth eGov Brand Badge in Top Navbar */
+.samarth-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+  padding: 4px 10px 4px 6px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.samarth-brand-badge .brand-icon-box {
+  width: 26px;
+  height: 26px;
+  background: #ffffff;
+  color: #4f46e5;
+  border-radius: 4px;
+  font-weight: 900;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.samarth-brand-badge .brand-text-egov {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.92rem;
+  letter-spacing: 0.5px;
+}
+
+/* Breadcrumb Menu Button (Hidden on PC, Visible on Mobile & Tablet <= 1024px) */
+.btn-breadcrumb-menu {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.3);
+  transition: background 0.15s;
+}
+
+.btn-breadcrumb-menu:hover {
+  background: #1d4ed8;
+}
+
+.crumb-trail-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Universal Responsive Table & Grade Card Wrapper */
+.table-responsive-wrapper, .admin-table-wrap, .admin-data-table {
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  display: block;
 }
+
+.gradecard-main-box {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.grade-table-card {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  margin-top: 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.grade-table-card th {
+  background: #f8fafc;
+  color: #1e293b;
+  font-weight: 700;
+  font-size: 0.84rem;
+  padding: 12px 14px;
+  border-bottom: 2px solid #e2e8f0;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.grade-table-card td {
+  padding: 12px 14px;
+  font-size: 0.86rem;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   7. Comprehensive Responsive Adaptability (Phones, Tablets & PCs)
+   ========================================================================== */
 
 @media (max-width: 1024px) {
+  /* Student Portal Body Grid - Clean 1-Column Full Width */
   .portal-body-grid {
-    grid-template-columns: 220px 1fr;
-    gap: 16px;
-    padding: 16px 20px;
-  }
-}
-
-@media (max-width: 900px) {
-  .portal-main-wrapper {
-    grid-template-columns: 1fr;
-    max-width: 580px;
-    padding: 20px 16px;
-  }
-  .banners-left-column {
-    order: 2;
-    margin-top: 20px;
-  }
-  .login-right-column {
-    order: 1;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    padding: 14px 16px 40px !important;
   }
 
-  /* Student Portal Body Grid - Clean 1-Column Layout on Mobile */
-  .portal-body-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 12px 14px 40px;
+  /* Show Menu Button in Breadcrumb */
+  .btn-breadcrumb-menu {
+    display: inline-flex !important;
   }
 
   /* Off-Canvas Slide-In/Out Mobile Drawer System */
@@ -850,34 +937,42 @@ body {
     visibility: visible;
   }
 
-  /* Hamburger Menu Toggle Button in Navbar */
-  .mobile-menu-toggle-btn {
-    display: inline-flex !important;
-    align-items: center;
-    gap: 6px;
-    background: #2563eb;
-    color: #ffffff;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 0.84rem;
-    font-weight: 700;
-    cursor: pointer;
-    margin-right: 10px;
-    box-shadow: 0 1px 4px rgba(37,99,235,0.3);
-  }
-
-  /* Top Navbar on Mobile */
+  /* Top Navbar on Tablets/Mobiles */
   .portal-nav-header {
-    padding: 10px 14px;
-    flex-wrap: wrap;
-    gap: 10px;
+    padding: 10px 16px;
+    justify-content: space-between;
   }
   .portal-user-corner {
     gap: 10px;
   }
   .user-tag-details {
     display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .portal-main-wrapper {
+    grid-template-columns: 1fr;
+    max-width: 580px;
+    padding: 20px 16px;
+  }
+  .banners-left-column {
+    order: 2;
+    margin-top: 20px;
+  }
+  .login-right-column {
+    order: 1;
+  }
+
+  /* Breadcrumb Bar Wrap on Mobile */
+  .portal-breadcrumb-bar {
+    padding: 10px 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .portal-session-pill {
+    align-self: flex-start;
   }
 
   /* Admin Console Grid on Tablets/Mobiles */
@@ -961,6 +1056,17 @@ body {
   }
   .idcard-field-row {
     justify-content: space-between;
+  }
+
+  /* Grade Card Table on Mobile Phones */
+  .grade-table-card th, .grade-table-card td {
+    padding: 8px 8px !important;
+    font-size: 0.78rem !important;
+  }
+  .btn-view-grade {
+    padding: 5px 12px !important;
+    font-size: 0.76rem !important;
+    border-radius: 4px;
   }
 
   /* Profile Details Grid on Small Screens */

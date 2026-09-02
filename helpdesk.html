@@ -273,10 +273,13 @@
     </div>
   </header>
 
-  <!-- Navbar -->
+  <!-- 2. Main Portal Navigation Bar -->
   <nav class="portal-nav-header">
     <div class="portal-nav-brand">
-      <div class="brand-icon-box">S</div>
+      <div class="samarth-brand-badge">
+        <div class="brand-icon-box">S</div>
+        <span class="brand-text-egov">eGov</span>
+      </div>
       <div class="portal-univ-badge">
         <img src="assets/university-logo.svg" alt="KU Emblem" class="portal-univ-logo">
         <div class="portal-univ-text">
@@ -286,23 +289,27 @@
       </div>
     </div>
 
+    <!-- Logged in User Corner -->
     <div class="portal-user-corner">
-      <img src="assets/student_photo.png" alt="MOHD MOHSIN KHAN" class="user-photo-thumb">
+      <img src="assets/student_photo.png" alt="MOHD MOHSIN KHAN Photo" class="user-photo-thumb">
       <div class="user-tag-details">
         <div class="user-tag-name">MOHD MOHSIN KHAN</div>
         <div class="user-tag-enrol">KU20247319</div>
       </div>
-      <a href="index.html" class="btn-logout-portal">Logout</a>
+      <a href="index.html" class="btn-logout-portal" title="Logout from portal">Logout</a>
     </div>
   </nav>
 
-  <!-- Breadcrumb Bar -->
+  <!-- 3. Breadcrumbs & Session Bar -->
   <div class="portal-breadcrumb-bar">
-    <div class="crumb-trail">
-      Portal Home / Student / <strong>Helpdesk & Grievance Support</strong>
+    <div class="crumb-trail-wrap">
+      <button type="button" class="btn-breadcrumb-menu" id="btnToggleSidebarDrawer">☰ Menu</button>
+      <div class="crumb-trail">
+        Portal Home / Student / <strong>Helpdesk & Grievance Redressal</strong>
+      </div>
     </div>
-    <div>
-      <span style="font-size:0.8rem; color:#16a34a; font-weight:700;">🟢 Helpdesk Online & Connected to Admin</span>
+    <div class="portal-session-pill">
+      Status: Active Support (24x7)
     </div>
   </div>
 

@@ -102,7 +102,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 5. Mobile Slide-In/Out Sidebar Drawer System
+  // 5. Enhance Samarth eGov Brand Badge in Navbar
+  document.querySelectorAll('.portal-nav-brand').forEach(brand => {
+    const existingIcon = brand.querySelector('.brand-icon-box');
+    if (existingIcon && !brand.querySelector('.brand-text-egov')) {
+      const badgeWrap = document.createElement('div');
+      badgeWrap.className = 'samarth-brand-badge';
+      badgeWrap.innerHTML = '<div class="brand-icon-box">S</div><span class="brand-text-egov">eGov</span>';
+      existingIcon.replaceWith(badgeWrap);
+    }
+  });
+
+  // 6. Mobile Slide-In/Out Sidebar Drawer System
   const sidebar = document.querySelector('.portal-sidebar');
   if (sidebar) {
     // Inject Drawer Backdrop
@@ -127,17 +138,30 @@ document.addEventListener('DOMContentLoaded', () => {
       sidebar.insertBefore(drawerHeader, sidebar.firstChild);
     }
 
-    // Inject Hamburger Button into Navbar
-    const navHeader = document.querySelector('.portal-nav-header');
-    if (navHeader && !document.getElementById('btnToggleSidebarDrawer')) {
+    // Inject Menu Button into Breadcrumb Bar (Where "Portal" is written)
+    const breadcrumbBar = document.querySelector('.portal-breadcrumb-bar');
+    if (breadcrumbBar && !document.getElementById('btnToggleSidebarDrawer')) {
       const toggleBtn = document.createElement('button');
       toggleBtn.type = 'button';
-      toggleBtn.className = 'mobile-menu-toggle-btn';
+      toggleBtn.className = 'btn-breadcrumb-menu';
       toggleBtn.id = 'btnToggleSidebarDrawer';
       toggleBtn.innerHTML = '☰ Menu';
 
-      const navBrand = navHeader.querySelector('.portal-nav-brand') || navHeader.firstChild;
-      navHeader.insertBefore(toggleBtn, navBrand);
+      const crumbTrail = breadcrumbBar.querySelector('.crumb-trail');
+      if (crumbTrail) {
+        let wrap = breadcrumbBar.querySelector('.crumb-trail-wrap');
+        if (!wrap) {
+          wrap = document.createElement('div');
+          wrap.className = 'crumb-trail-wrap';
+          crumbTrail.parentNode.insertBefore(wrap, crumbTrail);
+          wrap.appendChild(toggleBtn);
+          wrap.appendChild(crumbTrail);
+        } else {
+          wrap.insertBefore(toggleBtn, wrap.firstChild);
+        }
+      } else {
+        breadcrumbBar.insertBefore(toggleBtn, breadcrumbBar.firstChild);
+      }
     }
 
     function openDrawer() {
@@ -160,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Auto-close on link click in mobile drawer
     sidebar.querySelectorAll('.sidebar-link').forEach(link => {
       link.addEventListener('click', () => {
-        if (window.innerWidth <= 900) {
+        if (window.innerWidth <= 1024) {
           closeDrawer();
         }
       });
