@@ -768,41 +768,103 @@ body {
     order: 1;
   }
 
-  /* Student Portal Body Grid - Stacked Layout for Mobile */
+  /* Student Portal Body Grid - Clean 1-Column Layout on Mobile */
   .portal-body-grid {
     grid-template-columns: 1fr;
     gap: 16px;
     padding: 12px 14px 40px;
   }
 
-  /* Horizontal Scrollable Mobile Sidebar Nav */
+  /* Off-Canvas Slide-In/Out Mobile Drawer System */
   .portal-sidebar {
-    position: static;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 290px !important;
+    max-width: 86vw !important;
+    height: 100vh !important;
+    background: #ffffff !important;
+    z-index: 10000 !important;
+    box-shadow: 6px 0 30px rgba(0, 0, 0, 0.3) !important;
+    transform: translateX(-105%) !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    overflow-y: auto !important;
+    padding: 20px 16px 40px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+  }
+  .portal-sidebar.drawer-open {
+    transform: translateX(0) !important;
+  }
+
+  /* Drawer Header */
+  .drawer-header-box {
     display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .drawer-header-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
     gap: 8px;
-    padding: 10px;
-    border-radius: 8px;
-    background: #ffffff;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    scrollbar-width: thin;
   }
-  .portal-sidebar .sidebar-section-title {
-    display: none;
-  }
-  .portal-sidebar .sidebar-link {
-    white-space: nowrap;
-    padding: 8px 14px;
-    font-size: 0.82rem;
-    border-radius: 20px;
+  .btn-close-drawer {
     background: #f1f5f9;
-    flex-shrink: 0;
+    border: none;
+    font-size: 1.3rem;
+    color: #475569;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
   }
-  .portal-sidebar .sidebar-link.active {
+
+  /* Drawer Backdrop Blur Overlay */
+  .drawer-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+  .drawer-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Hamburger Menu Toggle Button in Navbar */
+  .mobile-menu-toggle-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
     background: #2563eb;
     color: #ffffff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-right: 10px;
+    box-shadow: 0 1px 4px rgba(37,99,235,0.3);
   }
 
   /* Top Navbar on Mobile */

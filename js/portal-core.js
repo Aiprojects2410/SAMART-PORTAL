@@ -101,4 +101,69 @@ document.addEventListener('DOMContentLoaded', () => {
       link.classList.remove('active');
     }
   });
+
+  // 5. Mobile Slide-In/Out Sidebar Drawer System
+  const sidebar = document.querySelector('.portal-sidebar');
+  if (sidebar) {
+    // Inject Drawer Backdrop
+    let backdrop = document.querySelector('.drawer-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'drawer-backdrop';
+      document.body.appendChild(backdrop);
+    }
+
+    // Inject Drawer Header if not present
+    if (!sidebar.querySelector('.drawer-header-box')) {
+      const drawerHeader = document.createElement('div');
+      drawerHeader.className = 'drawer-header-box';
+      drawerHeader.innerHTML = `
+        <div class="drawer-header-title">
+          <img src="assets/university-logo.svg" alt="KU" style="width:24px; height:24px; border-radius:4px; vertical-align:middle;">
+          <span>Student Portal Menu</span>
+        </div>
+        <button type="button" class="btn-close-drawer" id="btnCloseSidebarDrawer" title="Close Menu">&times;</button>
+      `;
+      sidebar.insertBefore(drawerHeader, sidebar.firstChild);
+    }
+
+    // Inject Hamburger Button into Navbar
+    const navHeader = document.querySelector('.portal-nav-header');
+    if (navHeader && !document.getElementById('btnToggleSidebarDrawer')) {
+      const toggleBtn = document.createElement('button');
+      toggleBtn.type = 'button';
+      toggleBtn.className = 'mobile-menu-toggle-btn';
+      toggleBtn.id = 'btnToggleSidebarDrawer';
+      toggleBtn.innerHTML = '☰ Menu';
+
+      const navBrand = navHeader.querySelector('.portal-nav-brand') || navHeader.firstChild;
+      navHeader.insertBefore(toggleBtn, navBrand);
+    }
+
+    function openDrawer() {
+      sidebar.classList.add('drawer-open');
+      backdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      sidebar.classList.remove('drawer-open');
+      backdrop.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Event Listeners
+    document.getElementById('btnToggleSidebarDrawer')?.addEventListener('click', openDrawer);
+    document.getElementById('btnCloseSidebarDrawer')?.addEventListener('click', closeDrawer);
+    backdrop.addEventListener('click', closeDrawer);
+
+    // Auto-close on link click in mobile drawer
+    sidebar.querySelectorAll('.sidebar-link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 900) {
+          closeDrawer();
+        }
+      });
+    });
+  }
 });
