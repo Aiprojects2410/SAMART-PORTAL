@@ -4,13 +4,26 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Student Database
+  const registeredStudents = {
+    'KU20247319': {
+      password: 'Mohsin@8080',
+      name: 'MOHD MOHSIN KHAN',
+      gender: 'MALE',
+      email: 'Mohsinkhann495@gmail.com',
+      mobile: '+91 96909 41117',
+      dob: '22/02/2001',
+      role: 'Student',
+      dashboardUrl: 'profile.html' // Direct redirect to Student Profile on login
+    }
+  };
+
   // 1. Captcha Management
   let currentCaptcha = '';
   const captchaDisplay = document.getElementById('captchaText');
   const captchaInput = document.getElementById('inputCaptcha');
 
   function generateCaptcha() {
-    // Generate a 7-digit number as shown in the screenshot (e.g. 7285867)
     const digits = '0123456789';
     let code = '';
     for (let i = 0; i < 7; i++) {
@@ -68,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. Form Validation & Submission
+  // 3. Form Validation & Authentication
   const loginForm = document.getElementById('loginForm');
   const inputEnrolment = document.getElementById('inputEnrolment');
   const errorEnrolment = document.getElementById('errorEnrolment');
@@ -118,13 +131,16 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      if (!inputPassword || inputPassword.value.trim() === '') {
+      const enteredId = inputEnrolment.value.trim();
+      const enteredPassword = inputPassword?.value.trim();
+      const enteredCaptcha = captchaInput?.value.trim();
+
+      if (!enteredPassword) {
         alert('Please enter your Password.');
         inputPassword?.focus();
         return;
       }
 
-      const enteredCaptcha = captchaInput?.value.trim();
       if (!enteredCaptcha) {
         alert('Please enter the Captcha code shown above.');
         captchaInput?.focus();
@@ -138,7 +154,27 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      alert(`Login Successful!\nWelcome Enrolment No: ${inputEnrolment.value.trim()}`);
+      // Check registered student credentials
+      const student = registeredStudents[enteredId];
+      if (student) {
+        if (student.password === enteredPassword) {
+          // Success authentication -> directly open Student Profile
+          sessionStorage.setItem('loggedInUser', JSON.stringify(student));
+          window.location.href = 'profile.html';
+          return;
+        } else {
+          alert('Invalid Password for enrolment number ' + enteredId);
+          inputPassword?.focus();
+          return;
+        }
+      } else {
+        // Generic student login simulation -> Profile
+        sessionStorage.setItem('loggedInUser', JSON.stringify({
+          name: 'Student User',
+          id: enteredId
+        }));
+        window.location.href = 'profile.html';
+      }
     });
   }
 

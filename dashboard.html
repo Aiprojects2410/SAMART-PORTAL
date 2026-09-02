@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard - Kumaun University | Samarth eGov</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/university-logo.svg">
+  <style>
+    /* Dashboard specific layout styles */
+    .dash-navbar {
+      background-color: #1e2538;
+      padding: 12px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .dash-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .dash-univ-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+    .dash-univ-logo {
+      width: 38px;
+      height: 38px;
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 2px;
+    }
+    .dash-univ-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+    .dash-univ-sub {
+      font-size: 0.76rem;
+      color: #94a3b8;
+    }
+    .dash-right-user {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .user-info-box {
+      text-align: right;
+    }
+    .user-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #f8fafc;
+    }
+    .user-id {
+      font-size: 0.78rem;
+      color: #38bdf8;
+    }
+    .user-avatar-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      border: 2px solid #ffffff;
+    }
+    .btn-logout {
+      background-color: #ef4444;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      padding: 7px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      text-decoration: none;
+    }
+    .btn-logout:hover {
+      background-color: #dc2626;
+    }
+
+    /* Sub-bar / breadcrumbs */
+    .dash-breadcrumb-bar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.86rem;
+    }
+    .breadcrumb-links {
+      color: #64748b;
+    }
+    .breadcrumb-links span {
+      color: #1e293b;
+      font-weight: 600;
+    }
+    .current-session-badge {
+      background-color: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    /* Dashboard Grid Container */
+    .dash-content-area {
+      max-width: 1380px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 30px 60px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 24px;
+    }
+
+    /* Sidebar Navigation */
+    .dash-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .sidebar-menu-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .menu-heading {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 8px 12px 4px;
+    }
+    .menu-item-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      color: #334155;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .menu-item-link:hover {
+      background-color: #f1f5f9;
+      color: #1e293b;
+    }
+    .menu-item-link.active {
+      background-color: #eef2ff;
+      color: #4f46e5;
+    }
+
+    /* Main Dashboard Cards Area */
+    .dash-main-pane {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Welcome Banner */
+    .welcome-card {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 24px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .welcome-text h2 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .welcome-text p {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+    }
+    .welcome-status-pill {
+      background-color: #22c55e;
+      color: #ffffff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+
+    /* Stats Quick Row */
+    .stats-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .stat-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+    .stat-value {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #1e293b;
+    }
+    .stat-sub {
+      font-size: 0.74rem;
+      color: #10b981;
+      font-weight: 600;
+    }
+
+    /* Details Profile Card */
+    .dash-section-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 22px 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .card-title-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+    .card-title-header h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .profile-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .info-label {
+      font-size: 0.76rem;
+      color: #64748b;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .info-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    /* Subjects Table */
+    .subjects-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .subjects-table th {
+      background-color: #f8fafc;
+      color: #475569;
+      text-align: left;
+      padding: 10px 14px;
+      font-weight: 700;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .subjects-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #334155;
+    }
+    .subjects-table tr:hover td {
+      background-color: #f8fafc;
+    }
+
+    @media (max-width: 900px) {
+      .dash-content-area {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Government Bilingual Header -->
+  <header class="top-gov-header">
+    <div class="gov-top-inner">
+      <div class="gov-dept-row">
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">भारत सरकार</span>
+          <span class="gov-title-en">Government of India</span>
+        </div>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">उत्तराखंड सरकार पोर्टल</span>
+          <span class="gov-title-en">Uttarakhand Government Portal</span>
+        </div>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">शिक्षा मंत्रालय</span>
+          <span class="gov-title-en">Ministry of Education</span>
+        </div>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">उच्च शिक्षा विभाग, उत्तराखंड</span>
+          <span class="gov-title-en">Department of Higher Education, Uttarakhand</span>
+        </div>
+        <div class="gov-dept-col no-border">
+          <span class="gov-title-hi">कुमाऊँ विश्वविद्यालय नैनीताल</span>
+          <span class="gov-title-en">Kumaun University, Nainital</span>
+        </div>
+      </div>
+
+      <div class="accessibility-font-box">
+        <button type="button" class="font-scaler-btn" id="fontDecrease">A-</button>
+        <button type="button" class="font-scaler-btn active" id="fontNormal">A</button>
+        <button type="button" class="font-scaler-btn" id="fontIncrease">A+</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Navigation Bar -->
+  <nav class="dash-navbar">
+    <div class="dash-left">
+      <a href="index.html" class="brand-link" style="margin-right: 12px;">
+        <div class="brand-icon-box">S</div>
+        <span class="brand-title">eGov</span>
+      </a>
+      <div class="dash-univ-brand">
+        <img src="assets/university-logo.svg" alt="KU Crest" class="dash-univ-logo">
+        <div>
+          <div class="dash-univ-title">Kumaun University, Nainital</div>
+          <div class="dash-univ-sub">Samarth Student Portal (v2.0)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-right-user">
+      <div class="user-avatar-circle">M</div>
+      <div class="user-info-box">
+        <div class="user-name">MOHD MOHSIN KHAN</div>
+        <div class="user-id">Enrolment: KU20247319</div>
+      </div>
+      <a href="index.html" class="btn-logout" id="btnLogout">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb Bar -->
+  <div class="dash-breadcrumb-bar">
+    <div class="breadcrumb-links">
+      Portal Home / Student / <span>Dashboard Overview</span>
+    </div>
+    <div class="current-session-badge">
+      Academic Session: 2024-2025 (Active)
+    </div>
+  </div>
+
+  <!-- Dashboard Main Grid -->
+  <main class="dash-content-area">
+    
+    <!-- Sidebar Menu -->
+    <aside class="dash-sidebar">
+      <div class="sidebar-menu-card">
+        <div class="menu-heading">Portal Modules</div>
+        <a href="#dashboard" class="menu-item-link active">📊 Dashboard Home</a>
+        <a href="#profile" class="menu-item-link">👤 Student Profile</a>
+        <a href="#academics" class="menu-item-link">📚 Academic Details</a>
+        <a href="#examination" class="menu-item-link">📝 Examination & Result</a>
+        <a href="#admitcard" class="menu-item-link">🎟️ Admit Card Download</a>
+        <a href="#fees" class="menu-item-link">💳 Fee Payment & Receipts</a>
+        <a href="#internships" class="menu-item-link">💼 PM Internship Scheme</a>
+        <a href="#helpdesk" class="menu-item-link">🎧 Support & Grievance</a>
+      </div>
+    </aside>
+
+    <!-- Main Content Pane -->
+    <section class="dash-main-pane">
+      
+      <!-- Welcome Hero Box -->
+      <div class="welcome-card">
+        <div class="welcome-text">
+          <h2>Welcome, MOHD MOHSIN KHAN! 👋</h2>
+          <p>Kumaun University Student Portal - All academic records and examination services are synced.</p>
+        </div>
+        <div class="welcome-status-pill">● Student Active</div>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="stats-cards-grid">
+        <div class="stat-box">
+          <span class="stat-label">Enrolment ID</span>
+          <span class="stat-value" style="font-size: 1.25rem; color: #4f46e5;">KU20247319</span>
+          <span class="stat-sub">Verified & Active</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Current Semester</span>
+          <span class="stat-value">Semester IV</span>
+          <span class="stat-sub">Academic Year 2024-25</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Attendance Record</span>
+          <span class="stat-value" style="color: #16a34a;">89.4%</span>
+          <span class="stat-sub">Eligible for Exams</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Cumulative CGPA</span>
+          <span class="stat-value" style="color: #0284c7;">8.72</span>
+          <span class="stat-sub">Top 10% in Faculty</span>
+        </div>
+      </div>
+
+      <!-- Student Profile Information Details -->
+      <div class="dash-section-card" id="profile">
+        <div class="card-title-header">
+          <h3>Personal & Academic Details</h3>
+          <span style="font-size: 0.8rem; color: #64748b;">University Record ID: #KU-2024-91823</span>
+        </div>
+        <div class="profile-info-grid">
+          <div class="info-item">
+            <span class="info-label">Full Name</span>
+            <span class="info-value">MOHD MOHSIN KHAN</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Enrolment Number</span>
+            <span class="info-value">KU20247319</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Programme / Degree</span>
+            <span class="info-value">Bachelor of Science (Computer Science)</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Faculty / Department</span>
+            <span class="info-value">Faculty of Science & Technology</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Campus / Affiliated College</span>
+            <span class="info-value">D.S.B. Campus, Kumaun University, Nainital</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Admission Batch</span>
+            <span class="info-value">2024 - 2027</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Registered Email</span>
+            <span class="info-value">mohsin.khan@student.kunainital.ac.in</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Examination Status</span>
+            <span class="info-value" style="color: #16a34a;">Form Submitted (Regular)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Current Registered Subjects Table -->
+      <div class="dash-section-card" id="academics">
+        <div class="card-title-header">
+          <h3>Registered Courses - Current Semester</h3>
+          <button type="button" class="btn-public-notice-pill" onclick="alert('Downloading Course Syllabus PDF...')">Download Syllabus</button>
+        </div>
+        <table class="subjects-table">
+          <thead>
+            <tr>
+              <th>Course Code</th>
+              <th>Course Title</th>
+              <th>Credits</th>
+              <th>Faculty</th>
+              <th>Attendance</th>
+              <th>Internal Marks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>CS-401</strong></td>
+              <td>Database Management Systems & SQL</td>
+              <td>4.0</td>
+              <td>Prof. H.C. Joshi</td>
+              <td><span style="color:#16a34a; font-weight:700;">92%</span></td>
+              <td>28 / 30</td>
+            </tr>
+            <tr>
+              <td><strong>CS-402</strong></td>
+              <td>Web Application Development & Cloud</td>
+              <td>4.0</td>
+              <td>Dr. P.K. Sharma</td>
+              <td><span style="color:#16a34a; font-weight:700;">88%</span></td>
+              <td>29 / 30</td>
+            </tr>
+            <tr>
+              <td><strong>CS-403</strong></td>
+              <td>Design & Analysis of Algorithms</td>
+              <td>4.0</td>
+              <td>Dr. A. Verma</td>
+              <td><span style="color:#16a34a; font-weight:700;">85%</span></td>
+              <td>27 / 30</td>
+            </tr>
+            <tr>
+              <td><strong>CS-404</strong></td>
+              <td>Operating Systems & Linux Architecture</td>
+              <td>4.0</td>
+              <td>Dr. S. Bhatt</td>
+              <td><span style="color:#16a34a; font-weight:700;">91%</span></td>
+              <td>30 / 30</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Footer Bar -->
+  <footer class="portal-footer">
+    <div class="footer-left-brand">
+      <div class="brand-icon-box">S</div>
+      <span class="footer-brand-title">eGov</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #64748b;">
+      © 2026 Kumaun University Nainital. Powered by Samarth eGov Suite.
+    </div>
+  </footer>
+
+</body>
+</html>
