@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 210" width="100%" height="100%">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1948b3"/>
+      <stop offset="60%" stop-color="#143c99"/>
+      <stop offset="100%" stop-color="#0c235c"/>
+    </linearGradient>
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD600"/>
+      <stop offset="100%" stop-color="#FFAB00"/>
+    </linearGradient>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background Card -->
+  <rect width="750" height="210" rx="14" fill="url(#blueGrad)"/>
+  <rect width="750" height="210" rx="14" fill="url(#grid)"/>
+
+  <!-- Glowing Accents -->
+  <circle cx="500" cy="105" r="140" fill="rgba(66, 153, 225, 0.25)" filter="blur(20px)"/>
+
+  <!-- Left Content -->
+  <!-- "Learn From The Best" -->
+  <text x="50" y="70" font-family="'Segoe UI', Inter, sans-serif" font-weight="900" font-size="38" fill="#FFFFFF">Learn</text>
+  
+  <!-- "From" Badge -->
+  <rect x="158" y="40" width="70" height="32" rx="16" fill="url(#badgeGrad)"/>
+  <text x="193" y="62" font-family="'Segoe UI', Inter, sans-serif" font-weight="800" font-size="14" fill="#1A202C" text-anchor="middle">From</text>
+
+  <text x="50" y="112" font-family="'Segoe UI', Inter, sans-serif" font-weight="900" font-size="38" fill="#FFFFFF">The Best</text>
+
+  <!-- Subtitle -->
+  <text x="50" y="145" font-family="'Segoe UI', Inter, sans-serif" font-weight="600" font-size="17" fill="#E2E8F0">Paid Internships in Top Companies</text>
+
+  <!-- Speech bubble quote -->
+  <g transform="translate(260, 60)">
+    <rect x="0" y="0" width="190" height="65" rx="8" fill="rgba(255, 255, 255, 0.12)" stroke="rgba(255, 255, 255, 0.3)" stroke-dasharray="3,3"/>
+    <text x="12" y="24" font-family="'Segoe UI', sans-serif" font-size="11.5" fill="#FFFFFF" font-weight="500">A step towards empowering</text>
+    <text x="12" y="42" font-family="'Segoe UI', sans-serif" font-size="11.5" fill="#FFFFFF" font-weight="500">our youth and building a</text>
+    <text x="12" y="58" font-family="'Segoe UI', sans-serif" font-size="11.5" fill="#FFFFFF" font-weight="600">future-ready workforce</text>
+  </g>
+
+  <!-- Stylized Leader Illustration on Right -->
+  <g transform="translate(470, 10)">
+    <!-- Aura Circle -->
+    <circle cx="140" cy="95" r="85" fill="rgba(255,255,255,0.15)"/>
+    <circle cx="140" cy="95" r="75" fill="#FFFFFF"/>
+    
+    <!-- Portrait Silhouette / Art -->
+    <g transform="translate(65, 20)">
+      <!-- Face & Beard Vector Art -->
+      <ellipse cx="75" cy="70" rx="38" ry="46" fill="#FAD0B1"/>
+      <!-- Hair & Beard -->
+      <path d="M 40 50 Q 75 15 110 50 Q 115 75 110 90 Q 75 118 40 90 Z" fill="#E2E8F0" opacity="0.9"/>
+      <ellipse cx="75" cy="62" rx="30" ry="34" fill="#FCD9BD"/>
+      <!-- Eyeglasses -->
+      <rect x="52" y="52" width="18" height="12" rx="3" fill="none" stroke="#475569" stroke-width="2.5"/>
+      <rect x="80" y="52" width="18" height="12" rx="3" fill="none" stroke="#475569" stroke-width="2.5"/>
+      <line x1="70" y1="58" x2="80" y2="58" stroke="#475569" stroke-width="2.5"/>
+      <!-- Eyes -->
+      <circle cx="61" cy="58" r="2.5" fill="#1E293B"/>
+      <circle cx="89" cy="58" r="2.5" fill="#1E293B"/>
+      <!-- Smile -->
+      <path d="M 68 76 Q 75 82 82 76" stroke="#C2410C" stroke-width="2" fill="none"/>
+      <!-- White Beard -->
+      <path d="M 50 68 Q 75 112 100 68 Q 105 105 75 115 Q 45 105 50 68 Z" fill="#F8FAFC"/>
+      <!-- Kurta & Jacket -->
+      <path d="M 25 120 L 125 120 L 115 170 L 35 170 Z" fill="#F8FAFC"/>
+      <path d="M 40 120 L 110 120 L 105 170 L 45 170 Z" fill="#1E293B"/>
+      <!-- Triranga Pocket Detail -->
+      <line x1="88" y1="135" x2="98" y2="135" stroke="#FF9933" stroke-width="2"/>
+      <line x1="88" y1="137" x2="98" y2="137" stroke="#FFFFFF" stroke-width="2"/>
+      <line x1="88" y1="139" x2="98" y2="139" stroke="#138808" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

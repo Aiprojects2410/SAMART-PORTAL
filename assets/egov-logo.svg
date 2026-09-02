@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" width="160" height="48">
+  <!-- Rounded Purple Square with S -->
+  <rect x="2" y="6" width="36" height="36" rx="9" fill="#5850EC"/>
+  <text x="20" y="32" font-family="'Segoe UI', Roboto, sans-serif" font-size="26" font-weight="900" fill="#FFFFFF" text-anchor="middle">S</text>
+  <!-- eGov text -->
+  <text x="48" y="31" font-family="'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="700" fill="currentColor">eGov</text>
+</svg>
