@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grade Card & Results - MOHD MOHSIN KHAN | Kumaun University</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/university-logo.svg">
+  <style>
+    /* Grade Card Specific Layout */
+    .portal-nav-header {
+      background-color: #1e2538;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 10;
+    }
+    .portal-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+    .portal-univ-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .portal-univ-logo {
+      width: 40px;
+      height: 40px;
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 3px;
+    }
+    .portal-univ-text h1 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .portal-univ-text span {
+      font-size: 0.74rem;
+      color: #94a3b8;
+    }
+    .portal-user-corner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .user-tag-details {
+      text-align: right;
+    }
+    .user-tag-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #ffffff;
+    }
+    .user-tag-enrol {
+      font-size: 0.78rem;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    .user-photo-thumb {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #38bdf8;
+      object-fit: cover;
+    }
+    .btn-logout-portal {
+      background-color: #ef4444;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      padding: 7px 15px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    /* Layout */
+    .portal-body-grid {
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 22px 30px 60px;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* Sidebar Navigation */
+    .portal-sidebar {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sidebar-section-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 8px 12px 4px;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #334155;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .sidebar-link:hover {
+      background-color: #f1f5f9;
+      color: #1e293b;
+    }
+    .sidebar-link.active {
+      background-color: #eef2ff;
+      color: #4f46e5;
+      font-weight: 700;
+    }
+
+    /* Grade Card Container */
+    .gradecard-main-box {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 28px 32px 36px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .gradecard-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .gradecard-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #1e293b;
+      letter-spacing: 0.3px;
+    }
+    .gradecard-breadcrumb {
+      font-size: 0.88rem;
+      color: #64748b;
+    }
+    .gradecard-breadcrumb a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* Grade Card Table (Exact match to screenshot) */
+    .grade-table-card {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .grade-table-card th {
+      background-color: #ffffff;
+      color: #1e293b;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 14px 18px;
+      text-align: center;
+      border-bottom: 1px solid #e2e8f0;
+      border-right: 1px solid #f1f5f9;
+    }
+    .grade-table-card th:last-child {
+      border-right: none;
+    }
+    .grade-table-card td {
+      padding: 16px 18px;
+      font-size: 0.92rem;
+      color: #334155;
+      text-align: center;
+      border-bottom: 1px solid #f1f5f9;
+      border-right: 1px solid #f8fafc;
+      font-weight: 500;
+    }
+    .grade-table-card tr:last-child td {
+      border-bottom: none;
+    }
+    .grade-table-card td:last-child {
+      border-right: none;
+    }
+
+    /* Green View Button */
+    .btn-view-grade {
+      background-color: #22c55e;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      padding: 6px 20px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s, transform 0.05s;
+    }
+    .btn-view-grade:hover {
+      background-color: #16a34a;
+    }
+    .btn-view-grade:active {
+      transform: scale(0.98);
+    }
+
+    /* Marksheet Printable / Modal View Styles */
+    .marksheet-container {
+      background: #ffffff;
+      border: 2px solid #22c55e;
+      padding: 24px;
+      border-radius: 4px;
+      font-family: 'Times New Roman', Times, serif, 'Segoe UI';
+      color: #000000;
+      margin-top: 20px;
+    }
+    .ms-header {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .ms-univ-hi {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #16a34a;
+    }
+    .ms-univ-en {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: #16a34a;
+      letter-spacing: 0.5px;
+    }
+    .ms-sub {
+      font-size: 0.95rem;
+      color: #16a34a;
+      font-style: italic;
+    }
+    .ms-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-top: 4px;
+    }
+    .ms-meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+    .ms-meta-table td {
+      border: 1px solid #000000;
+      padding: 4px 8px;
+    }
+    .ms-meta-table td.label-cell {
+      color: #16a34a;
+      font-weight: bold;
+      width: 25%;
+    }
+    .ms-meta-table td.val-cell {
+      font-weight: bold;
+    }
+    .ms-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+    .ms-data-table th, .ms-data-table td {
+      border: 1px solid #000000;
+      padding: 5px 6px;
+      text-align: center;
+    }
+    .ms-data-table th {
+      color: #16a34a;
+      font-weight: bold;
+    }
+    .ms-data-table td.sub-name {
+      text-align: left;
+      font-weight: bold;
+    }
+    .ms-summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 0.95rem;
+      margin-top: 10px;
+      padding: 6px 0;
+    }
+    .ms-footer-sign {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 24px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Government Bilingual Header -->
+  <header class="top-gov-header">
+    <div class="gov-top-inner">
+      <div class="gov-dept-row">
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">भारत सरकार</span>
+          <span class="gov-title-en">Government of India</span>
+        </div>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">उत्तराखंड सरकार पोर्टल</span>
+          <span class="gov-title-en">Uttarakhand Government Portal</span>
+        </div>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">शिक्षा मंत्रालय</span>
+          <span class="gov-title-en">Ministry of Education</span>
+        </div>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">उच्च शिक्षा विभाग, उत्तराखंड</span>
+          <span class="gov-title-en">Department of Higher Education, Uttarakhand</span>
+        </div>
+        <div class="gov-dept-col no-border">
+          <span class="gov-title-hi">कुमाऊँ विश्वविद्यालय नैनीताल</span>
+          <span class="gov-title-en">Kumaun University, Nainital</span>
+        </div>
+      </div>
+
+      <div class="accessibility-font-box">
+        <button type="button" class="font-scaler-btn" id="fontDecrease">A-</button>
+        <button type="button" class="font-scaler-btn active" id="fontNormal">A</button>
+        <button type="button" class="font-scaler-btn" id="fontIncrease">A+</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Navigation Bar -->
+  <nav class="portal-nav-header">
+    <div class="portal-nav-brand">
+      <div class="brand-icon-box">S</div>
+      <div class="portal-univ-badge">
+        <img src="assets/university-logo.svg" alt="KU Emblem" class="portal-univ-logo">
+        <div class="portal-univ-text">
+          <h1>Kumaun University, Nainital</h1>
+          <span>Samarth Student Portal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portal-user-corner">
+      <img src="assets/student_photo.png" alt="MOHD MOHSIN KHAN" class="user-photo-thumb">
+      <div class="user-tag-details">
+        <div class="user-tag-name">MOHD MOHSIN KHAN</div>
+        <div class="user-tag-enrol">KU20247319</div>
+      </div>
+      <a href="index.html" class="btn-logout-portal">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs Bar -->
+  <div class="portal-breadcrumb-bar">
+    <div class="crumb-trail">
+      Portal Home / Student / <strong>Grade Card & Results</strong>
+    </div>
+    <div class="portal-session-pill">
+      Status: Graduated / Passout (First Division)
+    </div>
+  </div>
+
+  <!-- Main Grid Layout -->
+  <main class="portal-body-grid">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="portal-sidebar">
+      <div class="sidebar-section-title">Core Navigation</div>
+      <a href="profile.html" class="sidebar-link">
+        <span class="sidebar-icon">👤</span> Student Profile
+      </a>
+      <a href="dashboard.html" class="sidebar-link">
+        <span class="sidebar-icon">📊</span> Dashboard Home
+      </a>
+      <a href="#programme" class="sidebar-link">
+        <span class="sidebar-icon">🎓</span> Programme Details
+      </a>
+      <a href="#academics" class="sidebar-link">
+        <span class="sidebar-icon">📚</span> Course Details
+      </a>
+
+      <div class="sidebar-section-title" style="margin-top: 10px;">Examinations</div>
+      <a href="gradecard.html" class="sidebar-link active">
+        <span class="sidebar-icon">📑</span> Grade Card / Results
+      </a>
+      <a href="#admitcard" class="sidebar-link">
+        <span class="sidebar-icon">🎟️</span> Admit Card
+      </a>
+      <a href="#exam-schedule" class="sidebar-link">
+        <span class="sidebar-icon">📅</span> Examination Schedule
+      </a>
+
+      <div class="sidebar-section-title" style="margin-top: 10px;">Finance & Services</div>
+      <a href="#fees" class="sidebar-link">
+        <span class="sidebar-icon">💳</span> Fee Payments
+      </a>
+      <a href="#grievance" class="sidebar-link">
+        <span class="sidebar-icon">🎧</span> Helpdesk
+      </a>
+    </aside>
+
+    <!-- Main Content: Grade Card Table -->
+    <section class="gradecard-main-box">
+      
+      <!-- Top Header Row matching screenshot -->
+      <div class="gradecard-top-row">
+        <h2 class="gradecard-title">GRADE CARD</h2>
+        <div class="gradecard-breadcrumb">
+          <a href="dashboard.html">Dashboard</a> &nbsp;/&nbsp; <span>Result</span>
+        </div>
+      </div>
+
+      <!-- Grade Card Table (Exact replica of user screenshot) -->
+      <table class="grade-table-card">
+        <thead>
+          <tr>
+            <th>StuID</th>
+            <th>Programme</th>
+            <th>Term</th>
+            <th>Term Type</th>
+            <th>Year Of Exam</th>
+            <th>Grade Card</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>KU20247319</strong></td>
+            <td><strong>B.COM</strong></td>
+            <td>1</td>
+            <td>YEAR</td>
+            <td>2022</td>
+            <td>
+              <button type="button" class="btn-view-grade" onclick="openMarksheet('part1')">View</button>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>KU20247319</strong></td>
+            <td><strong>B.COM</strong></td>
+            <td>2</td>
+            <td>YEAR</td>
+            <td>2023</td>
+            <td>
+              <button type="button" class="btn-view-grade" onclick="openMarksheet('part2')">View</button>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>KU20247319</strong></td>
+            <td><strong>B.COM</strong></td>
+            <td>3</td>
+            <td>YEAR</td>
+            <td>2024</td>
+            <td>
+              <button type="button" class="btn-view-grade" onclick="openMarksheet('part3')">View</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Dynamic Detailed Marksheet Viewer Container -->
+      <div id="marksheetViewer" style="margin-top: 30px; display: none;">
+        <!-- Filled dynamically by JavaScript based on Part 1, 2, or 3 -->
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Footer Bar -->
+  <footer class="portal-footer">
+    <div class="footer-left-brand">
+      <div class="brand-icon-box">S</div>
+      <span class="footer-brand-title">eGov</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #64748b;">
+      © 2026 Kumaun University, Nainital. Powered by Samarth eGov Suite.
+    </div>
+  </footer>
+
+  <script>
+    const marksheetData = {
+      part1: `
+        <div class="marksheet-container">
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+            <button class="btn-action-primary" style="background:#4f46e5; color:#fff; border:none; padding:6px 14px; border-radius:4px; cursor:pointer;" onclick="window.print()">🖨️ Print Marksheet</button>
+          </div>
+          <div class="ms-header">
+            <img src="assets/university-logo.svg" style="width: 50px; height: 50px; margin: 0 auto;" alt="KU Logo"><br>
+            <span class="ms-univ-hi">कुमाऊँ विश्वविद्यालय, नैनीताल</span><br>
+            <span class="ms-univ-en">KUMAUN UNIVERSITY, NAINITAL</span><br>
+            <span class="ms-sub">Statements of Marks for the Examination</span>
+            <div class="ms-title">B.COM. PART-I (REGULAR) 2022</div>
+            <div style="font-size: 0.85rem; color: #333;">(Internet Download)</div>
+          </div>
+
+          <table class="ms-meta-table">
+            <tr>
+              <td class="label-cell">Roll No.</td>
+              <td class="val-cell">2233524680</td>
+              <td class="label-cell">Enrollment No.</td>
+              <td class="val-cell">KU20247319</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Name of the Student</td>
+              <td class="val-cell" colspan="3">MOHD MOHSIN KHAN</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Father's Name</td>
+              <td class="val-cell" colspan="3">BABBAN KHAN</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Campus / College</td>
+              <td class="val-cell" colspan="3">SARDAR BHAGAT SINGH GOVT. P.G. COLLEGE RUDRAPUR U.S. NAGAR</td>
+            </tr>
+          </table>
+
+          <table class="ms-data-table">
+            <thead>
+              <tr>
+                <th rowspan="2">Subjects / Papers</th>
+                <th rowspan="2">Max. Marks</th>
+                <th rowspan="2">Min. Marks</th>
+                <th colspan="2">Papers</th>
+                <th rowspan="2">Theory Total</th>
+                <th rowspan="2">Practical</th>
+                <th rowspan="2">Total</th>
+              </tr>
+              <tr>
+                <th>I</th>
+                <th>II</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="sub-name">GR-I (MANAGEMENT GROUP)<br>GENERAL & OFFICE MANAGEMENT<br>BUSINESS ENVIRONMENT</td>
+                <td>100</td>
+                <td>33</td>
+                <td>35/50</td>
+                <td>41/50</td>
+                <td>76/100</td>
+                <td>-</td>
+                <td><strong>76/100</strong></td>
+              </tr>
+              <tr>
+                <td class="sub-name">GR-II (ACCOUNTING GROUP)<br>FINANCIAL ACCOUNTING<br>ELEMENTS OF STATISTICS</td>
+                <td>100</td>
+                <td>33</td>
+                <td>38/50</td>
+                <td>37/50</td>
+                <td>75/100</td>
+                <td>-</td>
+                <td><strong>75/100</strong></td>
+              </tr>
+              <tr>
+                <td class="sub-name">GR-III (B.E. & B.L. GROUP)<br>BUSINESS ECONOMICS<br>BUSINESS REGULATORY FRAME-WORK</td>
+                <td>100</td>
+                <td>33</td>
+                <td>31/50</td>
+                <td>40/50</td>
+                <td>71/100</td>
+                <td>-</td>
+                <td><strong>71/100</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="ms-summary-row">
+            <span style="color: #16a34a;">Result: PASS</span>
+            <span>Current Total: 222/300</span>
+            <span>Grand Total: 222/300</span>
+          </div>
+          <div style="font-size: 0.85rem; margin-top: 4px;">Dated: 18.11.2022</div>
+
+          <div class="ms-footer-sign">
+            <div style="font-size: 0.75rem; color: #555;">
+              *This Statement of Marks has been downloaded from the University website and is valid only for admission.<br>
+              *Final Original copy of mark sheet with details of all year shall be provided after completion.
+            </div>
+            <div style="text-align: center; color: #16a34a; font-weight: bold;">
+              ✍️ Controller of Examinations<br>Kumaun University
+            </div>
+          </div>
+        </div>
+      `,
+      part2: `
+        <div class="marksheet-container">
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+            <button class="btn-action-primary" style="background:#4f46e5; color:#fff; border:none; padding:6px 14px; border-radius:4px; cursor:pointer;" onclick="window.print()">🖨️ Print Marksheet</button>
+          </div>
+          <div class="ms-header">
+            <img src="assets/university-logo.svg" style="width: 50px; height: 50px; margin: 0 auto;" alt="KU Logo"><br>
+            <span class="ms-univ-hi">कुमाऊँ विश्वविद्यालय, नैनीताल</span><br>
+            <span class="ms-univ-en">KUMAUN UNIVERSITY, NAINITAL</span><br>
+            <span class="ms-sub">Statements of Marks for the Examination</span>
+            <div class="ms-title">B.COM. PART-II (REGULAR) 2023</div>
+            <div style="font-size: 0.85rem; color: #333;">(Internet Download)</div>
+          </div>
+
+          <table class="ms-meta-table">
+            <tr>
+              <td class="label-cell">Roll No.</td>
+              <td class="val-cell">2233524680</td>
+              <td class="label-cell">Enrollment No.</td>
+              <td class="val-cell">KU20247319</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Name of the Student</td>
+              <td class="val-cell" colspan="3">MOHD MOHSIN KHAN</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Father's Name</td>
+              <td class="val-cell" colspan="3">BABBAN KHAN</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Campus / College</td>
+              <td class="val-cell" colspan="3">SARDAR BHAGAT SINGH GOVT. P.G. COLLEGE RUDRAPUR U.S. NAGAR</td>
+            </tr>
+          </table>
+
+          <table class="ms-data-table">
+            <thead>
+              <tr>
+                <th rowspan="2">Subjects / Papers</th>
+                <th rowspan="2">Max. Marks</th>
+                <th rowspan="2">Min. Marks</th>
+                <th colspan="2">Papers</th>
+                <th rowspan="2">Theory Total</th>
+                <th rowspan="2">Practical</th>
+                <th rowspan="2">Total</th>
+              </tr>
+              <tr>
+                <th>I</th>
+                <th>II</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="sub-name">GR-I (MANAGEMENT GROUP)<br>BASIC BUSINESS FINANCE<br>PERSONNEL MANAGEMENT</td>
+                <td>100</td>
+                <td>33</td>
+                <td>38/50</td>
+                <td>36/50</td>
+                <td>74/100</td>
+                <td>-</td>
+                <td><strong>74/100</strong></td>
+              </tr>
+              <tr>
+                <td class="sub-name">GR-II (ACCOUNTING GROUP)<br>ADVANCED ACCOUNTING<br>COST ACCOUNTING</td>
+                <td>100</td>
+                <td>33</td>
+                <td>41/50</td>
+                <td>39/50</td>
+                <td>80/100</td>
+                <td>-</td>
+                <td><strong>80/100</strong></td>
+              </tr>
+              <tr>
+                <td class="sub-name">GR-III (B.E. & B.L. GROUP)<br>MONEY BANKING & FOREIGN EXCHANGE<br>COMPANY LAW & SECRETARIAL PRACTICE</td>
+                <td>100</td>
+                <td>33</td>
+                <td>34/50</td>
+                <td>42/50</td>
+                <td>76/100</td>
+                <td>-</td>
+                <td><strong>76/100</strong></td>
+              </tr>
+              <tr>
+                <td class="sub-name">ENVIRONMENTAL SCIENCE</td>
+                <td>50</td>
+                <td>15</td>
+                <td colspan="2">42/50</td>
+                <td>42/50</td>
+                <td>-</td>
+                <td><strong>Grade A</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="ms-summary-row">
+            <span style="color: #16a34a;">Result: PASS</span>
+            <span>Current Total: 230/300</span>
+            <span>Previous: 222/300</span>
+            <span>Grand Total: 452/600</span>
+          </div>
+          <div style="font-size: 0.85rem; margin-top: 4px;">Dated: 10.08.2023</div>
+
+          <div class="ms-footer-sign">
+            <div style="font-size: 0.75rem; color: #555;">
+              *This Statement of Marks has been downloaded from the University website and is valid only for admission.
+            </div>
+            <div style="text-align: center; color: #16a34a; font-weight: bold;">
+              ✍️ Controller of Examinations<br>Kumaun University
+            </div>
+          </div>
+        </div>
+      `,
+      part3: `
+        <div class="marksheet-container">
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+            <button class="btn-action-primary" style="background:#4f46e5; color:#fff; border:none; padding:6px 14px; border-radius:4px; cursor:pointer;" onclick="window.print()">🖨️ Print Marksheet</button>
+          </div>
+          <div class="ms-header">
+            <img src="assets/university-logo.svg" style="width: 50px; height: 50px; margin: 0 auto;" alt="KU Logo"><br>
+            <span class="ms-univ-hi">कुमाऊँ विश्वविद्यालय, नैनीताल</span><br>
+            <span class="ms-univ-en">KUMAUN UNIVERSITY, NAINITAL</span><br>
+            <span class="ms-sub">Statements of Marks for the Examination</span>
+            <div class="ms-title">B.COM. PART-III (REGULAR) 2024 (FINAL YEAR)</div>
+            <div style="font-size: 0.85rem; color: #333;">(Internet Download)</div>
+          </div>
+
+          <table class="ms-meta-table">
+            <tr>
+              <td class="label-cell">Roll No.</td>
+              <td class="val-cell">2233524680</td>
+              <td class="label-cell">Enrollment No.</td>
+              <td class="val-cell">KU20247319</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Name of the Student</td>
+              <td class="val-cell" colspan="3">MOHD MOHSIN KHAN</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Father's Name</td>
+              <td class="val-cell" colspan="3">BABBAN KHAN</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Campus / College</td>
+              <td class="val-cell" colspan="3">SARDAR BHAGAT SINGH GOVT. P.G. COLLEGE RUDRAPUR U.S. NAGAR</td>
+            </tr>
+          </table>
+
+          <table class="ms-data-table">
+            <thead>
+              <tr>
+                <th rowspan="2">Subjects / Papers</th>
+                <th rowspan="2">Max. Marks</th>
+                <th rowspan="2">Min. Marks</th>
+                <th colspan="2">Papers</th>
+                <th rowspan="2">Theory Total</th>
+                <th rowspan="2">Practical</th>
+                <th rowspan="2">Total</th>
+              </tr>
+              <tr>
+                <th>II</th>
+                <th>III</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="sub-name">GR-I (MANAGEMENT GROUP)<br>MARKETING MANAGEMENT<br>MANAGEMENT ACCOUNTING</td>
+                <td>100</td>
+                <td>33</td>
+                <td>32/50</td>
+                <td>43/50</td>
+                <td>75/100</td>
+                <td>-</td>
+                <td><strong>75/100</strong></td>
+              </tr>
+              <tr>
+                <td class="sub-name">GR-II (ACCOUNTING GROUP)<br>INCOME TAX, LAW & ACCOUNTS<br>AUDITING</td>
+                <td>100</td>
+                <td>33</td>
+                <td>37/50</td>
+                <td>41/50</td>
+                <td>78/100</td>
+                <td>-</td>
+                <td><strong>78/100</strong></td>
+              </tr>
+              <tr>
+                <td class="sub-name">GR-III (B.E. & B.L. GROUP)<br>PUBLIC FINANCE<br>FUNDAMENTALS OF INSURANCE</td>
+                <td>100</td>
+                <td>33</td>
+                <td>37/50</td>
+                <td>42/50</td>
+                <td>79/100</td>
+                <td>-</td>
+                <td><strong>79/100</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="ms-summary-row" style="background:#f0fdf4; padding:8px 12px; border:1px solid #86efac; border-radius:4px;">
+            <span style="color: #15803d; font-size:1.05rem;">🏆 Result: FIRST DIVISION</span>
+            <span>Ist Year: 222/300</span>
+            <span>IInd Year: 230/300</span>
+            <span>IIIrd Year: 232/300</span>
+            <span style="color:#1d4ed8; font-size:1.05rem;">Grand Total: 684/900 (76.0%)</span>
+          </div>
+          <div style="font-size: 0.85rem; margin-top: 6px;">Dated: 09.07.2024</div>
+
+          <div class="ms-footer-sign">
+            <div style="font-size: 0.75rem; color: #555;">
+              *This Statement of Marks has been downloaded from the University website and is valid only for admission.
+            </div>
+            <div style="text-align: center; color: #16a34a; font-weight: bold;">
+              ✍️ Controller of Examinations<br>Kumaun University
+            </div>
+          </div>
+        </div>
+      `
+    };
+
+    function openMarksheet(partKey) {
+      const viewer = document.getElementById('marksheetViewer');
+      if (viewer && marksheetData[partKey]) {
+        viewer.innerHTML = marksheetData[partKey];
+        viewer.style.display = 'block';
+        viewer.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  </script>
+</body>
+</html>

@@ -16,9 +16,8 @@
       align-items: center;
       color: #ffffff;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: relative;
+      z-index: 10;
     }
     .portal-nav-brand {
       display: flex;
@@ -419,43 +418,43 @@
       Portal Home / Student / <strong>Profile Details</strong>
     </div>
     <div class="portal-session-pill">
-      Academic Session: 2024–2025 (Active)
+      Status: Graduated / Passout (Academic Sessions 2022–2024)
     </div>
   </div>
 
   <!-- 4. Portal Main Grid Layout -->
   <main class="portal-body-grid">
     
-    <!-- Sidebar Navigation (Samarth Portal Standard) -->
+    <!-- Sidebar Navigation -->
     <aside class="portal-sidebar">
       <div class="sidebar-section-title">Core Navigation</div>
       <a href="profile.html" class="sidebar-link active">
         <span class="sidebar-icon">👤</span> Student Profile
       </a>
+      <a href="gradecard.html" class="sidebar-link">
+        <span class="sidebar-icon">📑</span> Grade Card / Results
+      </a>
       <a href="dashboard.html" class="sidebar-link">
-        <span class="sidebar-icon">📊</span> Dashboard Home
+        <span class="sidebar-icon">📊</span> Academic Summary
       </a>
       <a href="#programme" class="sidebar-link">
         <span class="sidebar-icon">🎓</span> Programme Details
       </a>
-      <a href="#academics" class="sidebar-link">
-        <span class="sidebar-icon">📚</span> Course Registration
-      </a>
 
-      <div class="sidebar-section-title" style="margin-top: 10px;">Examinations</div>
-      <a href="#admitcard" class="sidebar-link">
-        <span class="sidebar-icon">🎟️</span> Admit Card
+      <div class="sidebar-section-title" style="margin-top: 10px;">Examinations & Degree</div>
+      <a href="gradecard.html" class="sidebar-link">
+        <span class="sidebar-icon">🏆</span> Statements of Marks
       </a>
-      <a href="#results" class="sidebar-link">
-        <span class="sidebar-icon">📑</span> Results & Grade Cards
+      <a href="#provisional" class="sidebar-link">
+        <span class="sidebar-icon">📜</span> Provisional Degree
       </a>
-      <a href="#exam-schedule" class="sidebar-link">
-        <span class="sidebar-icon">📅</span> Examination Schedule
+      <a href="#migration" class="sidebar-link">
+        <span class="sidebar-icon">📄</span> Migration Certificate
       </a>
 
       <div class="sidebar-section-title" style="margin-top: 10px;">Finance & Services</div>
       <a href="#fees" class="sidebar-link">
-        <span class="sidebar-icon">💳</span> Fee Payments & Receipts
+        <span class="sidebar-icon">💳</span> Fee Receipts (Cleared)
       </a>
       <a href="#grievance" class="sidebar-link">
         <span class="sidebar-icon">🎧</span> Helpdesk & Grievance
@@ -473,22 +472,23 @@
             <h2>MOHD MOHSIN KHAN</h2>
             <div class="profile-meta-tags">
               <span class="tag-pill enrol-tag">Enrolment: KU20247319</span>
-              <span class="tag-pill active-status">● Active / Regular</span>
+              <span class="tag-pill" style="background:#fef3c7; color:#92400e; border-color:#fde68a;">Roll No: 2233524680</span>
+              <span class="tag-pill active-status">● College Completed / Passout</span>
               <span class="tag-pill">Gender: MALE</span>
               <span class="tag-pill">DOB: 22/02/2001</span>
             </div>
             <div class="profile-univ-line">
-              <strong>Kumaun University, Nainital</strong> • D.S.B. Campus • Faculty of Science
+              <strong>Sardar Bhagat Singh Govt. P.G. College, Rudrapur, U.S. Nagar</strong> • Kumaun University
             </div>
           </div>
         </div>
 
         <div class="profile-actions-right">
-          <button type="button" class="btn-action-primary" onclick="window.print()">
+          <a href="gradecard.html" class="btn-action-primary" style="text-decoration:none;">
+            📑 View Grade Cards
+          </a>
+          <button type="button" class="btn-action-outline" onclick="window.print()">
             🖨️ Print Profile
-          </button>
-          <button type="button" class="btn-action-outline" onclick="alert('Student ID Card Generated & Downloaded!')">
-            🪪 Download ID Card
           </button>
         </div>
       </div>
@@ -497,12 +497,16 @@
       <div class="info-section-card">
         <div class="section-card-header">
           <h3>📌 Personal Information</h3>
-          <span style="font-size: 0.8rem; color: #16a34a; font-weight: 600;">✓ Verified by University</span>
+          <span style="font-size: 0.8rem; color: #16a34a; font-weight: 600;">✓ Verified by Kumaun University</span>
         </div>
         <div class="section-card-body">
           <div class="data-field-item">
             <span class="data-label">Full Name</span>
             <span class="data-val">MOHD MOHSIN KHAN</span>
+          </div>
+          <div class="data-field-item">
+            <span class="data-label">Father's Name</span>
+            <span class="data-val">BABBAN KHAN</span>
           </div>
           <div class="data-field-item">
             <span class="data-label">Gender</span>
@@ -527,10 +531,6 @@
           <div class="data-field-item">
             <span class="data-label">Religion</span>
             <span class="data-val">Islam</span>
-          </div>
-          <div class="data-field-item">
-            <span class="data-label">Marital Status</span>
-            <span class="data-val">Unmarried</span>
           </div>
         </div>
       </div>
@@ -559,15 +559,16 @@
           </div>
           <div class="data-field-item" style="grid-column: 1 / -1;">
             <span class="data-label">Permanent & Correspondence Address</span>
-            <span class="data-val">Nainital, Uttarakhand, India - 263001</span>
+            <span class="data-val">Nainital / Rudrapur, Uttarakhand, India - 263153</span>
           </div>
         </div>
       </div>
 
-      <!-- 3. Academic & Programme Details -->
+      <!-- 3. Academic & Degree Details (B.COM 2022 - 2024) -->
       <div class="info-section-card">
         <div class="section-card-header">
-          <h3>🎓 Academic & Programme Details</h3>
+          <h3>🎓 Academic & Graduation Details (B.COM.)</h3>
+          <span style="font-size: 0.82rem; color: #15803d; font-weight: 700;">🏆 PASSED IN FIRST DIVISION</span>
         </div>
         <div class="section-card-body">
           <div class="data-field-item">
@@ -575,32 +576,32 @@
             <span class="data-val">Kumaun University, Nainital</span>
           </div>
           <div class="data-field-item">
-            <span class="data-label">Campus / Department</span>
-            <span class="data-val">D.S.B. Campus, Nainital</span>
+            <span class="data-label">College / Centre</span>
+            <span class="data-val">Sardar Bhagat Singh Govt. P.G. College Rudrapur U.S. Nagar</span>
           </div>
           <div class="data-field-item">
             <span class="data-label">Enrolment Number</span>
             <span class="data-val highlight">KU20247319</span>
           </div>
           <div class="data-field-item">
-            <span class="data-label">Programme / Course</span>
-            <span class="data-val">Bachelor of Science (Computer Science / IT)</span>
+            <span class="data-label">University Roll Number</span>
+            <span class="data-val highlight">2233524680</span>
           </div>
           <div class="data-field-item">
-            <span class="data-label">Current Semester</span>
-            <span class="data-val">Semester IV (Active)</span>
+            <span class="data-label">Programme / Degree</span>
+            <span class="data-val">Bachelor of Commerce (B.COM.)</span>
           </div>
           <div class="data-field-item">
-            <span class="data-label">Admission Year / Batch</span>
-            <span class="data-val">2024 – 2027</span>
+            <span class="data-label">Academic Duration</span>
+            <span class="data-val">2022 – 2024 (3-Year Regular)</span>
           </div>
           <div class="data-field-item">
-            <span class="data-label">Academic Bank of Credits (ABC ID)</span>
-            <span class="data-val">7892-4190-2384</span>
+            <span class="data-label">Final Year Result (2024)</span>
+            <span class="data-val" style="color:#15803d;">FIRST DIVISION (684 / 900 - 76.0%)</span>
           </div>
           <div class="data-field-item">
-            <span class="data-label">Admission Type</span>
-            <span class="data-val">Regular / Full-Time</span>
+            <span class="data-label">Academic Status</span>
+            <span class="data-val" style="color:#16a34a;">Graduated / Passout Completed</span>
           </div>
         </div>
       </div>
