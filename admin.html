@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal - Kumaun University | Samarth eGov Suite</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/university-logo.svg">
+  <style>
+    /* Admin Console Dedicated Styling */
+    .admin-top-bar {
+      background-color: #0f172a;
+      border-bottom: 2px solid #3b82f6;
+      padding: 12px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ffffff;
+    }
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .admin-logo-box {
+      width: 42px;
+      height: 42px;
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 3px;
+    }
+    .admin-title-wrap h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+    }
+    .admin-title-wrap span {
+      font-size: 0.76rem;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    .admin-user-nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .admin-badge-role {
+      background-color: #1e293b;
+      color: #38bdf8;
+      border: 1px solid #0284c7;
+      padding: 4px 12px;
+      border-radius: 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    /* Admin Container */
+    .admin-layout-container {
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 30px 60px;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 26px;
+    }
+
+    /* Admin Sidebar Navigation */
+    .admin-sidebar-nav {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      position: sticky;
+      top: 20px;
+    }
+    .admin-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #334155;
+      text-decoration: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .admin-nav-item:hover {
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    .admin-nav-item.active {
+      background-color: #e0e7ff;
+      color: #4338ca;
+      font-weight: 700;
+    }
+    .admin-nav-count {
+      margin-left: auto;
+      background: #ef4444;
+      color: #fff;
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    /* Admin Views Section */
+    .admin-main-view {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Metric Counters */
+    .admin-metrics-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .metric-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .metric-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .metric-data h4 {
+      font-size: 0.78rem;
+      color: #64748b;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .metric-data .metric-number {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    /* Content Card Blocks */
+    .admin-section-block {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .block-header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .block-header-flex h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    /* Action Buttons */
+    .btn-admin-primary {
+      background-color: #2563eb;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.15s;
+    }
+    .btn-admin-primary:hover {
+      background-color: #1d4ed8;
+    }
+    .btn-admin-danger {
+      background-color: #ef4444;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-admin-danger:hover {
+      background-color: #dc2626;
+    }
+    .btn-admin-success {
+      background-color: #16a34a;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Tables */
+    .admin-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .admin-data-table th {
+      background-color: #f8fafc;
+      color: #475569;
+      text-align: left;
+      padding: 12px 14px;
+      font-weight: 700;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .admin-data-table td {
+      padding: 13px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #1e293b;
+      vertical-align: middle;
+    }
+    .admin-data-table tr:hover td {
+      background-color: #f8fafc;
+    }
+
+    /* Badges */
+    .badge-status {
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: inline-block;
+    }
+    .badge-pending {
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+    .badge-resolved {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+    }
+    .badge-progress {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+
+    /* Modal Styling */
+    .admin-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(2px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+    .admin-modal-backdrop.open {
+      display: flex;
+    }
+    .admin-modal-box {
+      background: #ffffff;
+      border-radius: 10px;
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 30px -5px rgba(0,0,0,0.25);
+    }
+    .modal-head {
+      padding: 18px 24px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-head h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .modal-body-form {
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .form-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .admin-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .admin-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #334155;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .admin-input, .admin-select, .admin-textarea {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+    .admin-input:focus, .admin-select:focus, .admin-textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+    }
+
+    @media (max-width: 950px) {
+      .admin-layout-container {
+        grid-template-columns: 1fr;
+      }
+      .form-grid-2col {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Admin Bar -->
+  <header class="admin-top-bar">
+    <div class="admin-brand">
+      <img src="assets/university-logo.svg" alt="KU Logo" class="admin-logo-box">
+      <div class="admin-title-wrap">
+        <h1>Kumaun University - Samarth eGov Admin Console</h1>
+        <span>Centralized Student & Examination Management System</span>
+      </div>
+    </div>
+    <div class="admin-user-nav">
+      <span class="admin-badge-role">🛡️ System Administrator</span>
+      <a href="index.html" class="btn-admin-danger" style="text-decoration:none; padding: 7px 16px;">Logout</a>
+    </div>
+  </header>
+
+  <!-- Admin Grid Layout -->
+  <div class="admin-layout-container">
+    
+    <!-- Sidebar Tabs -->
+    <aside class="admin-sidebar-nav">
+      <div style="padding: 6px 12px 10px; font-size: 0.72rem; font-weight: 800; color: #94a3b8; text-transform: uppercase;">
+        Management Hub
+      </div>
+      <div class="admin-nav-item active" data-tab="overviewTab">
+        <span>📊</span> Console Overview
+      </div>
+      <div class="admin-nav-item" data-tab="studentsTab">
+        <span>👥</span> Student Records
+      </div>
+      <div class="admin-nav-item" data-tab="gradecardsTab">
+        <span>📑</span> Grade Card Manager
+      </div>
+      <div class="admin-nav-item" data-tab="grievancesTab">
+        <span>🎧</span> Helpdesk & Grievances
+        <span class="admin-nav-count" id="pendingBadge">1</span>
+      </div>
+      <div style="border-top: 1px solid #f1f5f9; margin: 10px 0; padding-top: 10px;">
+        <a href="profile.html" class="admin-nav-item" target="_blank" style="text-decoration:none;">
+          <span>🌐</span> View Student Portal -&gt;
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main View Section -->
+    <main class="admin-main-view">
+      
+      <!-- 1. OVERVIEW TAB -->
+      <div id="overviewTab" class="admin-tab-pane">
+        
+        <!-- Metrics Counters -->
+        <div class="admin-metrics-row">
+          <div class="metric-card">
+            <div class="metric-icon-box" style="background:#eff6ff; color:#2563eb;">👥</div>
+            <div class="metric-data">
+              <h4>Total Students</h4>
+              <div class="metric-number" id="metricTotalStudents">1</div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon-box" style="background:#f0fdf4; color:#16a34a;">📑</div>
+            <div class="metric-data">
+              <h4>Issued Grade Cards</h4>
+              <div class="metric-number" id="metricTotalGradeCards">3</div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon-box" style="background:#fef2f2; color:#ef4444;">🎧</div>
+            <div class="metric-data">
+              <h4>Open Grievances</h4>
+              <div class="metric-number" id="metricOpenTickets">1</div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon-box" style="background:#faf5ff; color:#9333ea;">🎓</div>
+            <div class="metric-data">
+              <h4>Completed Degrees</h4>
+              <div class="metric-number" id="metricCompletedDegrees">1</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Helpdesk Tickets Box -->
+        <div class="admin-section-block" style="margin-top: 24px;">
+          <div class="block-header-flex">
+            <h2>🚨 Recent Helpdesk & Grievance Submissions</h2>
+            <button class="btn-admin-primary" onclick="switchAdminTab('grievancesTab')">View All Grievances</button>
+          </div>
+          <table class="admin-data-table">
+            <thead>
+              <tr>
+                <th>Ticket ID</th>
+                <th>Student</th>
+                <th>Enrolment</th>
+                <th>Category</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="overviewTicketsTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <!-- 2. STUDENTS TAB -->
+      <div id="studentsTab" class="admin-tab-pane" style="display:none;">
+        <div class="admin-section-block">
+          <div class="block-header-flex">
+            <h2>🎓 Student Management Database</h2>
+            <button class="btn-admin-primary" id="btnOpenAddStudentModal">+ Add New Student</button>
+          </div>
+          
+          <table class="admin-data-table">
+            <thead>
+              <tr>
+                <th>Enrolment No</th>
+                <th>Full Name</th>
+                <th>Roll No</th>
+                <th>Programme</th>
+                <th>College / Campus</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="studentTableBody">
+              <!-- Dynamically rendered -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 3. GRADE CARDS TAB -->
+      <div id="gradecardsTab" class="admin-tab-pane" style="display:none;">
+        <div class="admin-section-block">
+          <div class="block-header-flex">
+            <h2>📑 Grade Cards & Marksheets Manager</h2>
+            <button class="btn-admin-primary" id="btnOpenAddGradeCardModal">+ Upload Grade Card</button>
+          </div>
+
+          <div style="margin-bottom: 20px; display: flex; gap: 14px; align-items: center;">
+            <label class="admin-label">Select Student:</label>
+            <select id="gradeCardStudentSelect" class="admin-select" style="max-width: 350px;">
+              <!-- Student options -->
+            </select>
+          </div>
+
+          <table class="admin-data-table">
+            <thead>
+              <tr>
+                <th>Enrolment</th>
+                <th>Programme</th>
+                <th>Term / Year</th>
+                <th>Exam Year</th>
+                <th>Result Summary</th>
+                <th>Marksheet PDF</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="gradeCardsTableBody">
+              <!-- Dynamically rendered -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4. GRIEVANCES TAB -->
+      <div id="grievancesTab" class="admin-tab-pane" style="display:none;">
+        <div class="admin-section-block">
+          <div class="block-header-flex">
+            <h2>🎧 Student Grievances & Helpdesk Reports</h2>
+          </div>
+          <table class="admin-data-table">
+            <thead>
+              <tr>
+                <th>Ticket ID</th>
+                <th>Date</th>
+                <th>Student</th>
+                <th>Category</th>
+                <th>Subject & Description</th>
+                <th>Status</th>
+                <th>Action / Reply</th>
+              </tr>
+            </thead>
+            <tbody id="allGrievancesTableBody">
+              <!-- Dynamically rendered -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Modal: Add / Edit Student -->
+  <div class="admin-modal-backdrop" id="studentModal">
+    <div class="admin-modal-box">
+      <div class="modal-head">
+        <h3 id="studentModalTitle">Add New Student</h3>
+        <button type="button" class="modal-close" id="btnCloseStudentModal">&times;</button>
+      </div>
+      <form id="studentForm" class="modal-body-form">
+        <div class="form-grid-2col">
+          <div class="admin-input-group">
+            <label class="admin-label">Enrolment Number *</label>
+            <input type="text" id="stuEnrolment" class="admin-input" placeholder="e.g. KU20247319" required>
+          </div>
+          <div class="admin-input-group">
+            <label class="admin-label">Password *</label>
+            <input type="text" id="stuPassword" class="admin-input" placeholder="e.g. Student@123" required>
+          </div>
+        </div>
+
+        <div class="form-grid-2col">
+          <div class="admin-input-group">
+            <label class="admin-label">Full Name *</label>
+            <input type="text" id="stuName" class="admin-input" placeholder="Student Full Name" required>
+          </div>
+          <div class="admin-input-group">
+            <label class="admin-label">Father's Name *</label>
+            <input type="text" id="stuFather" class="admin-input" placeholder="Father's Name" required>
+          </div>
+        </div>
+
+        <div class="form-grid-2col">
+          <div class="admin-input-group">
+            <label class="admin-label">University Roll Number</label>
+            <input type="text" id="stuRollNo" class="admin-input" placeholder="e.g. 2233524680">
+          </div>
+          <div class="admin-input-group">
+            <label class="admin-label">Date of Birth</label>
+            <input type="date" id="stuDob" class="admin-input">
+          </div>
+        </div>
+
+        <div class="form-grid-2col">
+          <div class="admin-input-group">
+            <label class="admin-label">Email Address *</label>
+            <input type="email" id="stuEmail" class="admin-input" placeholder="student@gmail.com" required>
+          </div>
+          <div class="admin-input-group">
+            <label class="admin-label">Mobile Number *</label>
+            <input type="text" id="stuMobile" class="admin-input" placeholder="+91 98765 43210" required>
+          </div>
+        </div>
+
+        <div class="form-grid-2col">
+          <div class="admin-input-group">
+            <label class="admin-label">Programme / Degree</label>
+            <input type="text" id="stuProgramme" class="admin-input" placeholder="Bachelor of Commerce (B.COM.)">
+          </div>
+          <div class="admin-input-group">
+            <label class="admin-label">Academic Batch</label>
+            <input type="text" id="stuBatch" class="admin-input" placeholder="2022 – 2024">
+          </div>
+        </div>
+
+        <div class="admin-input-group">
+          <label class="admin-label">College / Campus</label>
+          <input type="text" id="stuCollege" class="admin-input" placeholder="Sardar Bhagat Singh Govt. P.G. College Rudrapur">
+        </div>
+
+        <div class="admin-input-group">
+          <label class="admin-label">Academic Status</label>
+          <select id="stuStatus" class="admin-select">
+            <option value="Graduated / Passout (First Division)">Graduated / Passout (First Division)</option>
+            <option value="Active / Regular">Active / Regular</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:10px;">
+          <button type="button" class="btn-admin-danger" id="btnCancelStudentModal" style="padding:8px 18px;">Cancel</button>
+          <button type="submit" class="btn-admin-primary">Save Student</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Upload Grade Card -->
+  <div class="admin-modal-backdrop" id="gradeCardModal">
+    <div class="admin-modal-box">
+      <div class="modal-head">
+        <h3>Upload / Assign Grade Card</h3>
+        <button type="button" class="modal-close" id="btnCloseGCModal">&times;</button>
+      </div>
+      <form id="gradeCardForm" class="modal-body-form">
+        <div class="admin-input-group">
+          <label class="admin-label">Student Enrolment *</label>
+          <select id="gcEnrolment" class="admin-select" required>
+            <!-- student list -->
+          </select>
+        </div>
+
+        <div class="form-grid-2col">
+          <div class="admin-input-group">
+            <label class="admin-label">Programme</label>
+            <input type="text" id="gcProgramme" class="admin-input" value="B.COM" required>
+          </div>
+          <div class="admin-input-group">
+            <label class="admin-label">Term / Part (e.g. 1, 2, 3)</label>
+            <input type="text" id="gcTerm" class="admin-input" placeholder="1 / 2 / 3" required>
+          </div>
+        </div>
+
+        <div class="form-grid-2col">
+          <div class="admin-input-group">
+            <label class="admin-label">Term Type</label>
+            <select id="gcTermType" class="admin-select">
+              <option value="YEAR">YEAR</option>
+              <option value="SEMESTER">SEMESTER</option>
+            </select>
+          </div>
+          <div class="admin-input-group">
+            <label class="admin-label">Year Of Exam</label>
+            <input type="text" id="gcYear" class="admin-input" placeholder="2024" required>
+          </div>
+        </div>
+
+        <div class="admin-input-group">
+          <label class="admin-label">Result Summary</label>
+          <input type="text" id="gcResult" class="admin-input" placeholder="e.g. FIRST DIVISION (232/300)">
+        </div>
+
+        <div class="admin-input-group">
+          <label class="admin-label">Marksheet PDF / File Path</label>
+          <input type="text" id="gcPdf" class="admin-input" value="assets/gradecards/BCOM_PART3_2024.pdf">
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:10px;">
+          <button type="button" class="btn-admin-danger" id="btnCancelGCModal" style="padding:8px 18px;">Cancel</button>
+          <button type="submit" class="btn-admin-primary">Assign Grade Card</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Resolve Grievance Ticket -->
+  <div class="admin-modal-backdrop" id="ticketModal">
+    <div class="admin-modal-box">
+      <div class="modal-head">
+        <h3>Resolve Grievance Ticket</h3>
+        <button type="button" class="modal-close" id="btnCloseTicketModal">&times;</button>
+      </div>
+      <form id="ticketReplyForm" class="modal-body-form">
+        <input type="hidden" id="replyTicketId">
+        
+        <div class="admin-input-group">
+          <label class="admin-label">Student Details</label>
+          <div id="ticketStudentInfo" style="font-weight: 700; color: #1e293b; font-size: 0.95rem;"></div>
+        </div>
+
+        <div class="admin-input-group">
+          <label class="admin-label">Subject & Grievance</label>
+          <div id="ticketSubjectDesc" style="background: #f8fafc; padding: 10px; border-radius: 4px; font-size: 0.88rem; color: #334155;"></div>
+        </div>
+
+        <div class="admin-input-group">
+          <label class="admin-label">Official Admin Response *</label>
+          <textarea id="adminReplyText" class="admin-textarea" rows="4" placeholder="Enter resolution details, tracking info, or instructions for the student..." required></textarea>
+        </div>
+
+        <div class="admin-input-group">
+          <label class="admin-label">Ticket Status</label>
+          <select id="ticketStatusSelect" class="admin-select">
+            <option value="Resolved">Resolved</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Pending">Pending</option>
+          </select>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:10px;">
+          <button type="button" class="btn-admin-danger" id="btnCancelTicketModal" style="padding:8px 18px;">Cancel</button>
+          <button type="submit" class="btn-admin-primary">Submit Resolution</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/portal-db.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

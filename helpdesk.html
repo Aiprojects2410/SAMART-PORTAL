@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Helpdesk & Grievance Support - MOHD MOHSIN KHAN | Kumaun University</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/university-logo.svg">
+  <style>
+    .portal-nav-header {
+      background-color: #1e2538;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 10;
+    }
+    .portal-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+    .portal-univ-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .portal-univ-logo {
+      width: 40px;
+      height: 40px;
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 3px;
+    }
+    .portal-univ-text h1 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .portal-univ-text span {
+      font-size: 0.74rem;
+      color: #94a3b8;
+    }
+    .portal-user-corner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .user-tag-details {
+      text-align: right;
+    }
+    .user-tag-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #ffffff;
+    }
+    .user-tag-enrol {
+      font-size: 0.78rem;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    .user-photo-thumb {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #38bdf8;
+      object-fit: cover;
+    }
+    .btn-logout-portal {
+      background-color: #ef4444;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      padding: 7px 15px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .portal-breadcrumb-bar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+    .crumb-trail strong {
+      color: #1e293b;
+    }
+
+    .portal-body-grid {
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 22px 30px 60px;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .portal-sidebar {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sidebar-section-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 8px 12px 4px;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #334155;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .sidebar-link:hover {
+      background-color: #f1f5f9;
+      color: #1e293b;
+    }
+    .sidebar-link.active {
+      background-color: #eef2ff;
+      color: #4f46e5;
+      font-weight: 700;
+    }
+    .sidebar-icon {
+      font-size: 1.05rem;
+    }
+
+    /* Helpdesk Main */
+    .helpdesk-pane {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .helpdesk-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .card-header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+    .card-header-flex h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #1e293b;
+    }
+
+    .ticket-list-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .ticket-item-box {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px 20px;
+      background: #ffffff;
+      transition: all 0.2s;
+    }
+    .ticket-item-box:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .ticket-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .ticket-id-tag {
+      font-weight: 800;
+      color: #2563eb;
+      font-size: 0.95rem;
+    }
+    .ticket-date {
+      font-size: 0.78rem;
+      color: #64748b;
+    }
+    .ticket-subject {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .ticket-desc {
+      font-size: 0.88rem;
+      color: #475569;
+      line-height: 1.5;
+    }
+    .ticket-response-box {
+      background-color: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 10px 14px;
+      margin-top: 12px;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.86rem;
+    }
+    .response-title {
+      font-weight: 700;
+      color: #166534;
+      margin-bottom: 3px;
+    }
+    .response-body {
+      color: #14532d;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-gov-header">
+    <div class="gov-top-inner">
+      <div class="gov-dept-row">
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">भारत सरकार</span>
+          <span class="gov-title-en">Government of India</span>
+        </div>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">उत्तराखंड सरकार पोर्टल</span>
+          <span class="gov-title-en">Uttarakhand Government Portal</span>
+        </div>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">शिक्षा मंत्रालय</span>
+          <span class="gov-title-en">Ministry of Education</span>
+        </div>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">उच्च शिक्षा विभाग, उत्तराखंड</span>
+          <span class="gov-title-en">Department of Higher Education, Uttarakhand</span>
+        </div>
+        <div class="gov-dept-col no-border">
+          <span class="gov-title-hi">कुमाऊँ विश्वविद्यालय नैनीताल</span>
+          <span class="gov-title-en">Kumaun University, Nainital</span>
+        </div>
+      </div>
+      <div class="accessibility-font-box">
+        <button type="button" class="font-scaler-btn" id="fontDecrease">A-</button>
+        <button type="button" class="font-scaler-btn active" id="fontNormal">A</button>
+        <button type="button" class="font-scaler-btn" id="fontIncrease">A+</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="portal-nav-header">
+    <div class="portal-nav-brand">
+      <div class="brand-icon-box">S</div>
+      <div class="portal-univ-badge">
+        <img src="assets/university-logo.svg" alt="KU Emblem" class="portal-univ-logo">
+        <div class="portal-univ-text">
+          <h1>Kumaun University, Nainital</h1>
+          <span>Samarth Student Portal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portal-user-corner">
+      <img src="assets/student_photo.png" alt="MOHD MOHSIN KHAN" class="user-photo-thumb">
+      <div class="user-tag-details">
+        <div class="user-tag-name">MOHD MOHSIN KHAN</div>
+        <div class="user-tag-enrol">KU20247319</div>
+      </div>
+      <a href="index.html" class="btn-logout-portal">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb Bar -->
+  <div class="portal-breadcrumb-bar">
+    <div class="crumb-trail">
+      Portal Home / Student / <strong>Helpdesk & Grievance Support</strong>
+    </div>
+    <div>
+      <span style="font-size:0.8rem; color:#16a34a; font-weight:700;">🟢 Helpdesk Online & Connected to Admin</span>
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <main class="portal-body-grid">
+    
+    <aside class="portal-sidebar">
+      <div class="sidebar-section-title">Core Navigation</div>
+      <a href="profile.html" class="sidebar-link">
+        <span class="sidebar-icon">👤</span> Student Profile
+      </a>
+      <a href="gradecard.html" class="sidebar-link">
+        <span class="sidebar-icon">📑</span> Grade Card / Results
+      </a>
+      <a href="dashboard.html" class="sidebar-link">
+        <span class="sidebar-icon">📊</span> Dashboard Home
+      </a>
+      <a href="admitcard.html" class="sidebar-link">
+        <span class="sidebar-icon">🎟️</span> Admit Card
+      </a>
+      <a href="fees.html" class="sidebar-link">
+        <span class="sidebar-icon">💳</span> Fee Receipts
+      </a>
+      <a href="services.html" class="sidebar-link">
+        <span class="sidebar-icon">📜</span> Student Certificates
+      </a>
+      <a href="helpdesk.html" class="sidebar-link active">
+        <span class="sidebar-icon">🎧</span> Helpdesk & Grievance
+      </a>
+    </aside>
+
+    <section class="helpdesk-pane">
+      
+      <!-- New Ticket Submission Form -->
+      <div class="helpdesk-card">
+        <div class="card-header-flex">
+          <h2>📝 Submit New Grievance / Support Request</h2>
+          <span style="font-size:0.8rem; color:#64748b;">Directly reported to University Admin</span>
+        </div>
+        
+        <form id="grievanceForm" style="display:flex; flex-direction:column; gap:16px;">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+            <div class="field-container">
+              <label class="field-label">Grievance Category *</label>
+              <select id="ticketCategory" class="text-input" required>
+                <option value="Degree / Marksheet">Degree / Marksheet Issue</option>
+                <option value="Examination & Results">Examination & Results</option>
+                <option value="Fee Payment / Clearance">Fee Payment / Clearance</option>
+                <option value="Admit Card Issue">Admit Card Correction</option>
+                <option value="General Support">General Support & Technical</option>
+              </select>
+            </div>
+            <div class="field-container">
+              <label class="field-label">Priority Level</label>
+              <select id="ticketPriority" class="text-input">
+                <option value="Normal">Normal Priority</option>
+                <option value="High">High Priority</option>
+                <option value="Urgent">Urgent / Critical</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-container">
+            <label class="field-label">Subject / Issue Summary *</label>
+            <input type="text" id="ticketSubject" class="text-input" placeholder="Briefly describe your request or grievance" required>
+          </div>
+
+          <div class="field-container">
+            <label class="field-label">Detailed Description *</label>
+            <textarea id="ticketDescription" class="text-input" style="height:100px; padding:10px;" placeholder="Provide complete details, semester, roll no, or required action..." required></textarea>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end;">
+            <button type="submit" class="btn-primary-login" style="width:auto; padding:10px 24px;">🚀 Submit to Admin</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Ticket History List -->
+      <div class="helpdesk-card">
+        <div class="card-header-flex">
+          <h2>📋 My Grievance Tickets & Admin Responses</h2>
+          <button type="button" class="btn-public-notice-pill" onclick="renderMyTickets()">🔄 Refresh Status</button>
+        </div>
+
+        <div id="ticketListContainer" class="ticket-list-grid">
+          <!-- Dynamic tickets rendered from PortalDB -->
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="portal-footer">
+    <div class="footer-left-brand">
+      <div class="brand-icon-box">S</div>
+      <span class="footer-brand-title">eGov</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #64748b;">
+      © 2026 Kumaun University, Nainital. Powered by Samarth eGov Suite.
+    </div>
+  </footer>
+
+  <script src="js/portal-db.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const student = PortalDB.getCurrentUser() || { enrolment: 'KU20247319', name: 'MOHD MOHSIN KHAN' };
+
+      window.renderMyTickets = () => {
+        const container = document.getElementById('ticketListContainer');
+        const tickets = PortalDB.getTicketsByStudent(student.enrolment);
+
+        if (!tickets || tickets.length === 0) {
+          container.innerHTML = '<p style="color:#94a3b8; text-align:center; padding:20px;">No support tickets submitted yet.</p>';
+          return;
+        }
+
+        container.innerHTML = tickets.map(t => `
+          <div class="ticket-item-box">
+            <div class="ticket-top">
+              <span class="ticket-id-tag">${t.id}</span>
+              <span style="font-size:0.75rem; background:#f1f5f9; padding:2px 8px; border-radius:4px; font-weight:600;">Category: ${t.category}</span>
+              <span class="ticket-date">${t.createdAt}</span>
+              <span class="badge-status ${t.status === 'Resolved' ? 'badge-resolved' : t.status === 'In Progress' ? 'badge-progress' : 'badge-pending'}">
+                ${t.status}
+              </span>
+            </div>
+            <div class="ticket-subject">${t.subject}</div>
+            <div class="ticket-desc">${t.description}</div>
+            
+            ${t.adminReply ? `
+              <div class="ticket-response-box">
+                <div class="response-title">🛡️ Official University Admin Response:</div>
+                <div class="response-body">${t.adminReply}</div>
+              </div>
+            ` : `
+              <div style="margin-top:8px; font-size:0.8rem; color:#d97706; font-weight:600;">
+                ⏳ Ticket under review by Admin Console.
+              </div>
+            `}
+          </div>
+        `).join('');
+      };
+
+      // Handle ticket submission
+      const form = document.getElementById('grievanceForm');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const newTicket = {
+          studentId: student.enrolment,
+          studentName: student.name,
+          category: document.getElementById('ticketCategory').value,
+          priority: document.getElementById('ticketPriority').value,
+          subject: document.getElementById('ticketSubject').value.trim(),
+          description: document.getElementById('ticketDescription').value.trim()
+        };
+
+        const created = PortalDB.createTicket(newTicket);
+        form.reset();
+        renderMyTickets();
+        alert(`Grievance Ticket ${created.id} submitted successfully!\nReport has been dispatched to the Admin Portal.`);
+      });
+
+      renderMyTickets();
+    });
+  </script>
+</body>
+</html>

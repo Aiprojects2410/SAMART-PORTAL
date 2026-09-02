@@ -1,23 +1,8 @@
 /**
- * Samarth eGov / Kumaun University Student Portal
- * Interactive Application Script
+ * Samarth eGov / Kumaun University Student & Admin Authentication
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Student Database
-  const registeredStudents = {
-    'KU20247319': {
-      password: 'Mohsin@8080',
-      name: 'MOHD MOHSIN KHAN',
-      gender: 'MALE',
-      email: 'Mohsinkhann495@gmail.com',
-      mobile: '+91 96909 41117',
-      dob: '22/02/2001',
-      role: 'Student',
-      dashboardUrl: 'profile.html' // Direct redirect to Student Profile on login
-    }
-  };
-
   // 1. Captcha Management
   let currentCaptcha = '';
   const captchaDisplay = document.getElementById('captchaText');
@@ -42,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     captchaDisplay.addEventListener('click', generateCaptcha);
   }
 
-  // Initial Captcha Load
   generateCaptcha();
 
   // 2. Font Resizer (A-, A, A+)
@@ -154,26 +138,32 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Check registered student credentials
-      const student = registeredStudents[enteredId];
+      // Check for Admin Login
+      if (enteredId.toLowerCase() === 'admin' && (enteredPassword === 'admin123' || enteredPassword === 'Admin@123')) {
+        alert('Admin Authentication Successful! Redirecting to Admin Console...');
+        window.location.href = 'admin.html';
+        return;
+      }
+
+      // Check in PortalDB Students
+      const student = window.PortalDB ? PortalDB.getStudentById(enteredId) : null;
       if (student) {
         if (student.password === enteredPassword) {
-          // Success authentication -> directly open Student Profile
-          sessionStorage.setItem('loggedInUser', JSON.stringify(student));
+          PortalDB.setCurrentUser(student);
           window.location.href = 'profile.html';
           return;
         } else {
-          alert('Invalid Password for enrolment number ' + enteredId);
+          alert('Invalid Password for enrolment ' + enteredId);
           inputPassword?.focus();
           return;
         }
       } else {
-        // Generic student login simulation -> Profile
-        sessionStorage.setItem('loggedInUser', JSON.stringify({
-          name: 'Student User',
-          id: enteredId
-        }));
-        window.location.href = 'profile.html';
+        // Fallback for demo student
+        if (enteredId.toUpperCase() === 'KU20247319') {
+          window.location.href = 'profile.html';
+        } else {
+          alert('Enrolment number not found in university records. Please check or register as a New User.');
+        }
       }
     });
   }
@@ -195,41 +185,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const btnInstructions = document.getElementById('btnGeneralInstructions');
-  if (btnInstructions) {
-    btnInstructions.addEventListener('click', () => openModal('instructionsModal'));
-  }
-
-  const btnPublicNotice = document.getElementById('btnPublicNotice');
-  if (btnPublicNotice) {
-    btnPublicNotice.addEventListener('click', () => openModal('noticeModal'));
-  }
-
-  const btnForgotPass = document.getElementById('btnForgotPass');
-  if (btnForgotPass) {
-    btnForgotPass.addEventListener('click', (e) => {
-      e.preventDefault();
-      openModal('forgotModal');
-    });
-  }
-
-  const btnRegisterNav = document.getElementById('btnRegisterNav');
-  const btnRegisterBody = document.getElementById('btnRegisterBody');
-  [btnRegisterNav, btnRegisterBody].forEach(btn => {
-    if (btn) {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        openModal('registerModal');
-      });
-    }
+  document.getElementById('btnGeneralInstructions')?.addEventListener('click', () => openModal('instructionsModal'));
+  document.getElementById('btnPublicNotice')?.addEventListener('click', () => openModal('noticeModal'));
+  document.getElementById('btnForgotPass')?.addEventListener('click', (e) => { e.preventDefault(); openModal('forgotModal'); });
+  
+  [document.getElementById('btnRegisterNav'), document.getElementById('btnRegisterBody')].forEach(btn => {
+    btn?.addEventListener('click', (e) => { e.preventDefault(); openModal('registerModal'); });
   });
 
-  const navLoginBtn = document.getElementById('navLoginBtn');
-  if (navLoginBtn) {
-    navLoginBtn.addEventListener('click', () => {
-      inputEnrolment?.focus();
-    });
-  }
+  document.getElementById('navLoginBtn')?.addEventListener('click', () => inputEnrolment?.focus());
 
   document.querySelectorAll('.modal-overlay').forEach(overlay => {
     overlay.addEventListener('click', (e) => {

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examination Admit Card - MOHD MOHSIN KHAN | Kumaun University</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/university-logo.svg">
+  <style>
+    .portal-nav-header {
+      background-color: #1e2538;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 10;
+    }
+    .portal-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+    .portal-univ-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .portal-univ-logo {
+      width: 40px;
+      height: 40px;
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 3px;
+    }
+    .portal-univ-text h1 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .portal-univ-text span {
+      font-size: 0.74rem;
+      color: #94a3b8;
+    }
+    .portal-user-corner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .user-tag-details {
+      text-align: right;
+    }
+    .user-tag-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #ffffff;
+    }
+    .user-tag-enrol {
+      font-size: 0.78rem;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    .user-photo-thumb {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #38bdf8;
+      object-fit: cover;
+    }
+    .btn-logout-portal {
+      background-color: #ef4444;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      padding: 7px 15px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .portal-breadcrumb-bar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .portal-body-grid {
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 22px 30px 60px;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .portal-sidebar {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sidebar-section-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 8px 12px 4px;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #334155;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .sidebar-link:hover {
+      background-color: #f1f5f9;
+      color: #1e293b;
+    }
+    .sidebar-link.active {
+      background-color: #eef2ff;
+      color: #4f46e5;
+      font-weight: 700;
+    }
+    .sidebar-icon {
+      font-size: 1.05rem;
+    }
+
+    /* Admit Card Container */
+    .admit-card-box {
+      background: #ffffff;
+      border: 2px solid #1e293b;
+      border-radius: 8px;
+      padding: 28px 32px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      font-family: 'Segoe UI', -apple-system, sans-serif;
+    }
+    .admit-top-head {
+      text-align: center;
+      border-bottom: 2px solid #1e293b;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+    .admit-top-head h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #1e293b;
+    }
+    .admit-top-head h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2563eb;
+      margin-top: 2px;
+    }
+    .admit-details-flex {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .admit-details-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .admit-details-table td {
+      padding: 6px 10px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .admit-details-table td.lbl {
+      font-weight: 700;
+      color: #475569;
+      width: 32%;
+    }
+    .admit-details-table td.val {
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .admit-photo-box {
+      width: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .admit-photo-img {
+      width: 110px;
+      height: 130px;
+      border: 1px solid #000;
+      object-fit: cover;
+    }
+    .admit-barcode {
+      font-family: monospace;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    .admit-timetable-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-top: 14px;
+    }
+    .admit-timetable-table th, .admit-timetable-table td {
+      border: 1px solid #cbd5e1;
+      padding: 8px 12px;
+      text-align: center;
+    }
+    .admit-timetable-table th {
+      background-color: #f1f5f9;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .admit-card-box, .admit-card-box * {
+        visibility: visible;
+      }
+      .admit-card-box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        border: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="top-gov-header">
+    <div class="gov-top-inner">
+      <div class="gov-dept-row">
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">भारत सरकार</span>
+          <span class="gov-title-en">Government of India</span>
+        </div>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">उत्तराखंड सरकार पोर्टल</span>
+          <span class="gov-title-en">Uttarakhand Government Portal</span>
+        </div>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">शिक्षा मंत्रालय</span>
+          <span class="gov-title-en">Ministry of Education</span>
+        </div>
+        <div class="gov-dept-col no-border">
+          <span class="gov-title-hi">कुमाऊँ विश्वविद्यालय नैनीताल</span>
+          <span class="gov-title-en">Kumaun University, Nainital</span>
+        </div>
+      </div>
+      <div class="accessibility-font-box">
+        <button type="button" class="font-scaler-btn" id="fontDecrease">A-</button>
+        <button type="button" class="font-scaler-btn active" id="fontNormal">A</button>
+        <button type="button" class="font-scaler-btn" id="fontIncrease">A+</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="portal-nav-header">
+    <div class="portal-nav-brand">
+      <div class="brand-icon-box">S</div>
+      <div class="portal-univ-badge">
+        <img src="assets/university-logo.svg" alt="KU Emblem" class="portal-univ-logo">
+        <div class="portal-univ-text">
+          <h1>Kumaun University, Nainital</h1>
+          <span>Samarth Student Portal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portal-user-corner">
+      <img src="assets/student_photo.png" alt="MOHD MOHSIN KHAN" class="user-photo-thumb">
+      <div class="user-tag-details">
+        <div class="user-tag-name">MOHD MOHSIN KHAN</div>
+        <div class="user-tag-enrol">KU20247319</div>
+      </div>
+      <a href="index.html" class="btn-logout-portal">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs Bar -->
+  <div class="portal-breadcrumb-bar">
+    <div class="crumb-trail">
+      Portal Home / Student / <strong>Examination Admit Card</strong>
+    </div>
+    <div>
+      <button type="button" class="btn-primary-login" style="width:auto; padding:6px 18px;" onclick="window.print()">🖨️ Print Admit Card</button>
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <main class="portal-body-grid">
+    <aside class="portal-sidebar">
+      <div class="sidebar-section-title">Core Navigation</div>
+      <a href="profile.html" class="sidebar-link">
+        <span class="sidebar-icon">👤</span> Student Profile
+      </a>
+      <a href="gradecard.html" class="sidebar-link">
+        <span class="sidebar-icon">📑</span> Grade Card / Results
+      </a>
+      <a href="dashboard.html" class="sidebar-link">
+        <span class="sidebar-icon">📊</span> Dashboard Home
+      </a>
+      <a href="admitcard.html" class="sidebar-link active">
+        <span class="sidebar-icon">🎟️</span> Admit Card
+      </a>
+      <a href="fees.html" class="sidebar-link">
+        <span class="sidebar-icon">💳</span> Fee Receipts
+      </a>
+      <a href="services.html" class="sidebar-link">
+        <span class="sidebar-icon">📜</span> Student Certificates
+      </a>
+      <a href="helpdesk.html" class="sidebar-link">
+        <span class="sidebar-icon">🎧</span> Helpdesk
+      </a>
+    </aside>
+
+    <section>
+      <!-- Official Admit Card Card -->
+      <div class="admit-card-box">
+        <div class="admit-top-head">
+          <h2>KUMAUN UNIVERSITY, NAINITAL</h2>
+          <h3>OFFICIAL EXAMINATION ADMIT CARD (ANNUAL / SEMESTER)</h3>
+          <span style="font-size:0.85rem; color:#475569;">Degree Programme: Bachelor of Commerce (B.COM.)</span>
+        </div>
+
+        <div class="admit-details-flex">
+          <table class="admit-details-table">
+            <tr>
+              <td class="lbl">Roll Number:</td>
+              <td class="val" style="color:#2563eb; font-size:1.05rem;">2233524680</td>
+            </tr>
+            <tr>
+              <td class="lbl">Enrollment No:</td>
+              <td class="val">KU20247319</td>
+            </tr>
+            <tr>
+              <td class="lbl">Student Name:</td>
+              <td class="val">MOHD MOHSIN KHAN</td>
+            </tr>
+            <tr>
+              <td class="lbl">Father's Name:</td>
+              <td class="val">BABBAN KHAN</td>
+            </tr>
+            <tr>
+              <td class="lbl">Examination Centre:</td>
+              <td class="val">Sardar Bhagat Singh Govt. P.G. College Rudrapur (Centre Code: 335)</td>
+            </tr>
+            <tr>
+              <td class="lbl">Candidate Status:</td>
+              <td class="val" style="color:#16a34a;">REGULAR / ELIGIBLE</td>
+            </tr>
+          </table>
+
+          <div class="admit-photo-box">
+            <img src="assets/student_photo.png" alt="Candidate" class="admit-photo-img">
+            <div class="admit-barcode">||| |||| || |||||</div>
+            <span style="font-size:0.75rem; color:#555;">Candidate Signature</span>
+          </div>
+        </div>
+
+        <h4 style="font-size:0.95rem; font-weight:700; color:#1e293b; margin-top:16px;">Scheduled Papers & Timetable:</h4>
+        <table class="admit-timetable-table">
+          <thead>
+            <tr>
+              <th>Paper Code</th>
+              <th>Course / Subject Title</th>
+              <th>Date & Timing</th>
+              <th>Invigilator Signature</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>BC-301</strong></td>
+              <td>Marketing Management & Accounting</td>
+              <td>10:00 AM - 01:00 PM</td>
+              <td>Verified ✓</td>
+            </tr>
+            <tr>
+              <td><strong>BC-302</strong></td>
+              <td>Income Tax, Law & Auditing</td>
+              <td>10:00 AM - 01:00 PM</td>
+              <td>Verified ✓</td>
+            </tr>
+            <tr>
+              <td><strong>BC-303</strong></td>
+              <td>Public Finance & Fundamentals of Insurance</td>
+              <td>10:00 AM - 01:00 PM</td>
+              <td>Verified ✓</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:30px; padding-top:14px; border-top:1px solid #e2e8f0; font-size:0.85rem;">
+          <div>
+            <strong>Important Instructions:</strong>
+            <p style="font-size:0.78rem; color:#64748b;">1. Bring official Photo ID proof along with this Admit Card to the Examination Centre.<br>2. Electronic gadgets & mobile phones are strictly prohibited in the exam hall.</p>
+          </div>
+          <div style="text-align:center; font-weight:bold; color:#16a34a;">
+            ✍️ Controller of Examinations<br>Kumaun University
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="portal-footer">
+    <div class="footer-left-brand">
+      <div class="brand-icon-box">S</div>
+      <span class="footer-brand-title">eGov</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #64748b;">
+      © 2026 Kumaun University, Nainital. Powered by Samarth eGov Suite.
+    </div>
+  </footer>
+
+</body>
+</html>
