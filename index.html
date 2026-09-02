@@ -5,138 +5,148 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kumaun University - Student Portal | Samarth eGov</title>
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" type="image/svg+xml" href="assets/university-logo.svg">
+  <link rel="icon" type="image/png" href="assets/univ_logo_original.png">
 </head>
 <body>
 
-  <!-- Background Decorative Watermark Pattern -->
-  <svg class="bg-decor-rings" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="200" cy="200" r="80" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="4 4"/>
-    <circle cx="200" cy="200" r="130" stroke="#1e293b" stroke-width="1.5"/>
-    <circle cx="200" cy="200" r="180" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="6 6"/>
-  </svg>
+  <!-- Background Decorative Watermark Concentric Rings -->
+  <div class="watermark-container">
+    <svg class="watermark-svg" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="450" cy="150" r="100" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 3"/>
+      <circle cx="450" cy="150" r="180" stroke="#cbd5e1" stroke-width="1"/>
+      <circle cx="450" cy="150" r="260" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+      <circle cx="450" cy="150" r="340" stroke="#e2e8f0" stroke-width="1"/>
+      <circle cx="450" cy="150" r="440" stroke="#e2e8f0" stroke-width="1"/>
+    </svg>
+  </div>
 
   <!-- 1. Top Government Bilingual Header -->
   <header class="top-gov-header">
-    <div class="gov-row-main">
-      <div class="gov-dept-list">
-        <div class="gov-dept-item">
-          <span class="gov-hi">भारत सरकार</span>
-          <span class="gov-en">Government of India</span>
+    <div class="gov-top-inner">
+      <div class="gov-dept-row">
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">भारत सरकार</span>
+          <span class="gov-title-en">Government of India</span>
         </div>
-        <div class="gov-dept-item">
-          <span class="gov-hi">उत्तराखंड सरकार पोर्टल</span>
-          <span class="gov-en">Uttarakhand Government Portal</span>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">उत्तराखंड सरकार पोर्टल</span>
+          <span class="gov-title-en">Uttarakhand Government Portal</span>
         </div>
-        <div class="gov-dept-item">
-          <span class="gov-hi">शिक्षा मंत्रालय</span>
-          <span class="gov-en">Ministry of Education</span>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">शिक्षा मंत्रालय</span>
+          <span class="gov-title-en">Ministry of Education</span>
         </div>
-        <div class="gov-dept-item">
-          <span class="gov-hi">उच्च शिक्षा विभाग, उत्तराखंड</span>
-          <span class="gov-en">Department of Higher Education, Uttarakhand</span>
+        <div class="gov-dept-col">
+          <span class="gov-title-hi">उच्च शिक्षा विभाग, उत्तराखंड</span>
+          <span class="gov-title-en">Department of Higher Education, Uttarakhand</span>
         </div>
-        <div class="gov-dept-item">
-          <span class="gov-hi">कुमाऊँ विश्वविद्यालय नैनीताल</span>
-          <span class="gov-en">Kumaun University, Nainital</span>
+        <div class="gov-dept-col no-border">
+          <span class="gov-title-hi">कुमाऊँ विश्वविद्यालय नैनीताल</span>
+          <span class="gov-title-en">Kumaun University, Nainital</span>
         </div>
       </div>
 
-      <!-- Accessibility / Font Resizer -->
-      <div class="font-resizer-container">
-        <button type="button" class="font-btn" id="fontDecrease" title="Decrease font size">A-</button>
-        <button type="button" class="font-btn active" id="fontNormal" title="Normal font size">A</button>
-        <button type="button" class="font-btn" id="fontIncrease" title="Increase font size">A+</button>
+      <!-- Accessibility Font Resizers (A-  A  A+) -->
+      <div class="accessibility-font-box">
+        <button type="button" class="font-scaler-btn" id="fontDecrease">A-</button>
+        <button type="button" class="font-scaler-btn active" id="fontNormal">A</button>
+        <button type="button" class="font-scaler-btn" id="fontIncrease">A+</button>
       </div>
     </div>
 
-    <div class="gov-row-sub">
-      <div>
-        <span>For any assistance, please write to </span>
-        <a href="mailto:support.samarth@kunainital.ac.in" class="support-link">support.samarth@kunainital.ac.in</a>
+    <!-- Secondary Header Row -->
+    <div class="gov-sub-inner">
+      <div class="gov-help-text">
+        For any assistance, please write to 
+        <a href="mailto:support.samarth@kunainital.ac.in" class="gov-mail-link">support.samarth@kunainital.ac.in</a>
       </div>
-      <div>
-        <a href="#examination-schedules" class="exam-schedule-link" id="linkExamSchedules">Examination Schedules</a>
+      <div class="gov-exam-link-box">
+        <a href="#examination-schedules" class="gov-exam-link" id="linkExamSchedule">Examination Schedules</a>
       </div>
     </div>
   </header>
 
-  <!-- 2. Dark Navy Navigation Bar -->
+  <!-- 2. Dark Navy Main Navigation Bar -->
   <nav class="main-navbar">
-    <a href="#" class="nav-brand">
-      <div class="brand-badge">S</div>
-      <span class="brand-text">eGov</span>
+    <a href="#" class="brand-link">
+      <div class="brand-icon-box">S</div>
+      <span class="brand-title">eGov</span>
     </a>
-    <div class="nav-actions">
-      <a href="#" class="nav-link-login">Login</a>
-      <button type="button" class="btn-register-nav" id="btnRegisterNav">New User Registration</button>
+    <div class="nav-right-buttons">
+      <button type="button" class="nav-btn-login" id="navLoginBtn">Login</button>
+      <button type="button" class="nav-btn-reg" id="btnRegisterNav">New User Registration</button>
     </div>
   </nav>
 
-  <!-- 3. Main Portal Body Layout -->
-  <main class="main-content">
+  <!-- 3. Portal Main Content Area -->
+  <div class="portal-main-wrapper">
     
     <!-- Left Column: Promotional Banners -->
-    <section class="left-col" aria-label="Promotional and Scheme Banners">
-      <div class="promo-banner-card">
-        <img src="assets/banners/banner1.svg" alt="Learn From The Best - Paid Internships in Top Companies">
+    <div class="banners-left-column">
+      <div class="banner-wrapper">
+        <img src="assets/banners/banner1.png" alt="Learn From The Best - Paid Internships in Top Companies" class="banner-img">
       </div>
-      <div class="promo-banner-card">
-        <img src="assets/banners/banner2.svg" alt="Career Start Karne ka Right Time ? Abhi! - Experience ke saath, financial support!">
+      <div class="banner-wrapper">
+        <img src="assets/banners/banner2.png" alt="Career Start Karne ka Right Time ? Abhi! - Experience ke saath, financial support!" class="banner-img">
       </div>
-    </section>
+    </div>
 
-    <!-- Right Column: Student Portal Login Area -->
-    <section class="right-col">
+    <!-- Right Column: Student Portal & Login Form -->
+    <div class="login-right-column">
       
-      <!-- University Emblem & Title -->
-      <div class="univ-header-block">
-        <img src="assets/university-logo.svg" alt="Kumaun University Crest" class="univ-emblem">
-        <h1 class="univ-name">Kumaun University</h1>
-        <h2 class="portal-name">Student Portal</h2>
-        <button type="button" class="btn-general-instructions" id="btnGeneralInstructions">
+      <!-- University Emblem & Title Header -->
+      <div class="portal-header-group">
+        <div class="emblem-card-box">
+          <img src="assets/university-logo.svg" alt="Kumaun University Nainital Emblem" class="univ-emblem-img">
+        </div>
+        <h1 class="portal-univ-heading">Kumaun University</h1>
+        <h2 class="portal-sub-heading">Student Portal</h2>
+        
+        <button type="button" class="btn-instructions-gray" id="btnGeneralInstructions">
           General Instructions for Login
         </button>
       </div>
 
-      <!-- Login Card -->
-      <div class="login-card">
-        <div class="card-top-indicator">
-          <span class="dots-icon">
-            <span></span><span></span><span></span>
+      <!-- Login Form Card -->
+      <div class="student-login-card">
+        
+        <!-- Three Dots and Student Portal indicator -->
+        <div class="card-indicator-header">
+          <span class="indicator-dots">
+            <i></i><i></i><i></i>
           </span>
-          Student Portal
+          <span class="indicator-text">Student Portal</span>
         </div>
 
-        <h3 class="card-login-title">Login</h3>
+        <h3 class="form-login-heading">Login</h3>
 
-        <form id="loginForm" class="login-form" novalidate>
+        <form id="loginForm" class="auth-form" novalidate>
           
-          <!-- Enrolment Number Field -->
-          <div class="form-group">
-            <label for="inputEnrolment" class="form-label">Enrolment Number</label>
-            <div class="input-wrapper">
+          <!-- Enrolment Number Field with Validation -->
+          <div class="field-container">
+            <label for="inputEnrolment" class="field-label">Enrolment Number</label>
+            <div class="field-input-box">
               <input 
                 type="text" 
                 id="inputEnrolment" 
-                class="form-input" 
+                class="text-input" 
                 placeholder="Enrolment Number"
                 autocomplete="username"
                 required
               >
-              <span class="input-error-icon">ⓘ</span>
+              <div class="error-badge-icon" id="errorIcon">!</div>
             </div>
-            <div id="errorEnrolment" class="form-error-msg">Enrolment Number cannot be blank.</div>
+            <div id="errorEnrolment" class="field-error-text">Enrolment Number cannot be blank.</div>
           </div>
 
           <!-- Password Field -->
-          <div class="form-group">
-            <label for="inputPassword" class="form-label">Password</label>
-            <div class="input-wrapper">
+          <div class="field-container">
+            <label for="inputPassword" class="field-label">Password</label>
+            <div class="field-input-box">
               <input 
                 type="password" 
                 id="inputPassword" 
-                class="form-input" 
+                class="text-input" 
                 placeholder="Password"
                 autocomplete="current-password"
                 required
@@ -144,147 +154,138 @@
             </div>
           </div>
 
-          <!-- Captcha Field -->
-          <div class="captcha-section">
-            <span class="captcha-hint">Click on the text to change the captcha</span>
-            <div class="captcha-display-row">
-              <span class="captcha-label-text">Captcha</span>
-              <div class="captcha-canvas-wrap" id="captchaCanvasWrap" title="Click to refresh captcha">
-                <span id="captchaText" class="captcha-text-rendered">7285867</span>
-              </div>
-              <button type="button" class="btn-refresh-captcha" id="btnRefreshCaptcha" title="Refresh Captcha">
-                ↻
-              </button>
+          <!-- Captcha Field Section -->
+          <div class="captcha-group">
+            <div class="captcha-instruction-text">Click on the text to change the captcha</div>
+            <div class="captcha-row">
+              <span class="captcha-title-label">Captcha</span>
+              <span id="captchaText" class="captcha-code-digits" title="Click to refresh captcha">7285867</span>
             </div>
-            <input 
-              type="text" 
-              id="inputCaptcha" 
-              class="form-input" 
-              placeholder=""
-              autocomplete="off"
-              required
-            >
+            <div class="field-input-box">
+              <input 
+                type="text" 
+                id="inputCaptcha" 
+                class="text-input" 
+                autocomplete="off"
+                required
+              >
+            </div>
           </div>
 
-          <!-- Submit Button -->
-          <button type="submit" class="btn-submit-login">Login</button>
+          <!-- Login Button -->
+          <button type="submit" class="btn-primary-login" id="btnSubmitLogin">Login</button>
 
           <!-- OR Divider -->
-          <div class="divider-or">OR</div>
+          <div class="separator-or">OR</div>
 
           <!-- Register Now Button -->
-          <button type="button" class="btn-register-outline" id="btnRegisterBody">
+          <button type="button" class="btn-register-secondary" id="btnRegisterBody">
             New User ? &nbsp; Register Now -&gt;
           </button>
 
           <!-- Forgot Password Link -->
-          <div class="forgot-password-link-wrap">
-            Forgot Password? 
-            <a href="#" class="forgot-link-btn" id="btnForgotPass">Request Password Reset -&gt;</a>
+          <div class="bottom-links-row">
+            <span class="forgot-txt">Forgot Password?</span>
+            <a href="#" class="forgot-link" id="btnForgotPass">Request Password Reset -&gt;</a>
           </div>
 
         </form>
       </div>
 
-    </section>
-  </main>
-
-  <!-- 4. Footer Bar -->
-  <footer class="main-footer">
-    <div class="footer-brand">
-      <div class="brand-badge">S</div>
-      <span>eGov</span>
     </div>
-    <button type="button" class="btn-public-notice" id="btnPublicNotice">View Public Notice</button>
+  </div>
+
+  <!-- 4. Clean White Footer Bar -->
+  <footer class="portal-footer">
+    <div class="footer-left-brand">
+      <div class="brand-icon-box">S</div>
+      <span class="footer-brand-title">eGov</span>
+    </div>
+    <button type="button" class="btn-public-notice-pill" id="btnPublicNotice">View Public Notice</button>
   </footer>
 
   <!-- Modal: General Instructions for Login -->
-  <div class="modal-backdrop" id="instructionsModal">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 class="modal-title">General Instructions for Login</h3>
-        <button type="button" class="modal-close-btn" data-close-modal="instructionsModal">&times;</button>
+  <div class="modal-overlay" id="instructionsModal">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h3 class="modal-heading">General Instructions for Login</h3>
+        <button type="button" class="modal-close" data-close="instructionsModal">&times;</button>
       </div>
-      <div class="modal-body">
-        <p><strong>Important guidelines for students logging into the portal:</strong></p>
-        <ul>
-          <li>Your <strong>Enrolment Number</strong> is your official University Registration / Enrolment ID provided on your admit card or admission slip.</li>
-          <li>For first-time users, click on <strong>New User Registration</strong> to set your account password.</li>
-          <li>Please ensure your registered mobile number and email address are active to receive OTP notifications.</li>
-          <li>Never share your password or OTP with anyone.</li>
-          <li>If you have forgotten your password, use the <em>Request Password Reset</em> option below the login card.</li>
+      <div class="modal-content">
+        <p><strong>Instructions for Student Portal Access:</strong></p>
+        <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.6;">
+          <li>Your <strong>Enrolment Number</strong> is unique and allotted at the time of university admission.</li>
+          <li>For first-time registration, click on <strong>New User Registration</strong> above.</li>
+          <li>Ensure your registered mobile number and email ID are active for OTP verification.</li>
+          <li>If you face difficulty logging in, please use <em>Request Password Reset</em>.</li>
         </ul>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-modal-close" data-close-modal="instructionsModal">Close</button>
+      <div class="modal-bottom">
+        <button type="button" class="modal-btn-gray" data-close="instructionsModal">Close</button>
       </div>
     </div>
   </div>
 
-  <!-- Modal: View Public Notice -->
-  <div class="modal-backdrop" id="noticeModal">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 class="modal-title">Public Notices & Announcements</h3>
-        <button type="button" class="modal-close-btn" data-close-modal="noticeModal">&times;</button>
+  <!-- Modal: Public Notices -->
+  <div class="modal-overlay" id="noticeModal">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h3 class="modal-heading">Public Notice & Announcements</h3>
+        <button type="button" class="modal-close" data-close="noticeModal">&times;</button>
       </div>
-      <div class="modal-body">
-        <ul>
-          <li><strong>Notice #1:</strong> Examination schedule and form submission for current academic semester has been released.</li>
-          <li><strong>Notice #2:</strong> National Internship Portal registration is active. Eligible candidates are encouraged to apply.</li>
-          <li><strong>Notice #3:</strong> In case of technical issues with fee submission, contact the technical helpdesk at support.samarth@kunainital.ac.in.</li>
+      <div class="modal-content">
+        <ul style="padding-left: 20px; line-height: 1.6;">
+          <li>Examination forms for the upcoming semester examination session are now available.</li>
+          <li>National Internship Scheme applications are open for students.</li>
+          <li>Helpdesk support: support.samarth@kunainital.ac.in.</li>
         </ul>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-modal-close" data-close-modal="noticeModal">Close</button>
+      <div class="modal-bottom">
+        <button type="button" class="modal-btn-gray" data-close="noticeModal">Close</button>
       </div>
     </div>
   </div>
 
   <!-- Modal: Forgot Password -->
-  <div class="modal-backdrop" id="forgotModal">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 class="modal-title">Request Password Reset</h3>
-        <button type="button" class="modal-close-btn" data-close-modal="forgotModal">&times;</button>
+  <div class="modal-overlay" id="forgotModal">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h3 class="modal-heading">Request Password Reset</h3>
+        <button type="button" class="modal-close" data-close="forgotModal">&times;</button>
       </div>
-      <div class="modal-body">
-        <p>Enter your registered Enrolment Number to receive password reset instructions on your registered Email / Mobile.</p>
-        <div class="form-group" style="margin-top: 15px;">
-          <label class="form-label">Enrolment Number</label>
-          <input type="text" class="form-input" placeholder="Enter Enrolment Number">
+      <div class="modal-content">
+        <p>Please enter your registered Enrolment Number to receive the reset link.</p>
+        <div style="margin-top: 14px;">
+          <label class="field-label">Enrolment Number</label>
+          <input type="text" class="text-input" placeholder="Enter Enrolment Number">
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-submit-login" style="width: auto; padding: 8px 18px; margin: 0;" onclick="alert('Password reset link has been dispatched to your registered email.')">Send Reset Link</button>
+      <div class="modal-bottom">
+        <button type="button" class="btn-primary-login" style="width: auto; padding: 8px 18px;" onclick="alert('Password reset instructions dispatched!')">Submit</button>
       </div>
     </div>
   </div>
 
-  <!-- Modal: New User Registration -->
-  <div class="modal-backdrop" id="registerModal">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 class="modal-title">New User Registration</h3>
-        <button type="button" class="modal-close-btn" data-close-modal="registerModal">&times;</button>
+  <!-- Modal: Registration -->
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h3 class="modal-heading">New User Registration</h3>
+        <button type="button" class="modal-close" data-close="registerModal">&times;</button>
       </div>
-      <div class="modal-body">
-        <p>Students registering for the first time must verify their Enrolment details:</p>
-        <div class="form-group" style="margin-top: 12px;">
-          <label class="form-label">Select Programme</label>
-          <input type="text" class="form-input" placeholder="e.g. Bachelor of Science / Arts / Commerce">
+      <div class="modal-content">
+        <p>Enter your student details to register your portal account:</p>
+        <div style="margin-top: 12px;">
+          <label class="field-label">Programme / Course</label>
+          <input type="text" class="text-input" placeholder="e.g. B.Sc, B.A, B.Com, M.Sc">
         </div>
-        <div class="form-group" style="margin-top: 12px;">
-          <label class="form-label">Name (as on ID card)</label>
-          <input type="text" class="form-input" placeholder="Enter Full Name">
-        </div>
-        <div class="form-group" style="margin-top: 12px;">
-          <label class="form-label">Enrolment / Registration Number</label>
-          <input type="text" class="form-input" placeholder="Enter Enrolment Number">
+        <div style="margin-top: 12px;">
+          <label class="field-label">Enrolment Number</label>
+          <input type="text" class="text-input" placeholder="Enter Enrolment Number">
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-submit-login" style="width: auto; padding: 8px 18px; margin: 0;" onclick="alert('Verification initiated. Please check your SMS for OTP.')">Proceed</button>
+      <div class="modal-bottom">
+        <button type="button" class="btn-primary-login" style="width: auto; padding: 8px 18px;" onclick="alert('OTP has been sent to your registered mobile/email.')">Verify & Proceed</button>
       </div>
     </div>
   </div>

@@ -7,8 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Captcha Management
   let currentCaptcha = '';
   const captchaDisplay = document.getElementById('captchaText');
-  const captchaWrapper = document.getElementById('captchaCanvasWrap');
-  const refreshCaptchaBtn = document.getElementById('btnRefreshCaptcha');
   const captchaInput = document.getElementById('inputCaptcha');
 
   function generateCaptcha() {
@@ -27,11 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (captchaWrapper) {
-    captchaWrapper.addEventListener('click', generateCaptcha);
-  }
-  if (refreshCaptchaBtn) {
-    refreshCaptchaBtn.addEventListener('click', generateCaptcha);
+  if (captchaDisplay) {
+    captchaDisplay.addEventListener('click', generateCaptcha);
   }
 
   // Initial Captcha Load
@@ -54,21 +49,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (fontDecrease) {
     fontDecrease.addEventListener('click', () => {
-      rootHtml.style.setProperty('--font-base-size', '12.5px');
+      rootHtml.style.setProperty('--font-base', '12px');
       setActiveFontBtn(fontDecrease);
     });
   }
 
   if (fontNormal) {
     fontNormal.addEventListener('click', () => {
-      rootHtml.style.setProperty('--font-base-size', '14px');
+      rootHtml.style.setProperty('--font-base', '13.5px');
       setActiveFontBtn(fontNormal);
     });
   }
 
   if (fontIncrease) {
     fontIncrease.addEventListener('click', () => {
-      rootHtml.style.setProperty('--font-base-size', '15.5px');
+      rootHtml.style.setProperty('--font-base', '15px');
       setActiveFontBtn(fontIncrease);
     });
   }
@@ -83,16 +78,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!inputEnrolment) return true;
     const val = inputEnrolment.value.trim();
     if (val === '') {
-      inputEnrolment.classList.add('is-invalid');
+      inputEnrolment.classList.add('has-error');
       if (errorEnrolment) {
         errorEnrolment.textContent = 'Enrolment Number cannot be blank.';
-        errorEnrolment.classList.add('visible');
+        errorEnrolment.classList.add('show');
       }
       return false;
     } else {
-      inputEnrolment.classList.remove('is-invalid');
+      inputEnrolment.classList.remove('has-error');
       if (errorEnrolment) {
-        errorEnrolment.classList.remove('visible');
+        errorEnrolment.classList.remove('show');
       }
       return true;
     }
@@ -101,8 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (inputEnrolment) {
     inputEnrolment.addEventListener('input', () => {
       if (inputEnrolment.value.trim() !== '') {
-        inputEnrolment.classList.remove('is-invalid');
-        if (errorEnrolment) errorEnrolment.classList.remove('visible');
+        inputEnrolment.classList.remove('has-error');
+        if (errorEnrolment) errorEnrolment.classList.remove('show');
       }
     });
 
@@ -143,16 +138,15 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Successful demo simulation
       alert(`Login Successful!\nWelcome Enrolment No: ${inputEnrolment.value.trim()}`);
     });
   }
 
-  // 4. Modal Controls (Instructions, Public Notice, Registration)
+  // 4. Modal Controls
   function openModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
-      modal.classList.add('open');
+      modal.classList.add('is-active');
       document.body.style.overflow = 'hidden';
     }
   }
@@ -160,12 +154,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
-      modal.classList.remove('open');
+      modal.classList.remove('is-active');
       document.body.style.overflow = 'auto';
     }
   }
 
-  // Attach modal triggers
   const btnInstructions = document.getElementById('btnGeneralInstructions');
   if (btnInstructions) {
     btnInstructions.addEventListener('click', () => openModal('instructionsModal'));
@@ -186,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const btnRegisterNav = document.getElementById('btnRegisterNav');
   const btnRegisterBody = document.getElementById('btnRegisterBody');
-
   [btnRegisterNav, btnRegisterBody].forEach(btn => {
     if (btn) {
       btn.addEventListener('click', (e) => {
@@ -196,19 +188,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Close modals on click close-btn or backdrop
-  document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-    backdrop.addEventListener('click', (e) => {
-      if (e.target === backdrop) {
-        backdrop.classList.remove('open');
+  const navLoginBtn = document.getElementById('navLoginBtn');
+  if (navLoginBtn) {
+    navLoginBtn.addEventListener('click', () => {
+      inputEnrolment?.focus();
+    });
+  }
+
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('is-active');
         document.body.style.overflow = 'auto';
       }
     });
   });
 
-  document.querySelectorAll('[data-close-modal]').forEach(closeBtn => {
-    closeBtn.addEventListener('click', () => {
-      const modalId = closeBtn.getAttribute('data-close-modal');
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modalId = btn.getAttribute('data-close');
       closeModal(modalId);
     });
   });
