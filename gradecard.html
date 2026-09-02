@@ -224,92 +224,53 @@
       transform: scale(0.98);
     }
 
-    /* Marksheet Printable / Modal View Styles */
-    .marksheet-container {
-      background: #ffffff;
-      border: 2px solid #22c55e;
-      padding: 24px;
-      border-radius: 4px;
-      font-family: 'Times New Roman', Times, serif, 'Segoe UI';
-      color: #000000;
-      margin-top: 20px;
+    /* Original PDF Marksheet Container */
+    .original-marksheet-viewer {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 28px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
     }
-    .ms-header {
-      text-align: center;
-      margin-bottom: 12px;
+    .ms-action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e2e8f0;
     }
-    .ms-univ-hi {
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: #16a34a;
-    }
-    .ms-univ-en {
-      font-size: 1.15rem;
-      font-weight: bold;
-      color: #16a34a;
-      letter-spacing: 0.5px;
-    }
-    .ms-sub {
-      font-size: 0.95rem;
-      color: #16a34a;
-      font-style: italic;
-    }
-    .ms-title {
+    .ms-action-title {
       font-size: 1.1rem;
-      font-weight: bold;
-      margin-top: 4px;
+      font-weight: 700;
+      color: #1e293b;
     }
-    .ms-meta-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 10px;
-      font-size: 0.9rem;
-    }
-    .ms-meta-table td {
-      border: 1px solid #000000;
-      padding: 4px 8px;
-    }
-    .ms-meta-table td.label-cell {
-      color: #16a34a;
-      font-weight: bold;
-      width: 25%;
-    }
-    .ms-meta-table td.val-cell {
-      font-weight: bold;
-    }
-    .ms-data-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-      margin-bottom: 12px;
-    }
-    .ms-data-table th, .ms-data-table td {
-      border: 1px solid #000000;
-      padding: 5px 6px;
-      text-align: center;
-    }
-    .ms-data-table th {
-      color: #16a34a;
-      font-weight: bold;
-    }
-    .ms-data-table td.sub-name {
-      text-align: left;
-      font-weight: bold;
-    }
-    .ms-summary-row {
+    .ms-btn-group {
       display: flex;
-      justify-content: space-between;
-      font-weight: bold;
-      font-size: 0.95rem;
-      margin-top: 10px;
-      padding: 6px 0;
+      gap: 10px;
     }
-    .ms-footer-sign {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-top: 24px;
+    .btn-download-pdf {
+      background-color: #2563eb;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 7px 16px;
+      border-radius: 4px;
       font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-download-pdf:hover {
+      background-color: #1d4ed8;
+    }
+    .pdf-embed-frame {
+      width: 100%;
+      height: 850px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      background: #ffffff;
     }
   </style>
 </head>
@@ -391,30 +352,30 @@
       <a href="profile.html" class="sidebar-link">
         <span class="sidebar-icon">👤</span> Student Profile
       </a>
+      <a href="gradecard.html" class="sidebar-link active">
+        <span class="sidebar-icon">📑</span> Grade Card / Results
+      </a>
       <a href="dashboard.html" class="sidebar-link">
         <span class="sidebar-icon">📊</span> Dashboard Home
       </a>
       <a href="#programme" class="sidebar-link">
         <span class="sidebar-icon">🎓</span> Programme Details
       </a>
-      <a href="#academics" class="sidebar-link">
-        <span class="sidebar-icon">📚</span> Course Details
-      </a>
 
-      <div class="sidebar-section-title" style="margin-top: 10px;">Examinations</div>
+      <div class="sidebar-section-title" style="margin-top: 10px;">Examinations & Degree</div>
       <a href="gradecard.html" class="sidebar-link active">
-        <span class="sidebar-icon">📑</span> Grade Card / Results
+        <span class="sidebar-icon">🏆</span> Statements of Marks
       </a>
-      <a href="#admitcard" class="sidebar-link">
-        <span class="sidebar-icon">🎟️</span> Admit Card
+      <a href="#provisional" class="sidebar-link">
+        <span class="sidebar-icon">📜</span> Provisional Degree
       </a>
-      <a href="#exam-schedule" class="sidebar-link">
-        <span class="sidebar-icon">📅</span> Examination Schedule
+      <a href="#migration" class="sidebar-link">
+        <span class="sidebar-icon">📄</span> Migration Certificate
       </a>
 
       <div class="sidebar-section-title" style="margin-top: 10px;">Finance & Services</div>
       <a href="#fees" class="sidebar-link">
-        <span class="sidebar-icon">💳</span> Fee Payments
+        <span class="sidebar-icon">💳</span> Fee Receipts (Cleared)
       </a>
       <a href="#grievance" class="sidebar-link">
         <span class="sidebar-icon">🎧</span> Helpdesk
@@ -452,7 +413,7 @@
             <td>YEAR</td>
             <td>2022</td>
             <td>
-              <button type="button" class="btn-view-grade" onclick="openMarksheet('part1')">View</button>
+              <button type="button" class="btn-view-grade" onclick="openOriginalPdfDocument('part1')">View</button>
             </td>
           </tr>
           <tr>
@@ -462,7 +423,7 @@
             <td>YEAR</td>
             <td>2023</td>
             <td>
-              <button type="button" class="btn-view-grade" onclick="openMarksheet('part2')">View</button>
+              <button type="button" class="btn-view-grade" onclick="openOriginalPdfDocument('part2')">View</button>
             </td>
           </tr>
           <tr>
@@ -472,15 +433,26 @@
             <td>YEAR</td>
             <td>2024</td>
             <td>
-              <button type="button" class="btn-view-grade" onclick="openMarksheet('part3')">View</button>
+              <button type="button" class="btn-view-grade" onclick="openOriginalPdfDocument('part3')">View</button>
             </td>
           </tr>
         </tbody>
       </table>
 
-      <!-- Dynamic Detailed Marksheet Viewer Container -->
-      <div id="marksheetViewer" style="margin-top: 30px; display: none;">
-        <!-- Filled dynamically by JavaScript based on Part 1, 2, or 3 -->
+      <!-- Original As-Is PDF Viewer Frame -->
+      <div id="originalPdfViewerContainer" class="original-marksheet-viewer" style="display: none;">
+        <div class="ms-action-bar">
+          <div class="ms-action-title" id="msTitle">Statement of Marks (Original PDF)</div>
+          <div class="ms-btn-group">
+            <a href="#" id="btnDownloadOriginalPdf" class="btn-download-pdf" target="_blank" download>
+              📄 Download Original PDF
+            </a>
+            <a href="#" id="btnOpenInNewTab" class="btn-download-pdf" style="background:#0284c7;" target="_blank">
+              🔗 Open Fullscreen
+            </a>
+          </div>
+        </div>
+        <iframe id="pdfFrame" src="" class="pdf-embed-frame"></iframe>
       </div>
 
     </section>
@@ -498,334 +470,36 @@
   </footer>
 
   <script>
-    const marksheetData = {
-      part1: `
-        <div class="marksheet-container">
-          <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
-            <button class="btn-action-primary" style="background:#4f46e5; color:#fff; border:none; padding:6px 14px; border-radius:4px; cursor:pointer;" onclick="window.print()">🖨️ Print Marksheet</button>
-          </div>
-          <div class="ms-header">
-            <img src="assets/university-logo.svg" style="width: 50px; height: 50px; margin: 0 auto;" alt="KU Logo"><br>
-            <span class="ms-univ-hi">कुमाऊँ विश्वविद्यालय, नैनीताल</span><br>
-            <span class="ms-univ-en">KUMAUN UNIVERSITY, NAINITAL</span><br>
-            <span class="ms-sub">Statements of Marks for the Examination</span>
-            <div class="ms-title">B.COM. PART-I (REGULAR) 2022</div>
-            <div style="font-size: 0.85rem; color: #333;">(Internet Download)</div>
-          </div>
-
-          <table class="ms-meta-table">
-            <tr>
-              <td class="label-cell">Roll No.</td>
-              <td class="val-cell">2233524680</td>
-              <td class="label-cell">Enrollment No.</td>
-              <td class="val-cell">KU20247319</td>
-            </tr>
-            <tr>
-              <td class="label-cell">Name of the Student</td>
-              <td class="val-cell" colspan="3">MOHD MOHSIN KHAN</td>
-            </tr>
-            <tr>
-              <td class="label-cell">Father's Name</td>
-              <td class="val-cell" colspan="3">BABBAN KHAN</td>
-            </tr>
-            <tr>
-              <td class="label-cell">Campus / College</td>
-              <td class="val-cell" colspan="3">SARDAR BHAGAT SINGH GOVT. P.G. COLLEGE RUDRAPUR U.S. NAGAR</td>
-            </tr>
-          </table>
-
-          <table class="ms-data-table">
-            <thead>
-              <tr>
-                <th rowspan="2">Subjects / Papers</th>
-                <th rowspan="2">Max. Marks</th>
-                <th rowspan="2">Min. Marks</th>
-                <th colspan="2">Papers</th>
-                <th rowspan="2">Theory Total</th>
-                <th rowspan="2">Practical</th>
-                <th rowspan="2">Total</th>
-              </tr>
-              <tr>
-                <th>I</th>
-                <th>II</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="sub-name">GR-I (MANAGEMENT GROUP)<br>GENERAL & OFFICE MANAGEMENT<br>BUSINESS ENVIRONMENT</td>
-                <td>100</td>
-                <td>33</td>
-                <td>35/50</td>
-                <td>41/50</td>
-                <td>76/100</td>
-                <td>-</td>
-                <td><strong>76/100</strong></td>
-              </tr>
-              <tr>
-                <td class="sub-name">GR-II (ACCOUNTING GROUP)<br>FINANCIAL ACCOUNTING<br>ELEMENTS OF STATISTICS</td>
-                <td>100</td>
-                <td>33</td>
-                <td>38/50</td>
-                <td>37/50</td>
-                <td>75/100</td>
-                <td>-</td>
-                <td><strong>75/100</strong></td>
-              </tr>
-              <tr>
-                <td class="sub-name">GR-III (B.E. & B.L. GROUP)<br>BUSINESS ECONOMICS<br>BUSINESS REGULATORY FRAME-WORK</td>
-                <td>100</td>
-                <td>33</td>
-                <td>31/50</td>
-                <td>40/50</td>
-                <td>71/100</td>
-                <td>-</td>
-                <td><strong>71/100</strong></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="ms-summary-row">
-            <span style="color: #16a34a;">Result: PASS</span>
-            <span>Current Total: 222/300</span>
-            <span>Grand Total: 222/300</span>
-          </div>
-          <div style="font-size: 0.85rem; margin-top: 4px;">Dated: 18.11.2022</div>
-
-          <div class="ms-footer-sign">
-            <div style="font-size: 0.75rem; color: #555;">
-              *This Statement of Marks has been downloaded from the University website and is valid only for admission.<br>
-              *Final Original copy of mark sheet with details of all year shall be provided after completion.
-            </div>
-            <div style="text-align: center; color: #16a34a; font-weight: bold;">
-              ✍️ Controller of Examinations<br>Kumaun University
-            </div>
-          </div>
-        </div>
-      `,
-      part2: `
-        <div class="marksheet-container">
-          <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
-            <button class="btn-action-primary" style="background:#4f46e5; color:#fff; border:none; padding:6px 14px; border-radius:4px; cursor:pointer;" onclick="window.print()">🖨️ Print Marksheet</button>
-          </div>
-          <div class="ms-header">
-            <img src="assets/university-logo.svg" style="width: 50px; height: 50px; margin: 0 auto;" alt="KU Logo"><br>
-            <span class="ms-univ-hi">कुमाऊँ विश्वविद्यालय, नैनीताल</span><br>
-            <span class="ms-univ-en">KUMAUN UNIVERSITY, NAINITAL</span><br>
-            <span class="ms-sub">Statements of Marks for the Examination</span>
-            <div class="ms-title">B.COM. PART-II (REGULAR) 2023</div>
-            <div style="font-size: 0.85rem; color: #333;">(Internet Download)</div>
-          </div>
-
-          <table class="ms-meta-table">
-            <tr>
-              <td class="label-cell">Roll No.</td>
-              <td class="val-cell">2233524680</td>
-              <td class="label-cell">Enrollment No.</td>
-              <td class="val-cell">KU20247319</td>
-            </tr>
-            <tr>
-              <td class="label-cell">Name of the Student</td>
-              <td class="val-cell" colspan="3">MOHD MOHSIN KHAN</td>
-            </tr>
-            <tr>
-              <td class="label-cell">Father's Name</td>
-              <td class="val-cell" colspan="3">BABBAN KHAN</td>
-            </tr>
-            <tr>
-              <td class="label-cell">Campus / College</td>
-              <td class="val-cell" colspan="3">SARDAR BHAGAT SINGH GOVT. P.G. COLLEGE RUDRAPUR U.S. NAGAR</td>
-            </tr>
-          </table>
-
-          <table class="ms-data-table">
-            <thead>
-              <tr>
-                <th rowspan="2">Subjects / Papers</th>
-                <th rowspan="2">Max. Marks</th>
-                <th rowspan="2">Min. Marks</th>
-                <th colspan="2">Papers</th>
-                <th rowspan="2">Theory Total</th>
-                <th rowspan="2">Practical</th>
-                <th rowspan="2">Total</th>
-              </tr>
-              <tr>
-                <th>I</th>
-                <th>II</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="sub-name">GR-I (MANAGEMENT GROUP)<br>BASIC BUSINESS FINANCE<br>PERSONNEL MANAGEMENT</td>
-                <td>100</td>
-                <td>33</td>
-                <td>38/50</td>
-                <td>36/50</td>
-                <td>74/100</td>
-                <td>-</td>
-                <td><strong>74/100</strong></td>
-              </tr>
-              <tr>
-                <td class="sub-name">GR-II (ACCOUNTING GROUP)<br>ADVANCED ACCOUNTING<br>COST ACCOUNTING</td>
-                <td>100</td>
-                <td>33</td>
-                <td>41/50</td>
-                <td>39/50</td>
-                <td>80/100</td>
-                <td>-</td>
-                <td><strong>80/100</strong></td>
-              </tr>
-              <tr>
-                <td class="sub-name">GR-III (B.E. & B.L. GROUP)<br>MONEY BANKING & FOREIGN EXCHANGE<br>COMPANY LAW & SECRETARIAL PRACTICE</td>
-                <td>100</td>
-                <td>33</td>
-                <td>34/50</td>
-                <td>42/50</td>
-                <td>76/100</td>
-                <td>-</td>
-                <td><strong>76/100</strong></td>
-              </tr>
-              <tr>
-                <td class="sub-name">ENVIRONMENTAL SCIENCE</td>
-                <td>50</td>
-                <td>15</td>
-                <td colspan="2">42/50</td>
-                <td>42/50</td>
-                <td>-</td>
-                <td><strong>Grade A</strong></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="ms-summary-row">
-            <span style="color: #16a34a;">Result: PASS</span>
-            <span>Current Total: 230/300</span>
-            <span>Previous: 222/300</span>
-            <span>Grand Total: 452/600</span>
-          </div>
-          <div style="font-size: 0.85rem; margin-top: 4px;">Dated: 10.08.2023</div>
-
-          <div class="ms-footer-sign">
-            <div style="font-size: 0.75rem; color: #555;">
-              *This Statement of Marks has been downloaded from the University website and is valid only for admission.
-            </div>
-            <div style="text-align: center; color: #16a34a; font-weight: bold;">
-              ✍️ Controller of Examinations<br>Kumaun University
-            </div>
-          </div>
-        </div>
-      `,
-      part3: `
-        <div class="marksheet-container">
-          <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
-            <button class="btn-action-primary" style="background:#4f46e5; color:#fff; border:none; padding:6px 14px; border-radius:4px; cursor:pointer;" onclick="window.print()">🖨️ Print Marksheet</button>
-          </div>
-          <div class="ms-header">
-            <img src="assets/university-logo.svg" style="width: 50px; height: 50px; margin: 0 auto;" alt="KU Logo"><br>
-            <span class="ms-univ-hi">कुमाऊँ विश्वविद्यालय, नैनीताल</span><br>
-            <span class="ms-univ-en">KUMAUN UNIVERSITY, NAINITAL</span><br>
-            <span class="ms-sub">Statements of Marks for the Examination</span>
-            <div class="ms-title">B.COM. PART-III (REGULAR) 2024 (FINAL YEAR)</div>
-            <div style="font-size: 0.85rem; color: #333;">(Internet Download)</div>
-          </div>
-
-          <table class="ms-meta-table">
-            <tr>
-              <td class="label-cell">Roll No.</td>
-              <td class="val-cell">2233524680</td>
-              <td class="label-cell">Enrollment No.</td>
-              <td class="val-cell">KU20247319</td>
-            </tr>
-            <tr>
-              <td class="label-cell">Name of the Student</td>
-              <td class="val-cell" colspan="3">MOHD MOHSIN KHAN</td>
-            </tr>
-            <tr>
-              <td class="label-cell">Father's Name</td>
-              <td class="val-cell" colspan="3">BABBAN KHAN</td>
-            </tr>
-            <tr>
-              <td class="label-cell">Campus / College</td>
-              <td class="val-cell" colspan="3">SARDAR BHAGAT SINGH GOVT. P.G. COLLEGE RUDRAPUR U.S. NAGAR</td>
-            </tr>
-          </table>
-
-          <table class="ms-data-table">
-            <thead>
-              <tr>
-                <th rowspan="2">Subjects / Papers</th>
-                <th rowspan="2">Max. Marks</th>
-                <th rowspan="2">Min. Marks</th>
-                <th colspan="2">Papers</th>
-                <th rowspan="2">Theory Total</th>
-                <th rowspan="2">Practical</th>
-                <th rowspan="2">Total</th>
-              </tr>
-              <tr>
-                <th>II</th>
-                <th>III</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="sub-name">GR-I (MANAGEMENT GROUP)<br>MARKETING MANAGEMENT<br>MANAGEMENT ACCOUNTING</td>
-                <td>100</td>
-                <td>33</td>
-                <td>32/50</td>
-                <td>43/50</td>
-                <td>75/100</td>
-                <td>-</td>
-                <td><strong>75/100</strong></td>
-              </tr>
-              <tr>
-                <td class="sub-name">GR-II (ACCOUNTING GROUP)<br>INCOME TAX, LAW & ACCOUNTS<br>AUDITING</td>
-                <td>100</td>
-                <td>33</td>
-                <td>37/50</td>
-                <td>41/50</td>
-                <td>78/100</td>
-                <td>-</td>
-                <td><strong>78/100</strong></td>
-              </tr>
-              <tr>
-                <td class="sub-name">GR-III (B.E. & B.L. GROUP)<br>PUBLIC FINANCE<br>FUNDAMENTALS OF INSURANCE</td>
-                <td>100</td>
-                <td>33</td>
-                <td>37/50</td>
-                <td>42/50</td>
-                <td>79/100</td>
-                <td>-</td>
-                <td><strong>79/100</strong></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="ms-summary-row" style="background:#f0fdf4; padding:8px 12px; border:1px solid #86efac; border-radius:4px;">
-            <span style="color: #15803d; font-size:1.05rem;">🏆 Result: FIRST DIVISION</span>
-            <span>Ist Year: 222/300</span>
-            <span>IInd Year: 230/300</span>
-            <span>IIIrd Year: 232/300</span>
-            <span style="color:#1d4ed8; font-size:1.05rem;">Grand Total: 684/900 (76.0%)</span>
-          </div>
-          <div style="font-size: 0.85rem; margin-top: 6px;">Dated: 09.07.2024</div>
-
-          <div class="ms-footer-sign">
-            <div style="font-size: 0.75rem; color: #555;">
-              *This Statement of Marks has been downloaded from the University website and is valid only for admission.
-            </div>
-            <div style="text-align: center; color: #16a34a; font-weight: bold;">
-              ✍️ Controller of Examinations<br>Kumaun University
-            </div>
-          </div>
-        </div>
-      `
+    const pdfFiles = {
+      part1: {
+        title: 'B.COM. PART-I (REGULAR) 2022 - Statements of Marks (Original PDF)',
+        pdf: 'assets/gradecards/BCOM_PART1_2022.pdf'
+      },
+      part2: {
+        title: 'B.COM. PART-II (REGULAR) 2023 - Statements of Marks (Original PDF)',
+        pdf: 'assets/gradecards/BCOM_PART2_2023.pdf'
+      },
+      part3: {
+        title: 'B.COM. PART-III (REGULAR) 2024 (FINAL YEAR) - Statements of Marks (Original PDF)',
+        pdf: 'assets/gradecards/BCOM_PART3_2024.pdf'
+      }
     };
 
-    function openMarksheet(partKey) {
-      const viewer = document.getElementById('marksheetViewer');
-      if (viewer && marksheetData[partKey]) {
-        viewer.innerHTML = marksheetData[partKey];
-        viewer.style.display = 'block';
-        viewer.scrollIntoView({ behavior: 'smooth' });
+    function openOriginalPdfDocument(partKey) {
+      const container = document.getElementById('originalPdfViewerContainer');
+      const title = document.getElementById('msTitle');
+      const frame = document.getElementById('pdfFrame');
+      const dlLink = document.getElementById('btnDownloadOriginalPdf');
+      const tabLink = document.getElementById('btnOpenInNewTab');
+
+      const data = pdfFiles[partKey];
+      if (container && data) {
+        title.textContent = data.title;
+        frame.src = data.pdf;
+        dlLink.href = data.pdf;
+        tabLink.href = data.pdf;
+        container.style.display = 'block';
+        container.scrollIntoView({ behavior: 'smooth' });
       }
     }
   </script>
