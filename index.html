@@ -156,9 +156,9 @@
           <!-- Captcha Field Section -->
           <div class="captcha-group">
             <div class="captcha-instruction-text">Click on the text to change the captcha</div>
-            <div class="captcha-row">
+            <div class="captcha-row" style="align-items: center; gap: 12px;">
               <span class="captcha-title-label">Captcha</span>
-              <span id="captchaText" class="captcha-code-digits" title="Click to refresh captcha">7285867</span>
+              <canvas id="captchaCanvas" width="180" height="46" style="cursor: pointer; background: transparent; vertical-align: middle;" title="Click to change Captcha"></canvas>
             </div>
             <div class="field-input-box">
               <input 
@@ -166,6 +166,7 @@
                 id="inputCaptcha" 
                 class="text-input" 
                 autocomplete="off"
+                placeholder="Enter Captcha digits"
                 required
               >
             </div>

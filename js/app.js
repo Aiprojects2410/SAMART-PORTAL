@@ -3,31 +3,65 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Captcha Management
+  // 1. Authentic Chunky Blue Distorted Captcha Canvas
   let currentCaptcha = '';
-  const captchaDisplay = document.getElementById('captchaText');
+  const captchaCanvas = document.getElementById('captchaCanvas');
   const captchaInput = document.getElementById('inputCaptcha');
 
-  function generateCaptcha() {
+  function renderChunkyCaptcha() {
+    if (!captchaCanvas) return;
+    const ctx = captchaCanvas.getContext('2d');
+    const width = captchaCanvas.width;
+    const height = captchaCanvas.height;
+
+    // Clear canvas
+    ctx.clearRect(0, 0, width, height);
+
+    // Generate 6 random digits
     const digits = '0123456789';
     let code = '';
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 6; i++) {
       code += digits.charAt(Math.floor(Math.random() * digits.length));
     }
     currentCaptcha = code;
-    if (captchaDisplay) {
-      captchaDisplay.textContent = code;
+
+    // Draw each digit with authentic chunky distortion, tilt, and deep blue color
+    const colors = ['#1d4ed8', '#1e40af', '#1e3a8a', '#172554'];
+    const charSpacing = 26;
+    const startX = 14;
+
+    for (let i = 0; i < code.length; i++) {
+      const char = code[i];
+      const charX = startX + i * charSpacing;
+      const charY = height / 2 + 10 + (Math.random() - 0.5) * 6;
+      const angle = (Math.random() - 0.5) * 0.45; // -13deg to +13deg tilt
+      const scaleY = 0.9 + Math.random() * 0.25;
+
+      ctx.save();
+      ctx.translate(charX, charY);
+      ctx.rotate(angle);
+      ctx.scale(1, scaleY);
+
+      // Chunky bold font
+      ctx.font = '900 36px "Arial Black", Impact, sans-serif';
+      ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(char, 0, 0);
+
+      ctx.restore();
     }
+
     if (captchaInput) {
       captchaInput.value = '';
     }
   }
 
-  if (captchaDisplay) {
-    captchaDisplay.addEventListener('click', generateCaptcha);
+  if (captchaCanvas) {
+    captchaCanvas.addEventListener('click', renderChunkyCaptcha);
   }
 
-  generateCaptcha();
+  renderChunkyCaptcha();
 
   // 2. Font Resizer (A-, A, A+)
   const fontDecrease = document.getElementById('fontDecrease');
@@ -133,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (enteredCaptcha !== currentCaptcha) {
         alert('Invalid Captcha! Please enter the exact digits shown.');
-        generateCaptcha();
+        renderChunkyCaptcha();
         captchaInput?.focus();
         return;
       }
